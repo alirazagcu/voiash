@@ -1,0 +1,1490 @@
+.App{
+  text-align: center;
+}
+
+.slider{
+width: 100%;
+ background-color: black;
+ margin-top: 0px;
+height: 30em;
+object-fit: cover;
+}
+.slider1{
+  margin-top:58px;
+  height: 30em;
+ background-color: black;
+  
+}
+.sliders{
+  width: 100%;
+ background-color: black;
+ margin-top: 0px;
+ height: 300px;
+}
+.sliders1{
+  margin-top:58px;
+  height: 300px;
+  
+ background-color: black;
+  
+}
+.content {
+  position: sticky;
+ margin-top: -80px;
+  color: black;
+  width: 100%;
+}
+.button{
+  height: 40px;
+ padding-left: 12px;
+ padding-right: 12px;
+  margin: 4px;
+border: none;
+color: white;
+font-weight: bold;
+font-size: medium;
+  background-color: rgb(226, 59, 47);
+  border-radius: 20px ;
+}
+.buttons{
+  width: 170px;
+  height: 80px;
+ padding-left: 12px;
+ padding-right: 12px;
+  margin: 12px;
+border: none;
+color: white;
+font-weight: bold;
+font-size: medium;
+  background-color: rgb(71, 231, 132);
+  border-radius: 20px ;
+}
+.text{
+  float: left;
+  margin-top: 80px;
+  margin-left: 20px;
+}
+.setheight{
+  height: 120px;
+  
+}
+.vertodas{
+  float: right;
+  margin-top: 80px;
+  margin-right: 20px;
+}
+.vertodas button{
+  background:none;
+  border: red;
+  border-style: solid;
+  border-width: 2px;
+}
+.Rowme{
+  margin-top: 20px;
+ 
+  display: flex;
+  justify-content: center;
+  width: 99%;
+  padding: 10px;
+  
+}
+
+.columy{
+  padding: 15px;
+ 
+ 
+}
+.columy1{
+  /* background-image: url("./images/bech.jfif"); */
+  height: 400px;
+
+  border-radius: 20px !important;
+  box-shadow: 1px 1px 7px 1px grey;
+
+}
+.columys1{
+  /* background-image: url("./images/party.jpg"); */
+  height: 400px;
+  cursor: pointer;
+  border-radius: 20px !important;
+  box-shadow: 1px 1px 7px 1px grey;
+
+}
+.bgimage{
+  height: 100%;
+  border-radius: 20px !important;
+}
+.columy:hover{
+  padding: 7px; 
+  
+}
+
+.textforcard{
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  text-align: left;
+}
+.textforcard1{
+  color: black;
+  text-align: right;
+}
+.textforcards1{
+  color: white;
+  text-align: right;
+}
+.flex-container {
+  display: flex;
+  align-items: stretch;
+  background-color: #f1f1f1;
+}
+.rowwww{
+  padding-left: 40px;
+  padding-right: 20px;
+}
+
+.flex-container > div {
+  background-color: DodgerBlue;
+  color: white;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+.grid{
+  margin-top: 50px;
+  width: 100%;
+}
+.grid1{
+ 
+  width: 100%;
+}
+.btnlink{
+  text-decoration: none;
+  color: white;
+}
+.btnlink:hover{
+  text-decoration: none;
+  color: white;
+}
+.Mprof{
+  margin-top: 70px;
+display: flex;
+
+justify-content: center;
+}
+.prof{
+  width: 80%;
+  
+}
+.profileimage{
+  width: 98px;
+  height: 98px;
+  float: left;
+  border-radius: 180%;
+  margin-right: 12px;
+}
+.profileinfo{
+  height: 144px;
+  padding: 20px;
+}
+.profilename{
+  float: left;
+  height: 90px;
+  text-align: left;
+  color: gray;
+  margin-top: 10px;
+}
+.module-border-wrap {
+  width: 106px;
+  height: 106px;
+  padding: 4px;
+  float: left; 
+   margin-right: 12px;
+  border-radius: 180%;
+  position: relative;
+  background: linear-gradient(90deg,#bc2b2f,#fe9e47);
+  
+}
+@media only screen and (max-width: 700px) {
+  .prof{
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .profilename{
+    width: 100px;
+    float: left;
+    height: 90px;
+    text-align: left;
+    color: gray;
+    margin-top: 10px;
+   
+  }
+}
+.linkbutton{
+  display: flex;
+}
+.linkss{
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+  text-decoration: none;
+  color: grey;
+  font-weight: bold;
+}
+.linkss:hover{
+  
+  text-decoration: none;
+  color: grey;
+  font-weight: bold;
+}
+.Personal{
+  margin-top: 40px;
+  display: flex;
+
+}
+.personalnavbar{
+  width: 30%;
+  background-color:rgba(0,0,0,.03);
+  display: inline;
+}
+.personalform{
+ 
+ 
+  width: 70%;
+}
+.linkss2{
+  font-size: 1em;
+  padding: .8em 1em;
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  color: grey;
+  display: block;
+  text-align: left;
+  border-radius: 8px;
+}
+.linkss2:hover{
+  font-size: 1em;
+  padding: .8em 1em;
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  color: grey;
+  display: block;
+  text-align: left;
+  border-radius: 8px;
+}
+.personaldiv{
+  width: 100%;
+  padding: 0;
+
+}
+.person{
+  text-align: left;
+  padding: 20px;
+  background-color:rgba(0,0,0,.03);
+ 
+}
+.person1{
+ text-align: left;
+  padding: 20px;
+  background: white;
+} 
+.person123{
+  text-align: left;
+   padding: 20px;
+   height: 400px;
+   background: white;
+ } 
+.person1a{
+  text-align: left;
+  padding: 10px;
+  background: white;
+}
+.formcontrol{
+  display: block;
+}
+.form1{
+  display: inline;
+  color: gray;
+}
+.form2{
+  width: 100%;
+  
+}
+.form3{
+float: left;
+  width: 48%;
+  height: 100px;
+}
+.form3a{
+  float: left;
+    width: 96%;
+    height: 100px;
+text-align: center;
+  }
+.form4{
+  width: 48%;
+  float: right;
+  height: 100px;
+}
+.form4a{
+  width: 48%;
+  float: right;
+  text-align: right;
+  height: 100px;
+}
+.form5{
+  
+ float: right;
+justify-content: right;
+}
+.buttonform{
+  width: 140px;
+  border-radius: 30px;
+  height: 40px;
+  border: none;
+  background: linear-gradient(90deg,#bc2b2f,#fe9e47);
+}
+.personaltext{
+  font-weight: bold;
+  color: gray;
+}
+.tablehead{
+  color: gray;
+  font-size: small;
+  text-align: center;
+}
+.tablebody{
+  color: black;
+  text-align: center;
+}
+.paymentpic{
+  width: 40px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+.cardbody{
+  margin-bottom: 15px;
+}
+.cardimage{
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  margin-right: 10px;
+
+}
+.carddiv{
+  display: flex;
+}
+.groupcardtext{
+  margin: 0px;
+  color: gray;
+  text-decoration: none;
+}
+.grouplink{
+  text-decoration: none;
+}
+.grouplink:hover{
+  text-decoration: none;
+}
+.grouppara{
+  color: black;
+}
+.FormInfo{
+ 
+    width: 100%;
+
+}
+.imageinputuploadpic{
+  border-radius: 10px;
+  width: 300px;
+  background: gray;
+  height: 250px;
+}
+.Info1{
+  float: left;
+    width: 40%;
+    height: 80px;
+    margin-right: 2%;
+}
+.Info2{
+  width: 28%;
+    float: left;
+    height: 80px;
+    
+}
+.Info3{
+  width: 28%;
+    float: right;
+    height: 80px;
+}
+.Info4{
+  float: left;
+    width: 32%;
+    height: 80px;
+    margin-right: 2%;
+}
+.Info5{
+  width: 32%;
+    float: left;
+    height: 80px;
+    
+}
+.Info6{
+  width: 32%;
+    float: right;
+    height: 80px;
+}
+.Infobutton{
+  
+  float: right;
+  margin-top: 20px;
+ justify-content: right;
+}
+.PICS{
+  width: 250PX;
+  margin-left: -250px;
+  height: 250px;
+}
+.Formpic{
+  width: 100%;
+  align-items: center;
+  display: flex;
+  
+  justify-content: center;
+}
+.mr-sm-2{
+  width: 100px;
+}
+.linktable{
+  text-decoration: none;
+  width: 100%;
+}
+.formcontrol{
+    
+    float: left;
+}
+.tablelink{
+  height: 45px;
+  width: 100%;
+  text-decoration: none;
+}
+.pakistan{
+  padding: 0px !important;
+  height: 45px !important;
+}
+.linker{
+  text-decoration: none;
+  color: #000;
+}
+.linker:hover{
+  text-decoration: none;
+  color: #000;
+}
+.tabeltext{
+padding-top: 12px;
+padding-left: 15px;
+
+
+}
+.personT{
+  text-align: left;
+  padding: 20px;
+ 
+}
+
+
+/* 
+admin pan3l */
+.adminPersonal{
+  margin-top: 60px;
+  display: flex; 
+}
+.adminpersonalnavbar{
+  width: 15%;
+  border-right: 1px solid rgba(0,0,0,.05);
+  display: inline;
+}
+.adminpersonaldiv{
+  width: 100%;
+  padding: 0;
+
+}
+.adminpersonalform{
+  width: 85%;
+  padding-top: 30px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.adminicon{
+  margin-right: 10px;
+}
+.tablerow{
+  margin-top: 100px;
+  margin-left: 40px;
+  background: #000;
+}
+.tableh2{
+  padding-top: 200px;
+  padding-left: 300px;
+  color: gray;
+}
+
+
+
+/* 
+Experiences */
+.Experiences0{
+  padding-top: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.Experiences{
+  margin-top: 60px;
+  
+}
+.Experiences1{
+  
+}
+.Experiences2{
+  display: flex;
+  margin-bottom: 40px;
+
+}
+.Experiencesimg{
+  width: 60%;
+}
+.Experiencestext{
+  padding-left: 30px;
+  padding-bottom: 60px;
+  width: 40%;
+  text-align: left;
+}
+.mainimage{
+   width: 100%;
+   height: 400px;
+}
+.btnimage0{
+  text-align: left;
+  padding-top: 10px;
+}
+.imagebtn{
+  font-size: 1em;
+  width: 6em;
+  height: 3.38em;
+  margin: 0 .5em 0 0;
+  border: 1px solid rgba(0,0,0,.2);
+  cursor: pointer;
+}
+.btnimage{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  
+}
+.reservbtn{
+width: 120px;
+height: 2.9em;
+background: linear-gradient(
+90deg
+,#fe4947,#ffa246);
+background-size: 100% 100%;
+text-transform: none;
+color: white;
+border-radius: 30px;
+font-weight: 400;
+border: none;
+cursor: pointer;
+}
+.discription{
+  text-align: left;
+}
+.dispara{
+  margin: 0px;
+}
+.price1{
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+.imgicon{
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+.dispara12{
+  margin: 0px;
+  border-bottom: red;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  width: 90px;
+  color: red;
+}
+.icontext{
+  margin-top: 30px;
+  display: flex;
+}
+.price{
+  font-size: x-small;
+  margin: 0%;
+}
+.dispara1{
+  margin-top: 12px;
+}
+
+/* 
+.module-border-wrap */
+
+.Model1{
+  height: 50px;
+  text-align: right;
+}
+.Model{
+ padding: 20px;
+}
+.Model2{
+padding: 15px;
+text-align: center;
+}
+.Model3{
+  
+  text-align: left;
+  }
+  .Model4{
+  display: flex;
+  justify-content: center;
+   
+    }
+    .Model5{
+      margin-top: .5em;
+      padding: 2em;
+      width: 100%;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      border: 2px solid rgba(0,0,0,.1);
+      }
+        .buttonmodel{
+          width: 120px;
+height: 2.9em;
+background: linear-gradient(
+90deg
+,#fe4947,#ffa246);
+background-size: 100% 100%;
+text-transform: none;
+color: white;
+margin-top: 20px;
+border-radius: 30px;
+font-weight: 400;
+border: none;
+cursor: pointer;
+        }
+      .firstlink{
+        text-decoration: none;
+        color: red;
+      }
+      .secondlink{
+        text-decoration: none;
+        color: rgb(31, 31, 167);
+      }
+
+      .modelp{
+        font-size: large;
+        font-weight: bold;
+        color: gray;
+      }
+      .modelform{
+        text-align: left;
+      }
+      .buttonmodel1{
+        width: 120px;
+height: 2.9em;
+background: linear-gradient(
+90deg
+,#fe4947,#ffa246);
+background-size: 100% 100%;
+text-transform: none;
+color: white;
+margin-top: 20px;
+border-radius: 30px;
+font-weight: 400;
+border: none;
+cursor: pointer;
+right: 0px;
+      }
+      .rightbutton{
+text-align: right;
+      }
+      .closeicon{
+        color: red;
+        margin-top: 20px;
+      }
+.cardimg2{
+  width: 310px;
+  height: 310px;
+}
+.rowmarn{
+  margin-bottom: 20px;
+  text-align: left;
+}
+.rowmarntop{
+  margin-top: 30px;
+  text-align: left;
+}
+.rowmarn12345{
+  margin-top: 20px;
+  text-align: left;
+}
+.rowmarn123{
+  margin-bottom: 20px;
+  padding-right:20px;
+padding-left: 20px;
+  text-align: left;
+}
+.cardimage22{
+  width: 100%;
+  height: 250px;
+  border-radius: 20px;
+}
+.detail1{
+ 
+  display: flex;
+}
+.detail2{
+text-align: right;
+float: right;
+width: 50%;
+}
+.detail3{
+  margin-top: 10px;
+  color: red;
+  margin-bottom: 0px;
+  }
+  .detail4{
+   margin-top: 0PX;
+   font-size: small;
+    }
+    .detail5{
+      float: left;
+      width: 50%;
+       }
+       .detail6{
+         margin-top: 10px;
+         margin-bottom: 0px;
+       }
+       .detail7{
+         margin-top: 20px;
+         text-align: center;
+       }
+       .buttonform1{
+        float: left;
+        color: white;
+        font-weight: bold;
+        border-radius: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px ;
+        padding-right: 20px;
+        border: none;
+        
+        background: linear-gradient(90deg,#bc2b2f,#fe9e47);
+     
+     }
+       .buttonform2{
+          float: right;
+          color: white;
+          border-radius: 30px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          padding-left: 20px ;
+          padding-right: 20px;
+          border: none;
+          background: linear-gradient(90deg,#bc2b2f,#fe9e47);
+           font-weight: bold;
+       }
+       .divbuttonform1{
+        float: left;
+        width: 50%;
+        margin-bottom: 40px;
+     }
+       .divbuttonform2{
+          float: right;
+          width: 50%;
+          margin-bottom: 40px;
+       }
+       .detail9{
+         width: 100%;
+         border-style: solid;
+         border-width: 1px;
+         border-color: gray;
+         padding: 20px;
+         margin-bottom: 30px;
+       }
+       .detail10{
+         width: 100%;
+            text-align: center;
+            margin-top: 40px;
+       }
+       .Model123{
+        padding: 60px;
+       }
+       .modeldetal{
+         font-weight: bold;
+       }
+       .modeldetal1{
+        color: red;
+      }
+      .modeldetal4{
+        color: red;
+      
+        font-size: small;
+      }
+      .modeldetal2{
+       width: 100%;
+       padding-left: 40px;
+       padding-right: 40px;
+      }
+      .image-upload{
+        width: 100%;
+        margin-top: 20px;
+        align-items: center;
+      }
+      .image-upload>input {
+        display: none;
+      }
+      .imageinput{
+        border-radius: 10px;
+        width: 300px;
+        height: 250px;
+      }
+      .imageinput12{
+        border-radius: 10px;
+        width: 195px;
+        height: 250px;
+      }
+      .imageinput134{
+        border-radius: 10px;
+        width: 195px;
+        
+        background: gray;
+        height: 250px;
+      }
+    .box {
+      transform: scale(2.7);
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      opacity: 0.7;
+    margin-top: 110px;
+    margin-left: 85px;
+     color: white;
+    }
+    .box1 {
+      transform: scale(2.7);
+      position: absolute;
+     
+    margin-top: 110px;
+    margin-left: 85px;
+     color: white;
+    }
+    .firstbox{
+      border-radius: 10px;
+      width: 195px;
+        height: 250px;
+      position: absolute;
+      opacity: 0;
+    }
+    .firstbox123{
+      border-radius: 10px;
+      width: 195px;
+        height: 250px;
+      position: absolute;
+      opacity: 0.9;
+      background: rgba(0,0,0,.2)!important;
+    }
+    .firstbox:hover{
+      border-radius: 10px;
+      width: 195px;
+        height: 250px;
+      position: absolute;
+      opacity: 0.9;
+      background: rgba(0,0,0,.2)!important;
+    }
+    .overlay {
+      width: 30px;
+      height: 30px;
+      margin-top: 120px;
+      margin-left: 75px;
+      background: #009938;
+    }
+    .res0{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+    }
+    .btnfornew{
+      text-align: right;
+      float: right;
+    }
+    .firstbtn1{
+       float: left; 
+    }
+    .firstbtn{
+      font-weight: bold;
+    }
+    .formarginbtn{
+      margin-left: 8px;
+      font-weight: bold;
+    }
+.addtablerow{
+float: right;
+
+}
+.tablewidth{
+  padding-left: 40px;
+  padding-right: 30px;
+}.collspan{
+  font-size: small;
+  font-weight: bold;
+}
+.inputintable{
+  width: 100%;
+  height: 100%;
+  border: none !important;
+  margin: 0% !important;
+  padding: 0% ;
+
+}
+.select{
+  width: 20px;
+  height: 20px;
+  border: none !important;
+  margin: 0% !important;
+  padding: 0% ;
+  align-items: center;
+
+}
+.inputintable3{
+ text-align: center;
+ 
+  justify-content: center;
+}
+
+.image-upload12{
+  width: 100%;
+  align-items: center;
+}
+.image-upload12>input {
+  display: none;
+  width: 100%;
+}
+.iiiiii{
+  width: 100%;
+}
+.newclass{
+  width: 100%;
+}
+.paragrapinput{
+  border: 1px solid #ced4da;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  height: 30px;
+  border-radius: 5px;
+}
+.h4inuser{
+  font-weight: bold;
+  color: black;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.buttondiv{
+  text-align: right;
+}
+.h4inuser1{
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.imageupload{
+  width: 100%;
+  margin-top: 20px;
+display: flex;
+justify-content: left;
+}
+
+.box12 {
+ transform: scale(2.7);
+ margin-top: 110px;
+margin-left: 30px; 
+ color: white;
+}
+.imageinputupdate{
+  border-radius: 10px;
+  width: 195px;
+  height: 250px;
+}
+.imageinputupdatenewphoto{
+  border-radius: 10px;
+  width: 195px;
+  background: gray !important;
+  height: 250px;
+}
+.firstboxupdate{
+  border-radius: 10px;
+  width: 195px;
+  height: 250px;
+  position: absolute;
+  opacity: 0.2;
+  
+}
+.formlabelleft{
+  text-align: left;
+}
+.firstboxupdatenew{
+  border-radius: 10px;
+  width: 195px;
+  height: 250px;
+  position: absolute;
+  opacity: 0.7;
+  background: rgba(0,0,0,.2) !important;
+}
+.firstboxupdate:hover{
+  border-radius: 10px;
+  width: 195px;
+  height: 250px;
+  position: absolute;
+  opacity: 0.7;
+  background: rgba(0,0,0,.2) !important;
+}
+.firstboxupdatenewphoto{
+  border-radius: 10px;
+  width: 195px;
+  height: 250px;
+  position: absolute;
+  background: gray !important;
+}
+.imageupload>input {
+  display: none;
+}
+.mainimagetab{
+  margin-top: 30px;
+ display: flex;
+}
+.imageuploadtab{
+  width: 100%;
+  margin-top: 20px;
+   padding-top: 20px;
+   margin: 0%;
+
+}
+.box12tab {
+  transform: scale(2.7);
+  margin-top: 110px; 
+  color: white;
+ }
+ .imageinputupdatetab{
+   border-radius: 10px;
+   width: 90%;
+   height: 250px;
+ }
+ .imageinputupdateexp{
+  border-radius: 10px;
+  background: #000;
+  width: 90%;
+  height: 250px;
+}
+ .imageinputupdatetabnew{
+  border-radius: 10px;
+  width: 90%;
+  height: 250px;
+  background-color: gray;
+}
+ .firstboxupdatetab{
+   border-radius: 10px;
+   width: 90%;
+   height: 250px;
+   position: absolute;
+   opacity: 0.2;
+   
+ }
+ .firstboxupdatetabnew{
+  border-radius: 10px;
+  width: 90%;
+  height: 250px;
+  position: absolute;
+  opacity: 0.7;
+  background: rgba(0,0,0,.2) !important;
+}
+ .firstboxupdatetab:hover{
+   border-radius: 10px;
+   width: 90%;
+   height: 250px;
+   position: absolute;
+   opacity: 0.7;
+   background: rgba(0,0,0,.2) !important;
+ }
+ .firstboxupdateexp{
+  border-radius: 10px;
+  width: 90%;
+  height: 250px;
+  position: absolute;
+
+  background: gray !important;
+}
+ .imageuploadtab>input {
+   display: none;
+ }
+ 
+
+
+.removeMargin{
+  margin-top: 20px;
+  margin-bottom: 0%;
+}
+.removeMargin1{
+  margin-top: 0%;
+  margin-bottom: 20px;
+}
+.picoption{
+  width: 20px;
+  height: 20px;
+}
+.Tabsetting{
+  height: 400px;
+  width: 100%;
+}
+.Tabsetting1{
+  width: 100%;
+}
+.Tabsetting2{
+  width: 100%;
+
+}
+
+.buttonmodeltab{
+  width: 120px;
+height: 2.9em;
+background-size: 100% 100%;
+text-transform: none;
+color: black;
+margin-top: 20px;
+font-weight: bold;
+border: none;
+cursor: pointer;
+right: 0px;
+}
+.grouptable{
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+}
+.tablegroup{
+
+ 
+  margin-top: 20px;
+  font-size: 16px !important;
+  border: 1px solid rgba(0,0,0,.1) !important;
+  border-top-left-radius: 6px !important;
+  border-top-right-radius: 6px !important;
+  border-bottom-left-radius: 6px !important;
+}
+.tablebutton{
+  text-align: right;
+
+}
+.tableaddbutton{
+margin-left: 10px;
+background: rgba(0,0,0,.05) !important;
+    color: #555 !important;
+    font-size: 1em;
+    border: none !important;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%) !important;
+}
+.tabletext{
+text-align: left;
+
+}
+.tabletext1{
+  display: flex;
+  padding-left: 10px;
+  margin-Top:20px;
+  margin-bottom: 0%;
+}
+.tabletext11{
+  font-weight: bold;
+  color: #000;
+  margin-left: 5px;
+}
+.marginbootm{
+  margin-bottom: 15px;
+}
+.header{
+  font-weight: bold !important;
+  color: #000 !important;
+}
+.popupdiv{
+  margin: 10px;
+}
+.selectedpic{
+  width: 60px;
+  height: 60px;
+  border-radius: 40px;
+  padding:0% !important;
+  margin: 0% !important;
+}
+.GroupExp{
+  display: flex;
+  padding:0% !important;
+  margin: 0% !important;
+  justify-content: left;
+  width: 100%;
+}
+.GroupExp0
+{
+width: 80%;
+}
+.GroupExp1{
+ float: left;
+
+ text-align: left;
+ justify-content: left;
+}
+.GroupExpo{
+  padding:10px !important;
+  margin: 0% !important;
+  width: 100%;
+}
+.GroupExp2{
+
+  padding-left: 20px;
+  text-align: left;
+  justify-content: left;
+  float: left;
+}
+.GroupExp3{
+  color: #000;
+  padding:0% !important;
+  margin: 0% !important;
+}
+.GroupExp4{
+  color: gray;
+  padding:0% !important;
+  margin: 0% !important;
+}
+.GroupExp5{
+  width: 20%;
+ float: right;
+ 
+}
+.GroupExp6{
+  float: right;
+  text-align: right;
+ color: rgb(248, 43, 43);
+}
+.largesize{
+  margin-top: 12px;
+  margin-right: 5px;
+  transform: scale(1.5);
+}
+.moreExperiences{
+  text-decoration: none;
+  color: red;
+}
+.moreExperiences:hover{
+  text-decoration: none;
+  color: red;
+}
+.editor{
+  margin-top: 40px;
+  text-align: left;
+}
+.myDate{
+  border-color: gray;
+}
+@media only screen and (max-width: 660px) {
+
+  .form3{
+    float: left;
+      width: 96%;
+      height: 100px;
+    }
+    .form4{
+      width: 96%;
+      float: right;
+      height: 100px;
+    }
+    .form5{
+    
+      float: left;
+    }
+    .form4a{
+      width: 96%;
+      text-align: right;
+      height: 100px;
+    }
+    .linkss{
+      padding-right: 0px;
+      padding-left: 15px;
+      padding-bottom: 15px;
+      text-decoration: none;
+      color: grey;
+      height: 200px;
+      font-weight: bold;
+    }
+    .Info1{
+      float: left;
+        width: 96%;
+        height: 80px;
+        margin-right: 0%;
+    }
+    .Info2{
+      width: 96%;
+        float: left;
+        height: 80px;
+        
+    }
+    .Info3{
+      width: 96%;
+        float: right;
+        height: 80px;
+    }
+    .Info4{
+      float: left;
+        width: 96%;
+        height: 80px;
+        margin-right: 0%;
+    }
+    .Info5{
+      width: 96%;
+        float: left;
+        height: 80px;
+        
+    }
+    .Info6{
+      width: 96%;
+        float: right;
+        height: 80px;
+    }
+    .imageinput{
+      border-radius: 10px;
+      width: 200px;
+      height: 250px;
+    }
+  
+}
+@media only screen and (max-width: 1020px ) and (min-width: 660px){
+    .Info1{
+      float: left;
+        width: 48%;
+        height: 80px;
+        margin-right: 3%;
+    }
+    .Info2{
+      width: 48%;
+        float: left;
+        height: 80px;
+        
+    }
+    .Info3{
+      width: 48%;
+        float: right;
+        height: 80px;
+    }
+    .Info4{
+      float: left;
+        width: 48%;
+        height: 80px;
+        margin-right: 0%;
+    }
+    .Info5{
+      width: 48%;
+        float: left;
+        height: 80px;
+        
+    }
+    .Info6{
+      width: 48%;
+        float: right;
+        height: 80px;
+    }
+
+}
+@media only screen and (max-width: 560px) {
+  .Experiencesimg{
+    width: 100% ;
+  }
+  .Experiencestext{
+    width: 100%;
+    margin-top: 20px;
+  }
+  .Experiences2{
+  
+    width: 100%;
+   display: list-item;
+  }
+  .mainimage{
+    width: 100%;
+    height: 400px;
+ }
+ .imagebtn{
+  font-size: 1em;
+  width: 5em;
+  height: 2.38em;
+  margin: 0 .5em 0 0;
+  border: 1px solid rgba(0,0,0,.2);
+  cursor: pointer;
+}
+.Personal{
+  margin-top: 40px;
+  width: 100%;
+  display: list-item;
+
+}
+.personalnavbar{
+  width: 100%;
+  background-color:rgba(0,0,0,.03);
+  display: inline;
+}
+.personalform{
+  width: 100%;
+}
+.divbuttonform1{
+  
+  width: 100%;
+  margin-bottom: 40px;
+}
+ .divbuttonform2{
+   
+    width: 100%;
+    margin-bottom: 40px;
+ }
+ .adminpersonalnavbar{
+  width: 100%;
+  border-right: 1px solid rgba(0,0,0,.05);
+  display: inline;
+}
+.adminPersonal{
+  margin-top: 60px;
+  display: flex;
+  width: 100%;
+  display: list-item; 
+}
+.adminpersonalform{
+  width: 100%;
+  padding-top: 30px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+}

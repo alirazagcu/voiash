@@ -1,0 +1,214 @@
+.icon{
+    width: 100.95px;
+    height: 44.19px;
+    margin-left: 25px;
+    float:left;
+}
+.removetexdecoration{
+    text-decoration: none !important;
+    color: gray !important;
+}
+.removetexdecoration:hover{
+    text-decoration: none;
+    color: gray;
+}
+.navbar
+{
+   
+    color: black;
+    height: 54.39px;
+    width: 100%;
+    background-color: lightgreen;
+}
+.profile{
+ 
+    color: black;
+}
+.notification{
+    color:black;
+}
+
+.Navitem{
+    float: right;
+    display: flex;   
+}
+.bnavbar{
+    padding-top: 20px;
+    height: 50px;
+    padding-left: 40px;
+    color: grey;
+    border-top: solid rgb(207, 207, 207) 0.1px;
+}
+
+
+
+/* login */
+
+.LoginMain{
+    margin-top: 56px;
+    min-height: calc(100vh - 5.4em);
+     padding: 60px;
+    background-image: url("../images/background3.be71f264.png");
+}
+
+.styles_container__gxc6Z {
+    width: 100%;
+    height: auto;
+    display: flex;
+    background: #fff;
+    box-sizing: border-box;
+  
+}
+
+
+.styles_background__14z2n {
+    width: 100%;
+    height: 624px;
+    z-index: 1;
+    box-sizing: border-box;
+}
+.styles_background__14z2nreg {
+    width: 100%;
+    height: 663px;
+    z-index: 1;
+    box-sizing: border-box;
+}
+.LoginCard{
+    width: 50%;
+
+    border: none !important;
+}
+.LoginCard1{
+  display:inline;
+}
+.loginimage{
+    width: 50%;
+}
+.google{
+    width: 200px;
+    height: 40px;
+    border: none;
+    font-weight: bold !important;
+    background:lightgray !important;
+}
+.facebook{
+    font-weight: bold;
+    background:lightgray;
+    width: 200px;
+    height: 40px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.54);
+    box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Roboto, sans-serif;
+}
+.facebook1{
+    transform: scale(2.0);
+   color: rgb(22, 22, 177);
+   margin-top: 6px;
+}
+.marginTopRow{
+    margin-top: 20px;
+}
+.marginTopRow12{
+    margin-top: 10px;
+}
+.text12{
+    margin-left: 40px;
+    margin-top: -20px;
+}
+.rowwidth{
+   
+}
+.cardpadding{
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+.marginTopRow123{
+    margin-top: 15px;
+    text-align: left;
+}
+.marginTopRow123reg{
+    margin-top: 20px;
+    text-align: left;
+}
+.marginTopRow1234{
+    margin-top: 15px;
+   
+}
+.loginbutton{
+    border-radius: 20px;
+    padding: 10px;
+    width: 120px;
+    font-weight: bold;
+}
+.marginTopRow1235{
+    text-align: right;
+}
+.marginTopRow12345{
+ text-decoration: none;
+ color: gray;
+}
+.marginTopRow12345:hover{
+    text-decoration: none;
+    color: gray;
+   }
+   .register{
+    font-weight: bold;
+   }
+   .marginTopRow123456{
+    margin-top: 20px;
+}
+.loginlogo{
+    width: 250px;
+    height: 70px;
+}
+@media only screen and (max-width: 800px) {
+    .LoginCard{
+        width: 100%;
+    
+        border: none !important;
+    }
+    .LoginCard1{
+      display:inline;
+    }
+    .loginimage{
+        width: 0%;
+    }
+    .loginlogo{
+        width: 190px;
+        height: 50px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .LoginCard{
+        width: 100%;
+    
+        border: none !important;
+    }
+    .LoginCard1{
+      display:inline;
+    }
+    .loginimage{
+        width: 0%;
+    }
+    .cardpadding{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+    .LoginMain{
+        margin-top: 56px;
+        min-height: calc(100vh - 5.4em);
+         padding: 30px;
+        background-image: url("../images/background3.be71f264.png");
+    }
+}
+
