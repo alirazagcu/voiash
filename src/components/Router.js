@@ -13,6 +13,8 @@ import Login from "./Login.js";
 import Register from "./Register.js";
 import Forget from "./Forget.js";
 import AdminRegister from "./AdminRegister";
+import ForgotPassword from "./ResetPassword";
+import RecoveryPassword from "./RecoveryPassword";
 
 function RouteConfig() {
   const userType = localStorage.getItem("isAdmin");
@@ -26,6 +28,8 @@ function RouteConfig() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Login} />
           <Route exact path="/forget" component={Forget} />
+          <Route exact path="/user/resetPassword/:userEmail/reset/:userId" component={ForgotPassword} />
+          <Route exact path="/recovery/password" component={RecoveryPassword} />
           <Route exact path="/selection/adventuretrip" component={Selection} />
           <Route exact path="/selection/experiencies" component={Selection} />
           <Route exact path="/selection/senses" component={Selection} />

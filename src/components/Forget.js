@@ -1,58 +1,110 @@
+import React, { useState, useEffect } from "react";
+import "./Navbar.css";
+import { Link } from "react-router-dom";
+import background from "../images/bg.jpg";
+import Logo from "../images/logo.png";
+import { Card, Row, Col, Form, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import NavBar from "./Navbar";
+import {
+  forgotPassword,
+  forgotPasswordStateClear,
+} from "../store/forgotPasswordReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import Loader from "./material-ui-comps/Loader";
+import SnackBar from "./material-ui-comps/SnackBar";
 
-import './Navbar.css';
-import { Link } from 'react-router-dom';
-import background from '../images/bg.jpg';
-import Logo from '../images/logo.png'
-import { Card, Row, Col, Form, Button } from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { GoogleLogin } from 'react-google-login';
-import FacebookIcon from '@material-ui/icons/Facebook';
 function Forget() {
-    return (
-        <div className="LoginMain">
-            <div className="styles_container__gxc6Z">
-                <div className="loginimage">
-                    <img className="styles_background__14z2nreg" src={background} />
-                </div>
+  const [forgotPasswordValues, setForgotPasswordValues] = useState({
+    userEmail: "",
+  });
+  const [open, setOpen] = useState(false);
+  const [msg, setMsg] = useState("");
+  const [severity, setSeverity] = useState("error");
+  const { isError, isFetching, isSuccess } = useSelector(
+    (state) => state.forgotPasswordState
+  );
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-                <div className="LoginCard">
-                    <Card className="cardpadding" >
-                        <Row className="marginTopRow">
-                            <Col>
-                                <img src={Logo} className="loginlogo" />
-                            </Col>
-                        </Row>
+  useEffect(() => {
+    if (isError) {
+      setOpen(true);
+      setMsg("User Email is required field");
+      dispatch(forgotPasswordStateClear());
+    }
+    if (isSuccess) {
+      setOpen(true);
+      setMsg("Email was successfully send");
+      setSeverity("success");
+      dispatch(forgotPasswordStateClear());
+    }
+  }, [isSuccess, isError]);
 
-                        <Row className="marginTopRow">
-                            <Col>
-                                <hr className="rowwidth" />
-                            </Col>
-                        </Row>
+  const onChangeHandler = (e) => {
+    const { value, name } = e.target;
+    setForgotPasswordValues({ ...forgotPasswordValues, [name]: value });
+  };
+  const onSubmitHandler = () => {
+    dispatch(forgotPassword(forgotPasswordValues));
+  };
 
-                        <Row className="marginTopRow">
-                            <Col>
-                                <p className="register">Para recuperar tu constraseña, introduce la dirección de correo electrónico con la que te regístraste.</p>
-                            </Col>
-                        </Row>
-                        <Row className="marginTopRow123">
-                            <Col>
-                                <Form.Label>Correo electrónico</Form.Label>
-                                <Form.Control type="text" />
-                            </Col>
-                        </Row>
+  return (
+    <>
+      <NavBar />
+      <div className="LoginMain">
+        <div className="styles_container__gxc6Z">
+          <div className="loginimage">
+            <img className="styles_background__14z2nreg" src={background} />
+          </div>
 
-                        <Row className="marginTopRow1234">
-                            <Col>
-                                <Button className="loginbutton">Regístrate</Button>
-                            </Col>
-                        </Row>
+          <div className="LoginCard">
+            <Card className="cardpadding">
+              <Row className="marginTopRow">
+                <Col>
+                  <img src={Logo} className="loginlogo" />
+                </Col>
+              </Row>
 
-                    </Card>
-                </div>
+              <Row className="marginTopRow">
+                <Col>
+                  <hr className="rowwidth" />
+                </Col>
+              </Row>
 
-            </div>
+              <Row className="marginTopRow">
+                <Col>
+                  <p className="register">
+                    Para recuperar tu constraseña, introduce la dirección de
+                    correo electrónico con la que te regístraste.
+                  </p>
+                </Col>
+              </Row>
+              <Row className="marginTopRow123">
+                <Col>
+                  <Form.Label>Correo electrónico</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="userEmail"
+                    onChange={onChangeHandler}
+                  />
+                </Col>
+              </Row>
 
+              <Row className="marginTopRow1234">
+                <Col>
+                  <Button className="loginbutton" onClick={onSubmitHandler}>
+                    {isFetching ? <Loader /> : "Regístrate"}
+                  </Button>
+                </Col>
+              </Row>
+            </Card>
+          </div>
         </div>
-    );
+        <SnackBar open={open} setOpen={setOpen} severity={severity} msg={msg} />
+      </div>
+    </>
+  );
 }
 export default Forget;
