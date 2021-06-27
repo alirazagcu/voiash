@@ -85,7 +85,8 @@ export default function Navbar({}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [registerMenu, setReisterMenu] = useState(null);
   const token = localStorage.getItem("token");
-  const isAdmin = localStorage.getItem("isAdmin");
+  // const isAdmin = localStorage.getItem("isAdmin");
+  const [isAdmin, setIsAdmin] = useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -93,6 +94,12 @@ export default function Navbar({}) {
   const { isError, isFetching, isSuccess, msg, responseData } = useSelector(
     (state) => state.loginState
   );
+
+  useEffect(() => {
+    if (responseData && responseData.user && responseData.user.isAdmin) {
+      setIsAdmin(responseData.user.isAdmin);
+    }
+  }, [responseData])
 
   return (
     <div className={classes.root}>

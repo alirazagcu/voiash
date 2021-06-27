@@ -22,7 +22,7 @@ export const signIn = createAsyncThunk(
         if (response.data && response.data.responseCode === 200) {
           const token = response.data.responseData.token;
           localStorage.setItem("token", token);
-          localStorage.setItem("isAdmin", true);
+          localStorage.setItem("isAdmin", response.data.responseData.user.isAdmin);
           return {
             responseData: response.data.responseData,
             isSuccess: response.data.success,

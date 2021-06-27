@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { has } from "lodash";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import background from "../images/bg.jpg";
@@ -13,14 +14,18 @@ import { useHistory } from "react-router-dom";
 import Loader from "./material-ui-comps/Loader";
 import SnackBar from "./material-ui-comps/SnackBar";
 import Navbar from "./Navbar";
+import validator from 'validator';
 
 function Register() {
   const [signUpValues, setSignUpValues] = useState({
     userEmail: "",
     userPassword: "",
     reUserPassword: "",
+    isChecked: false
   });
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [signupToggle, setSignupToggle] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
   const { isError, isFetching, isSuccess, msg } = useSelector(
     (state) => state.signUpState
   );
@@ -38,6 +43,14 @@ function Register() {
     }
   }, [isSuccess, isError]);
 
+  useEffect(() =>{
+    const { userEmail, userPassword, reUserPassword } = signUpValues
+    if (userEmail &&  userPassword && reUserPassword && isChecked) {
+      setSignupToggle(false);
+    }
+    else setSignupToggle(true);
+  }, [signUpValues, isChecked])
+
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
     setSignUpValues({ ...signUpValues, [name]: value });
@@ -46,6 +59,11 @@ function Register() {
   const onSignUpHandler = () => {
     dispatch(signUp(signUpValues));
   };
+
+  const onCheckHandler = () => {
+    setIsChecked(!isChecked);
+  }
+
 
   return (
     <>
@@ -93,6 +111,7 @@ function Register() {
                     type="email"
                     name="userEmail"
                     onChange={onChangeHandler}
+                    required={true}
                   />
                 </Col>
               </Row>
@@ -103,6 +122,7 @@ function Register() {
                     type="password"
                     name="userPassword"
                     onChange={onChangeHandler}
+                    required={true}
                   />
                 </Col>
               </Row>
@@ -113,6 +133,7 @@ function Register() {
                     type="password"
                     name="reUserPassword"
                     onChange={onChangeHandler}
+                    required={true}
                   />
                 </Col>
               </Row>
@@ -129,14 +150,20 @@ function Register() {
                     type="checkbox"
                     id="customControlInline"
                     label="He leido y acepto la politica de privacidad"
+                    onChange={onCheckHandler}
+                    checked={isChecked}
                     custom
                   />
                 </Col>
               </Row>
               <Row className="marginTopRow1234">
                 <Col>
-                  <Button className="loginbutton" onClick={onSignUpHandler}>
-                    {isFetching ? <Loader /> : "Regístrate"}
+                  <Button 
+                  className="loginbutton" 
+                  onClick={onSignUpHandler}
+                  disabled={signupToggle}
+                  >
+                  {isFetching ? <Loader /> : "Regístrate"}
                   </Button>
                 </Col>
               </Row>
