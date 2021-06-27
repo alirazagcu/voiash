@@ -29,7 +29,7 @@ function RouteConfig() {
           <Route exact path="/" component={Login} />
           <Route exact path="/forget" component={Forget} />
           <Route exact path="/user/resetPassword/:userEmail/reset/:userId" component={ForgotPassword} />
-          <Route exact path="/recovery/password" component={RecoveryPassword} />
+          <Route exact path="/user/recoveryPassword" component={RecoveryPassword} />
           <Route exact path="/selection/adventuretrip" component={Selection} />
           <Route exact path="/selection/experiencies" component={Selection} />
           <Route exact path="/selection/senses" component={Selection} />
