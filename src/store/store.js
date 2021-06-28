@@ -4,6 +4,9 @@ import SignUpSlice from "./SignUpReducer";
 import AdminSignUpSlice from "./adminSignUpReducer";
 import LogoutSlice from "./logoutReducer";
 import userDetailReducer from "./userDetailReducer";
+import forgotPasswordReducer from "./forgotPasswordReducer";
+import resetPasswordReducer from "./resetPasswordReducer";
+import recoveryPasswordReducer from "./recoveryPasswordReducer";
 
 export default configureStore({
   reducer: {
@@ -11,6 +14,9 @@ export default configureStore({
     signUpState: SignUpSlice,
     adminSignUpStat: AdminSignUpSlice,
     logOutState: LogoutSlice,
-    userDetailState: userDetailReducer
+    userDetailState: userDetailReducer,
+    forgotPasswordState: forgotPasswordReducer,
+    resetPasswordState: resetPasswordReducer,
+    recoveryPasswordState: recoveryPasswordReducer
   },
 });

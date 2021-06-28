@@ -14,7 +14,7 @@ export default function PositionedSnackbar({ open, setOpen, severity, msg }) {
         anchorOrigin={{ vertical, horizontal }}
         open={open}
         onClose={() => setOpen(false)}
-        autoHideDuration={6000}
+        autoHideDuration={5000}
         key="topright"
       >
         <Alert onClose={() => setOpen(false)} severity={severity}>

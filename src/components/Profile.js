@@ -113,6 +113,20 @@ function Profile() {
                 Local Friend
               </NavLink>
             </div>
+            <div>
+              <NavLink
+                to="/user/recoveryPassword"
+                className="linkss"
+                activeStyle={{
+                  fontWeight: "bold",
+                  borderBottomWidth: 3,
+                  borderBottomStyle: "solid",
+                  borderBottomColor: "red",
+                }}
+              >
+                Update Password
+              </NavLink>
+            </div>
           </div>
           <Switch>
             <Route exact path="/profile/information" component={Information} />
