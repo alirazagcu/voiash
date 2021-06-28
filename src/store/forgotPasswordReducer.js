@@ -34,6 +34,12 @@ export const forgotPassword = createAsyncThunk(
             // msg: response.data.message,
           };
         }
+        else if (response.data && response.data.responseCode === 404) {
+          return {
+            isSuccess: response.data.success,
+            // msg: response.data.message,
+          };
+        }
       }
     } catch (e) {
       return thunkAPI.rejectWithValue({ msg: "server error" });
@@ -60,7 +66,7 @@ const forgotPasswordReducer = createSlice({
     [forgotPassword.fulfilled]: (state, action) => ({
       ...state,
       isSuccess: action.payload.isSuccess || false,
-      isError: !action.payload.isSuccess,
+      isError: false,
       msg: action.payload.msg || "",
       isFetching: false,
     }),

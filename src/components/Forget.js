@@ -28,19 +28,19 @@ function Forget() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    if (isError) {
-      setOpen(true);
-      setMsg("User Email is required field");
-      dispatch(forgotPasswordStateClear());
-    }
-    if (isSuccess) {
-      setOpen(true);
-      setMsg("Email was successfully send");
-      setSeverity("success");
-      dispatch(forgotPasswordStateClear());
-    }
-  }, [isSuccess, isError]);
+  // useEffect(() => {
+  //   if (isError) {
+  //     setOpen(true);
+  //     setMsg("User Email is required field");
+  //     dispatch(forgotPasswordStateClear());
+  //   }
+  //   if (isSuccess) {
+  //     setOpen(true);
+  //     setMsg("Email was successfully send");
+  //     setSeverity("success");
+  //     dispatch(forgotPasswordStateClear());
+  //   }
+  // }, [isSuccess, isError]);
 
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
@@ -48,6 +48,13 @@ function Forget() {
   };
   const onSubmitHandler = () => {
     dispatch(forgotPassword(forgotPasswordValues));
+    setOpen(true);
+    setSeverity("success");
+    setMsg("Email was successfully send check your email to reset your password");
+    setForgotPasswordValues({
+      ...forgotPasswordValues,
+      userEmail: ""
+    });
   };
 
   return (
@@ -87,6 +94,7 @@ function Forget() {
                   <Form.Control
                     type="text"
                     name="userEmail"
+                    value={forgotPasswordValues.userEmail}
                     onChange={onChangeHandler}
                   />
                 </Col>
@@ -95,7 +103,7 @@ function Forget() {
               <Row className="marginTopRow1234">
                 <Col>
                   <Button className="loginbutton" onClick={onSubmitHandler}>
-                    {isFetching ? <Loader /> : "Regístrate"}
+                    {isFetching ? <Loader /> : "Submit"}
                   </Button>
                 </Col>
               </Row>

@@ -113,6 +113,16 @@ function RecoveryPassword() {
               </Row>
               <Row className="marginTopRow123">
                 <Col>
+                  <Form.Label>Contraseña anterio</Form.Label>
+                  <Form.Control
+                    type="password"
+                    name="oldPassword"
+                    onChange={onChangeHandler}
+                  />
+                </Col>
+              </Row>
+              <Row className="marginTopRow123">
+                <Col>
                   <Form.Label>Nueva contraseña</Form.Label>
                   <Form.Control
                     type="password"
@@ -127,16 +137,6 @@ function RecoveryPassword() {
                   <Form.Control
                     type="password"
                     name="reNewPassword"
-                    onChange={onChangeHandler}
-                  />
-                </Col>
-              </Row>
-              <Row className="marginTopRow123">
-                <Col>
-                  <Form.Label>Contraseña anterio</Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="oldPassword"
                     onChange={onChangeHandler}
                   />
                 </Col>
