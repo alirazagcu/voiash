@@ -19,6 +19,8 @@ function Login() {
     userEmail: "",
     userPassword: "",
   });
+  const [submitToggle, setSubmitToggle] = useState(true);
+
   const [open, setOpen] = React.useState(false);
   const { isError, isFetching, isSuccess, msg } = useSelector(
     (state) => state.loginState
@@ -32,11 +34,19 @@ function Login() {
       dispatch(stateClear());
     }
     if (isSuccess) {
-      // window.location.href="/home";
       history.push("/home");
       dispatch(stateClear());
     }
   }, [isSuccess, isError]);
+
+  useEffect(()=>{
+    if(signInValues.userEmail && signInValues.userPassword){
+      setSubmitToggle(false);
+    }
+    else{
+      setSubmitToggle(true);
+    }
+  },[signInValues])
 
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
@@ -122,7 +132,7 @@ function Login() {
             </Row> */}
               <Row className="marginTopRow1234">
                 <Col>
-                  <Button className="loginbutton" onClick={onLoginHandler}>
+                  <Button className="loginbutton" disabled={submitToggle} onClick={onLoginHandler}>
                     {isFetching ? <Loader /> : "Iniciar"}
                   </Button>
                 </Col>
