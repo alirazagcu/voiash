@@ -21,22 +21,26 @@ export const userDetail = createAsyncThunk(
       };
       let response = {};
       if (userObject.type === "get") {
-        response = await axios.get(`${BASE_URL}${USER_DETAIL}${userObject._id}`, config);
+        response = await axios.get(
+          `${BASE_URL}${USER_DETAIL}${userObject._id}`,
+          config
+        );
       } else {
-        response = await axios.post(`${BASE_URL}${USER_DETAIL}${userObject._id}`, userObject.updateResponseData, config);
+        response = await axios.post(
+          `${BASE_URL}${USER_DETAIL}${userObject._id}`,
+          userObject.updateResponseData,
+          config
+        );
       }
       if (response.status === 200) {
         if (response.data && response.data.responseCode === 200) {
           return {
             responseData: response.data.responseData,
-            isSuccess: userObject.type === "get" ? false :response.data.success,
+            isSuccess:
+              userObject.type === "get" ? false : response.data.success,
           };
         } else if (response.data && response.data.responseCode === 401) {
-          return {
-            responseData: response.data.responseData,
-            isSuccess: response.data.success,
-            msg: response.data.message,
-          };
+          return thunkAPI.rejectWithValue({ msg: "user mailId already exist" });
         } else if (response.data && response.data.responseCode === 400) {
           return {
             isSuccess: response.data.success,
@@ -76,7 +80,7 @@ const userDetailReducer = createSlice({
     [userDetail.rejected]: (state, action) => ({
       ...state,
       isError: true,
-      msg: "Server Error",
+      msg: action.payload.msg,
       isFetching: false,
     }),
   },
