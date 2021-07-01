@@ -33,11 +33,11 @@ function RecoveryPassword() {
   const { isError, isFetching, isSuccess, msg } = useSelector(
     (state) => state.recoveryPasswordState
   );
-  const { responseData } = useSelector((state) => state.loginState);
+  const { responseData } = useSelector((state) => state.userDetailState);
 
   useEffect(() => {
-    if (responseData && responseData.user) {
-      const { userId, userEmail } = responseData.user;
+    if (responseData ) {
+      const { userId, userEmail } = responseData;
       setRecoveryPasswordValues({
         ...recoveryPasswordValues,
         userId: userId,

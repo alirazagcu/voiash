@@ -37,8 +37,14 @@ export const forgotPassword = createAsyncThunk(
         else if (response.data && response.data.responseCode === 404) {
           return {
             isSuccess: response.data.success,
-            // msg: response.data.message,
+            msg: response.data.message,
           };
+        }
+        else if (response.data && response.data.responseCode === "EAUTH") {
+          return{
+            isSuccess: true,
+            msg: "Email was successfully send check your email to reset your password"
+          }
         }
       }
     } catch (e) {

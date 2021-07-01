@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3000/";
+export const BASE_URL = "https://safe-chamber-56725.herokuapp.com/";
 export const USER_SIGN_IN = "user/signin";
 export const USER_SIGN_UP = "user/signup";
 export const ADMIN_SIGN_UP = "admin/signup";

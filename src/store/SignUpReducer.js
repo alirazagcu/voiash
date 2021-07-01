@@ -33,6 +33,12 @@ export const signUp = createAsyncThunk(
             msg: response.data.message,
           };
         }
+        else if (response.data && response.data.responseCode === "EAUTH") {
+          return{
+            isSuccess: true,
+            msg: "Your account is succfully created"
+          }
+        }
       }
     } catch (e) {
       return thunkAPI.rejectWithValue({ msg: "server error" });
@@ -67,7 +73,7 @@ const SignUpSlice = createSlice({
     [signUp.rejected]: (state, action) => ({
       ...state,
       isError: true,
-      msg: "Server Error",
+      msg: action.payload.msg,
       isFetching: false,
     }),
   },

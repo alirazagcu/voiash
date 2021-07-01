@@ -20,27 +20,27 @@ function Forget() {
     userEmail: "",
   });
   const [open, setOpen] = useState(false);
-  const [msg, setMsg] = useState("");
+  const [msgV, setMsg] = useState("");
   const [severity, setSeverity] = useState("error");
-  const { isError, isFetching, isSuccess } = useSelector(
+  const { isError, isFetching, isSuccess, msg } = useSelector(
     (state) => state.forgotPasswordState
   );
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // useEffect(() => {
-  //   if (isError) {
-  //     setOpen(true);
-  //     setMsg("User Email is required field");
-  //     dispatch(forgotPasswordStateClear());
-  //   }
-  //   if (isSuccess) {
-  //     setOpen(true);
-  //     setMsg("Email was successfully send");
-  //     setSeverity("success");
-  //     dispatch(forgotPasswordStateClear());
-  //   }
-  // }, [isSuccess, isError]);
+  useEffect(() => {
+    if (isError) {
+      setOpen(true);
+      setMsg("User Email is required field");
+      dispatch(forgotPasswordStateClear());
+    }
+    if (isSuccess) {
+      setOpen(true);
+      setMsg(msg);
+      setSeverity("success");
+      dispatch(forgotPasswordStateClear());
+    }
+  }, [isSuccess, isError]);
 
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
@@ -48,9 +48,9 @@ function Forget() {
   };
   const onSubmitHandler = () => {
     dispatch(forgotPassword(forgotPasswordValues));
-    setOpen(true);
-    setSeverity("success");
-    setMsg("Email was successfully send check your email to reset your password");
+    // setOpen(true);
+    // setSeverity("success");
+    // setMsg("Email was successfully send check your email to reset your password");
     setForgotPasswordValues({
       ...forgotPasswordValues,
       userEmail: ""
@@ -110,7 +110,7 @@ function Forget() {
             </Card>
           </div>
         </div>
-        <SnackBar open={open} setOpen={setOpen} severity={severity} msg={msg} />
+        <SnackBar open={open} setOpen={setOpen} severity={severity} msg={msgV} />
       </div>
     </>
   );
