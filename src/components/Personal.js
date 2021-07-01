@@ -21,7 +21,9 @@ function Personal() {
   const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
-  const { isError, isFetching, isSuccess, msg, responseData } = useSelector((state) => state.userDetailState);
+  const { isError, isFetching, isSuccess, msg, responseData } = useSelector(
+    (state) => state.userDetailState
+  );
 
   useEffect(() => {
     if (responseData) {
@@ -29,23 +31,23 @@ function Personal() {
       setPersonalDetail({ ...personalDetails });
     }
   }, [responseData]);
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(userDetailStateClear());
-  },[])
+  }, []);
 
   useEffect(() => {
-    if(msg){
-      setSnackBarMsg(msg)
+    if (msg) {
+      setSnackBarMsg(msg);
     }
     if (isError) {
       setOpen(true);
-      setSeverity("error")
+      setSeverity("error");
       dispatch(userDetailStateClear());
     }
     if (isSuccess) {
-      setOpen(true)
+      setOpen(true);
       setSeverity("success");
-      setSnackBarMsg("User detail was succesfully updated")
+      setSnackBarMsg("User detail was succesfully updated");
       dispatch(userDetailStateClear());
     }
   }, [isSuccess, isError, msg]);
@@ -55,12 +57,23 @@ function Personal() {
     setPersonalDetail({ ...personalDetail, [name]: value });
   };
 
-  const onSubmitHandler = (e) =>{
-      e.preventDefault();
-      const token = localStorage.getItem("token");
-    const updateResponseData = {...responseData, personalDetails: personalDetail};
-    dispatch(userDetail({_id: updateResponseData.userId, token, type: "post", updateResponseData: updateResponseData }))
-  }
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    const updateResponseData = {
+      ...responseData,
+      personalDetails: personalDetail,
+      userEmail: "",
+    };
+    dispatch(
+      userDetail({
+        _id: updateResponseData.userId,
+        token,
+        type: "post",
+        updateResponseData: updateResponseData,
+      })
+    );
+  };
 
   return (
     <div className="person">
@@ -177,15 +190,24 @@ function Personal() {
                 ></Form.Group>
               </div>
               <Form.Group className="form5" as={Col} controlId="formGridEmail">
-                <button className="buttonform" variant="primary" onClick={onSubmitHandler}>
-                  {isFetching ? <Loader/> : "Continuar"}
+                <button
+                  className="buttonform"
+                  variant="primary"
+                  onClick={onSubmitHandler}
+                >
+                  {isFetching ? <Loader /> : "Continuar"}
                 </button>
               </Form.Group>
             </Form>
           </Card.Body>
         </Card>
       </div>
-      <SnackBar open={open} setOpen={setOpen} severity={severity} msg={snackBarMsg} />
+      <SnackBar
+        open={open}
+        setOpen={setOpen}
+        severity={severity}
+        msg={snackBarMsg}
+      />
     </div>
   );
 }
