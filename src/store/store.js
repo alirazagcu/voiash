@@ -8,6 +8,7 @@ import forgotPasswordReducer from "./forgotPasswordReducer";
 import resetPasswordReducer from "./resetPasswordReducer";
 import recoveryPasswordReducer from "./recoveryPasswordReducer";
 import familiesReducer from "./familiesReducer";
+import experienceReducer from "./experienceReducer";
 
 export default configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export default configureStore({
     resetPasswordState: resetPasswordReducer,
     recoveryPasswordState: recoveryPasswordReducer,
     familiyState: familiesReducer,
+    experienceState: experienceReducer,
   },
 });

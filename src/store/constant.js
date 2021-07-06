@@ -10,3 +10,8 @@ export const GET_ALL_FAMILIES = "getall/families";
 export const UPDATE_FAMILY_BY_ID = "update/families";
 export const DELETE_FAMILY_BY_ID = "delete/families";
 export const ADD_FAMILY = "add/families";
+
+export const GET_ALL_EXPERIENCES = "getall/experiences";
+export const UPDATE_EXPERIENCES_BY_ID = "update/experiences";
+export const DELETE_EXPERIENCES_BY_ID = "delete/experiences";
+export const ADD_EXPERIENCES = "add/experiences";
