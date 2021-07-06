@@ -73,7 +73,7 @@ const SignUpSlice = createSlice({
     [signUp.rejected]: (state, action) => ({
       ...state,
       isError: true,
-      msg: action.payload.msg,
+      msg: action.payload.msg || "Network error",
       isFetching: false,
     }),
   },

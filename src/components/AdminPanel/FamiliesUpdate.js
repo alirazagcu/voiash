@@ -1,113 +1,261 @@
-import '../../App.css';
-import {useState} from 'react';
-import {Link} from 'react-router-dom'
-import pics from '../../images/house.jpg';
-import { Toolbar } from '@material-ui/core';
-import { Multiselect } from 'multiselect-react-dropdown';
-import { Form, Col, Button, Card ,Row} from 'react-bootstrap';
-import AddRoundedIcon from '@material-ui/icons/AddRounded';
-import BorderColorRoundedIcon from '@material-ui/icons/BorderColorRounded';
-function FamiliesUpdate() {
-    const divMargin = { margin: '25px 0' };
-    const [title,setTitle]= useState({
-        plainArray: ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"],
-        objectArray: [
-          { key: "Francés", cat: "Group 1" }, 
-          { key: "Portugués", cat: "Group 1" },
-          { key: "Inglés", cat: "Group 1" },
-          { key: "Español", cat: "Group 2" },
-         
-        ],
-        selectedValues: [
-          { key: "Español", cat: "Group 1" },
-          { key: "Inglés", cat: "Group 1" }
-        ]
-      });
-    const [title1,setTitle1]= useState(["Akash","nadeem","hameed"]);
-    const styles = {
+import React, { useEffect, useState } from "react";
+import "../../App.css";
+import { Link } from "react-router-dom";
+import pics from "../../images/house.jpg";
+import { Form, Col, Button, Card, Row } from "react-bootstrap";
+import BorderColorRoundedIcon from "@material-ui/icons/BorderColorRounded";
+import {
+  families,
+  getAllFamiliesstateClear,
+  selectedFamily,
+} from "../../store/familiesReducer";
+import { useSelector, useDispatch } from "react-redux";
+import Loader from "../material-ui-comps/Loader";
+import SnackBar from "../material-ui-comps/SnackBar";
+import { useHistory } from "react-router-dom";
 
-        largeIcon: {
-          width: 100,
-          height: 100,
-        },
-      
-      };
-    return (
-                <Card style={{ width: '23rem' }, { borderWidth: 3 }, { borderColor: 'rgb(238, 91, 46)' }}  >
-                    <Card.Body>
-                        <Form >
-                        <Row className="rowmarn">
-                                        <Col className="firstbtn">
-                                        <div className="firstbtn1"><Link to="/admin/families"><Button>Volver</Button></Link></div>
-                                        <div className="btnfornew" >
-                                        <Button>Eliminar</Button>
-                                       <Button className="formarginbtn">Guardar</Button>
-                                       </div> 
-                                        </Col >
-                                    </Row>
-                                    <hr/>
-                                    <Row className="rowmarn">
-                                        <Col >
-                                        <Form.Label>Nombre</Form.Label>
-                                            <Form.Control defaultValue="Adventure Trip"/>
-                                        </Col >
-                                        <Col>
-                                        <Form.Label>Slug</Form.Label>
-                                            <Form.Control  defaultValue="adventuretrip" />
-                                        </Col>
-                                        <Col>
-                                        <Form.Label>Hashtag</Form.Label>
-                                            <Form.Control   defaultValue="#adventuretrip"/>
-                                        </Col>
-                                    </Row>
-                                    <Row className="rowmarn">
-                                    <Col >
-                                        <Form.Label>Color</Form.Label>
-                                            <Form.Control   defaultValue="#000000"/>
-                                        </Col>
-                                        <Col>
-                                        <Form.Label>Nivel Educativo</Form.Label>
-                                    <Form.Control as="select">
-                                        <option>Primaria</option>
-                                        <option>Secundaria</option>
-                                        <option>Preparatoria</option>
-                                        <option>Universidad</option>
-                                        <option>Postgrado</option>
-                                        <option>Otro</option>
-                                    </Form.Control>
-                                        </Col>
-                                    </Row>
-                                    <Row className="rowmarn">
-                                    <Col >
-                                        <Form.Label>Descripción</Form.Label>
-                                            <Form.Control defaultValue="Destinos y experiencias imprescindibles que siempre quisiste realizar."  as="textarea" aria-label="With textarea"/>
-                                        </Col>
-                                    </Row>
-                                    <Row className="rowmarn">
-                                    <Col >
-                                    <label>Imagen de fondo</label>
-                            <div class="image-upload">
-                                <label for="file-input">
-                                <div className="firstbox">   <BorderColorRoundedIcon   className="box1"/></div>
-                                    <img className="imageinput12" src={pics} />
-                                </label>
-                                <input id="file-input" type="file" />
-                            </div>
-                            </Col>
-                            <Col>
-                            <label>Logo</label>
-                            <div class="image-upload">
-                                <label for="file-input">
-                                    <div className="firstbox">   <BorderColorRoundedIcon   className="box1"/></div>
-                             
-                                    <img className="imageinput12" src={pics} />
-                                </label>
-                                <input id="file-input" type="file" />
-                            </div></Col>
-                            </Row>
-                            </Form>
-                    </Card.Body>
-                </Card>
+function FamiliesUpdate() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const [familyInputs, setFamilyInputs] = useState({});
+  const [open, setOpen] = React.useState(false);
+  const [severity, setSeverity] = useState("error");
+  const [snackBar, setSnackBar] = useState("");
+  const [isDelete, setIsDelete] = useState(false);
+
+  const {
+    isError,
+    isFetching,
+    isSuccess,
+    msg,
+    responseData,
+    family,
+  } = useSelector((state) => state.familiyState);
+  useEffect(() => {
+    if (family) setFamilyInputs(family);
+  }, []);
+
+  useEffect(() => {
+    if (isSuccess && isDelete) {
+      history.push("/admin/families");
+      setOpen(true);
+      setSeverity("success");
+      setSnackBar("Your record was successfully deleted");
+    }
+    if (isSuccess && !isDelete) {
+      setOpen(true);
+      setSeverity("success");
+      setSnackBar("Your record was successfully updated");
+      dispatch(getAllFamiliesstateClear());
+    }
+    if (isError) {
+      setOpen(true);
+      setSeverity("error");
+      setSnackBar(msg);
+      dispatch(getAllFamiliesstateClear());
+    }
+  }, [isSuccess, isError]);
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setFamilyInputs({
+      ...familyInputs,
+      [name]: value,
+    });
+  };
+
+  const onUpdateHandler = () => {
+    setIsDelete(false);
+    const token = localStorage.getItem("token");
+    dispatch(
+      families({
+        type: "put",
+        data: { ...familyInputs },
+        _id: familyInputs._id,
+        token: token,
+      })
     );
+  };
+
+  const onDeleteHandler = () => {
+    const token = localStorage.getItem("token");
+    setIsDelete(true);
+    dispatch(families({ type: "delete", _id: familyInputs._id, token: token }));
+  };
+
+  const imageHandler = (e, type) => {
+    let base64String = "";
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function () {
+      base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+      if (type === "image") {
+        setFamilyInputs({
+          ...familyInputs,
+          ["backgroundImage"]: { imageLink: base64String },
+        });
+      } else {
+        setFamilyInputs({
+          ...familyInputs,
+          ["logo"]: { logoLink: base64String },
+        });
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+  return (
+    <Card
+      style={
+        ({ width: "23rem" },
+        { borderWidth: 3 },
+        { borderColor: "rgb(238, 91, 46)" })
+      }
+    >
+      <Card.Body>
+        <Form>
+          <Row className="rowmarn">
+            <Col className="firstbtn">
+              <div className="firstbtn1">
+                <Link to="/admin/families">
+                  <Button>Volver</Button>
+                </Link>
+              </div>
+              <div className="btnfornew">
+                <Button onClick={onDeleteHandler}>
+                  {isFetching ? <Loader /> : "Eliminar"}
+                </Button>
+                <Button className="formarginbtn" onClick={onUpdateHandler}>
+                  {isFetching && !isDelete ? <Loader /> : "Guardar"}
+                </Button>
+              </div>
+            </Col>
+          </Row>
+          <hr />
+          <Row className="rowmarn">
+            <Col>
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control
+                value={familyInputs.name}
+                name="name"
+                onChange={onChangeHandler}
+              />
+            </Col>
+            <Col>
+              <Form.Label>Slug</Form.Label>
+              <Form.Control
+                value={familyInputs.slug}
+                name="slug"
+                onChange={onChangeHandler}
+              />
+            </Col>
+            <Col>
+              <Form.Label>Hashtag</Form.Label>
+              <Form.Control
+                value={familyInputs.hashtag}
+                name="hashtag"
+                onChange={onChangeHandler}
+              />
+            </Col>
+          </Row>
+          <Row className="rowmarn">
+            <Col>
+              <Form.Label>Color</Form.Label>
+              <Form.Control
+                value={familyInputs.color}
+                name="color"
+                onChange={onChangeHandler}
+              />
+            </Col>
+            <Col>
+              <Form.Label>Nivel Educativo</Form.Label>
+              <Form.Control
+                as="select"
+                name="status"
+                onChange={onChangeHandler}
+              >
+                <option>{familyInputs.status}</option>
+                <option>Primaria</option>
+                <option>Secundaria</option>
+                <option>Preparatoria</option>
+                <option>Universidad</option>
+                <option>Postgrado</option>
+                <option>Otro</option>
+              </Form.Control>
+            </Col>
+          </Row>
+          <Row className="rowmarn">
+            <Col>
+              <Form.Label>Descripción</Form.Label>
+              <Form.Control
+                value={familyInputs.description}
+                as="textarea"
+                aria-label="With textarea"
+                name="description"
+                onChange={onChangeHandler}
+              />
+            </Col>
+          </Row>
+          <Row className="rowmarn">
+            <Col>
+              <label>Imagen de fondo</label>
+              <div class="image-upload">
+                <label for="file-input1">
+                  <div className="firstbox">
+                    {" "}
+                    <BorderColorRoundedIcon className="box1" />
+                  </div>
+                  <img
+                    className="imageinput12"
+                    src={
+                      (familyInputs.backgroundImage &&
+                        familyInputs.backgroundImage.imageLink) ||
+                      pics
+                    }
+                  />
+                </label>
+                <input
+                  id="file-input1"
+                  name="image"
+                  type="file"
+                  onChange={(e) => imageHandler(e, "image")}
+                />
+              </div>
+            </Col>
+            <Col>
+              <label>Logo</label>
+              <div class="image-upload">
+                <label for="file-input2">
+                  <div className="firstbox">
+                    {" "}
+                    <BorderColorRoundedIcon className="box1" />
+                  </div>
+
+                  <img
+                    className="imageinput12"
+                    src={
+                      (familyInputs.logo && familyInputs.logo.logoLink) || pics
+                    }
+                  />
+                </label>
+                <input
+                  id="file-input2"
+                  name="logo"
+                  type="file"
+                  onChange={(e) => imageHandler(e, "logo")}
+                />
+              </div>
+            </Col>
+          </Row>
+        </Form>
+      </Card.Body>
+      <SnackBar
+        open={open}
+        setOpen={setOpen}
+        severity={severity}
+        msg={snackBar}
+      />
+    </Card>
+  );
 }
 export default FamiliesUpdate;

@@ -61,7 +61,7 @@ const AdminSignUpSlice = createSlice({
     }),
     [adminSignUp.fulfilled]: (state, action) => ({
       ...state,
-      responseData: action.payload.responseData,
+      responseData: action.payload.responseData || {},
       isSuccess: action.payload.isSuccess || false,
       isError: !action.payload.isSuccess,
       msg: action.payload.msg,
