@@ -33,6 +33,7 @@ function FamiliesNew() {
   );
 
   useEffect(() => {
+    console.log(familyInputs)
     if (familyInputs && Object.keys(familyInputs).length === 8)
       setIsDisabled(false);
     else setIsDisabled(true);
@@ -71,24 +72,36 @@ function FamiliesNew() {
   };
 
   const imageHandler = (e, type) => {
-    let base64String = "";
+    // let base64String = "";
     var file = e.target.files[0];
-    var reader = new FileReader();
-    reader.onload = function () {
-      base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-      if (type === "image") {
-        setFamilyInputs({
-          ...familyInputs,
-          ["backgroundImage"]: { imageLink: base64String },
-        });
-      } else {
-        setFamilyInputs({
-          ...familyInputs,
-          ["logo"]: { logoLink: base64String },
-        });
-      }
-    };
-    reader.readAsDataURL(file);
+    if (type === "image") {
+      setFamilyInputs({
+        ...familyInputs,
+        ["backgroundImage"]: file
+      });
+    }
+    else {
+      setFamilyInputs({
+        ...familyInputs,
+        ["logo"]: file
+      });
+    }
+    // var reader = new FileReader();
+    // reader.onload = function () {
+    //   base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+    //   if (type === "image") {
+    //     setFamilyInputs({
+    //       ...familyInputs,
+    //       ["backgroundImage"]: { imageLink: `data:${file.type};base64, ${base64String}` },
+    //     });
+    //   } else {
+    //     setFamilyInputs({
+    //       ...familyInputs,
+    //       ["logo"]: { logoLink: `data:${file.type};base64, ${base64String}` },
+    //     });
+    //   }
+    // };
+    // reader.readAsDataURL(file);
   };
 
   return (

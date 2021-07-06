@@ -112,7 +112,7 @@ function ExperiencesUpdate() {
     dispatch(
       experiences({
         type: "add",
-        data: { ...experienceInputs },
+        data: { ...updatedValues },
         token: token,
       })
     );
@@ -222,8 +222,8 @@ function ExperiencesUpdate() {
     <Card
       style={
         ({ width: "23rem" },
-        { borderWidth: 3 },
-        { borderColor: "rgb(238, 91, 46)" })
+          { borderWidth: 3 },
+          { borderColor: "rgb(238, 91, 46)" })
       }
     >
       <Card.Body>
@@ -293,8 +293,8 @@ function ExperiencesUpdate() {
                 <Card
                   style={
                     ({ width: "26rem" },
-                    { borderWidth: 3 },
-                    { borderColor: "rgb(238, 91, 46)" })
+                      { borderWidth: 3 },
+                      { borderColor: "rgb(238, 91, 46)" })
                   }
                 >
                   <div className="popupdiv">
@@ -403,13 +403,10 @@ function ExperiencesUpdate() {
             <Col>
               <Form.Label>Familia</Form.Label>
               <Form.Control as="select" onChange={familyChangeHandler}>
-                {experienceInputs && experienceInputs.family && (
-                  <option
-                    value={`${experienceInputs.family.familiesId},${experienceInputs.family.name}`}
-                  >
-                    {experienceInputs.family.name}
-                  </option>
-                )}
+                <option
+                >
+                  Select
+                </option>
                 {!isEmpty(responseData) &&
                   responseData.map((family) => {
                     return (

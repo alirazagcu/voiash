@@ -71,6 +71,7 @@ function ExperiencesUpdate() {
     getAllFamiliesstateClear();
   }, []);
 
+
   useEffect(() => {
     if (isSuccess && isDelete) {
       history.push("/admin/experiences");
@@ -214,6 +215,7 @@ function ExperiencesUpdate() {
   const familyChangeHandler = (e) => {
     const { value } = e.target;
     const familiesValues = value.split(",");
+    console.log(familiesValues);
     setExperiencesInputs({
       ...experienceInputs,
       family: { familiesId: familiesValues[0], name: familiesValues[1] },

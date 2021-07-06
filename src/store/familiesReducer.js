@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import {
+  extend
+} from 'lodash';
+import {
   BASE_URL,
   GET_ALL_FAMILIES,
   UPDATE_FAMILY_BY_ID,
@@ -45,9 +48,21 @@ export const families = createAsyncThunk(
           );
           break;
         case "add":
+          let newData = new FormData();
+          newData.append("image", obj.data.backgroundImage);
+          newData.append("image", obj.data.logo);
+          newData.append("name", obj.data.name);
+          newData.append("status", obj.data.status)
+          newData.append("slug", obj.data.slug)
+          newData.append("hastag", obj.data.hastag)
+          newData.append("color", obj.data.color)
+          newData.append("description", obj.data.description)
+          extend(config.headers, {
+            'Content-Type': 'multipart/form-data'
+          } )
           response = await axios.post(
             `${BASE_URL}${ADD_FAMILY}`,
-            obj.data,
+            newData,
             config
           );
           break;
