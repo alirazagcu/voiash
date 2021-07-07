@@ -9,6 +9,8 @@ import resetPasswordReducer from "./resetPasswordReducer";
 import recoveryPasswordReducer from "./recoveryPasswordReducer";
 import familiesReducer from "./familiesReducer";
 import experienceReducer from "./experienceReducer";
+import hotelsReducer from "./hotelsReducer";
+import destinationReducer from "./destinationReducer";
 
 export default configureStore({
   reducer: {
@@ -22,5 +24,7 @@ export default configureStore({
     recoveryPasswordState: recoveryPasswordReducer,
     familiyState: familiesReducer,
     experienceState: experienceReducer,
+    hotelsState: hotelsReducer,
+    destinationState: destinationReducer
   },
 });

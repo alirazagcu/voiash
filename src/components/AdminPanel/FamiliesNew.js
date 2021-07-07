@@ -27,13 +27,14 @@ function FamiliesNew() {
   const [snackBar, setSnackBar] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
   const [isClear, setIsClear] = useState(false);
+  const [imageSrc, setImageSrc] = useState("");
+  const [logoSrc, setLogoSrc] = useState("");
 
   const { isError, isFetching, isSuccess, msg } = useSelector(
     (state) => state.familiyState
   );
 
   useEffect(() => {
-    console.log(familyInputs)
     if (familyInputs && Object.keys(familyInputs).length === 8)
       setIsDisabled(false);
     else setIsDisabled(true);
@@ -77,31 +78,26 @@ function FamiliesNew() {
     if (type === "image") {
       setFamilyInputs({
         ...familyInputs,
-        ["backgroundImage"]: file
+        ["backgroundImage"]: file,
       });
-    }
-    else {
+    } else {
       setFamilyInputs({
         ...familyInputs,
-        ["logo"]: file
+        ["logo"]: file,
       });
     }
-    // var reader = new FileReader();
-    // reader.onload = function () {
-    //   base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-    //   if (type === "image") {
-    //     setFamilyInputs({
-    //       ...familyInputs,
-    //       ["backgroundImage"]: { imageLink: `data:${file.type};base64, ${base64String}` },
-    //     });
-    //   } else {
-    //     setFamilyInputs({
-    //       ...familyInputs,
-    //       ["logo"]: { logoLink: `data:${file.type};base64, ${base64String}` },
-    //     });
-    //   }
-    // };
-    // reader.readAsDataURL(file);
+    var reader = new FileReader();
+    reader.onload = function () {
+      const base64String = reader.result
+        .replace("data:", "")
+        .replace(/^.+,/, "");
+      if (type === "image") {
+        setImageSrc(`data:${file.type};base64, ${base64String}`);
+      } else {
+        setLogoSrc(`data:${file.type};base64, ${base64String}`);
+      }
+    };
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -205,15 +201,7 @@ function FamiliesNew() {
                     {" "}
                     <BorderColorRoundedIcon className="box1" />
                   </div>
-                  <img
-                    className="imageinput12"
-                    src={
-                      isClear
-                        ? ""
-                        : familyInputs.backgroundImage &&
-                          familyInputs.backgroundImage.imageLink
-                    }
-                  />
+                  <img className="imageinput12" src={isClear ? "" : imageSrc} />
                 </label>
                 <input
                   id="file-input1"
@@ -232,14 +220,7 @@ function FamiliesNew() {
                     <BorderColorRoundedIcon className="box1" />
                   </div>
 
-                  <img
-                    className="imageinput12"
-                    src={
-                      isClear
-                        ? ""
-                        : familyInputs.logo && familyInputs.logo.logoLink
-                    }
-                  />
+                  <img className="imageinput12" src={isClear ? "" : logoSrc} />
                 </label>
                 <input
                   id="file-input2"

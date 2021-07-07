@@ -59,6 +59,9 @@ function ExperiencesUpdate() {
   const [severity, setSeverity] = useState("error");
   const [snackBar, setSnackBar] = useState("");
   const [isDelete, setIsDelete] = useState(false);
+  const [imageSrc, setImageSrc] = useState("");
+  const [logoSrc, setLogoSrc] = useState("");
+  const [imagesArrayValue, setImagesArrayValue] = useState("");
 
   const { isError, isFetching, isSuccess, msg, experience } = useSelector(
     (state) => state.experienceState
@@ -70,7 +73,6 @@ function ExperiencesUpdate() {
     dispatch(families({ type: "get", token: token }));
     getAllFamiliesstateClear();
   }, []);
-
 
   useEffect(() => {
     if (isSuccess && isDelete) {
@@ -102,19 +104,12 @@ function ExperiencesUpdate() {
   };
 
   const onUpdateHandler = () => {
-    const updatedValues = {
-      ...experienceInputs,
-      listImage: {
-        imageLink:
-          "http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/nebula_brown.png",
-      },
-    };
     setIsDelete(false);
     const token = localStorage.getItem("token");
     dispatch(
       experiences({
         type: "put",
-        data: { ...experienceInputs },
+        data: { ...experienceInputs, images: imagesArrayValue },
         _id: experienceInputs._id,
         token: token,
       })
@@ -130,21 +125,24 @@ function ExperiencesUpdate() {
   };
 
   const imageHandler = (e, type) => {
-    let base64String = "";
     var file = e.target.files[0];
+    if (type === "image") {
+      setExperiencesInputs({
+        ...experienceInputs,
+        ["listImage"]: file,
+      });
+    } else {
+      setImagesArrayValue(file);
+    }
     var reader = new FileReader();
     reader.onload = function () {
-      base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+      const base64String = reader.result
+        .replace("data:", "")
+        .replace(/^.+,/, "");
       if (type === "image") {
-        setExperiencesInputs({
-          ...experienceInputs,
-          ["backgroundImage"]: { imageLink: base64String },
-        });
+        setImageSrc(`data:${file.type};base64, ${base64String}`);
       } else {
-        setExperiencesInputs({
-          ...experienceInputs,
-          ["logo"]: { logoLink: base64String },
-        });
+        setLogoSrc(`data:${file.type};base64, ${base64String}`);
       }
     };
     reader.readAsDataURL(file);
@@ -215,7 +213,6 @@ function ExperiencesUpdate() {
   const familyChangeHandler = (e) => {
     const { value } = e.target;
     const familiesValues = value.split(",");
-    console.log(familiesValues);
     setExperiencesInputs({
       ...experienceInputs,
       family: { familiesId: familiesValues[0], name: familiesValues[1] },
@@ -247,7 +244,7 @@ function ExperiencesUpdate() {
               </div>
               <div className="btnfornew">
                 <Button onClick={onDeleteHandler}>
-                  {isFetching ? <Loader /> : "Eliminar"}
+                  {isFetching && isDelete ? <Loader /> : "Eliminar"}
                 </Button>
                 <Button className="formarginbtn" onClick={onUpdateHandler}>
                   {isFetching && !isDelete ? <Loader /> : "Guardar"}
@@ -480,13 +477,26 @@ function ExperiencesUpdate() {
           <Row>
             <Col>
               <div class="imageupload">
-                <label for="file-input">
+                <label for="file-input1">
                   <div className="firstboxupdate">
                     <BorderColorRoundedIcon className="box12" />
                   </div>
-                  <img className="imageinputupdate" src={pics} />
+                  <img
+                    className="imageinputupdate"
+                    src={
+                      !imageSrc
+                        ? experienceInputs.listImage &&
+                          experienceInputs.listImage.imageLink
+                        : imageSrc
+                    }
+                  />
                 </label>
-                <input id="file-input" type="file" />
+                <input
+                  id="file-input1"
+                  name="image"
+                  type="file"
+                  onChange={(e) => imageHandler(e, "image")}
+                />
               </div>
             </Col>
           </Row>
@@ -502,16 +512,21 @@ function ExperiencesUpdate() {
               experienceInputs.images.map((image) => {
                 return (
                   <div class="col-sm-6 col-xs-12 col-md-3 col-lg-3 imageuploadtab ">
-                    <label for="file-input">
+                    <label for="file-input2">
                       <div className="firstboxupdatetab">
                         <BorderColorRoundedIcon className="box12tab" />
                       </div>
                       <img
                         className="imageinputupdatetab"
-                        src={image.imageLink}
+                        src={!logoSrc ? image.imageLink : logoSrc}
                       />
                     </label>
-                    <input id="file-input" type="file" />
+                    <input
+                      id="file-input2"
+                      name="image"
+                      type="file"
+                      onChange={(e) => imageHandler(e, "images")}
+                    />
                   </div>
                 );
               })}

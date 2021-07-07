@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import {
-  extend
-} from 'lodash';
+import { extend } from "lodash";
 import {
   BASE_URL,
   GET_ALL_FAMILIES,
@@ -35,9 +33,26 @@ export const families = createAsyncThunk(
           response = await axios.get(`${BASE_URL}${GET_ALL_FAMILIES}`, config);
           break;
         case "put":
+          console.log("data", obj);
+          let newUpdateData = new FormData();
+          console.log("dafsd", typeof obj.data.backgroundImage);
+          if(!(obj.data.backgroundImage && obj.data.backgroundImage.imageLink)){
+            newUpdateData.append("image", obj.data.backgroundImage, "image");}
+            if(!(obj.data.logo && obj.data.logo.logoLink)){
+              newUpdateData.append("image", obj.data.logo, "logo");
+            }
+          newUpdateData.append("name", obj.data.name);
+          newUpdateData.append("status", obj.data.status);
+          newUpdateData.append("slug", obj.data.slug);
+          newUpdateData.append("hashtag", obj.data.hashtag);
+          newUpdateData.append("color", obj.data.color);
+          newUpdateData.append("description", obj.data.description);
+          extend(config.headers, {
+            "Content-Type": "multipart/form-data",
+          });
           response = await axios.put(
             `${BASE_URL}${UPDATE_FAMILY_BY_ID}/${obj._id}`,
-            obj.data,
+            newUpdateData,
             config
           );
           break;
@@ -49,17 +64,17 @@ export const families = createAsyncThunk(
           break;
         case "add":
           let newData = new FormData();
-          newData.append("image", obj.data.backgroundImage);
-          newData.append("image", obj.data.logo);
+          newData.append("image", obj.data.backgroundImage, "image");
+          newData.append("image", obj.data.logo, "logo");
           newData.append("name", obj.data.name);
-          newData.append("status", obj.data.status)
-          newData.append("slug", obj.data.slug)
-          newData.append("hastag", obj.data.hastag)
-          newData.append("color", obj.data.color)
-          newData.append("description", obj.data.description)
+          newData.append("status", obj.data.status);
+          newData.append("slug", obj.data.slug);
+          newData.append("hashtag", obj.data.hastag);
+          newData.append("color", obj.data.color);
+          newData.append("description", obj.data.description);
           extend(config.headers, {
-            'Content-Type': 'multipart/form-data'
-          } )
+            "Content-Type": "multipart/form-data",
+          });
           response = await axios.post(
             `${BASE_URL}${ADD_FAMILY}`,
             newData,
@@ -69,6 +84,7 @@ export const families = createAsyncThunk(
         default:
           break;
       }
+      console.log("family resposse", response)
       if (response.status === 200) {
         if (response.data && response.data.responseCode === 200) {
           return {
@@ -84,6 +100,7 @@ export const families = createAsyncThunk(
         }
       }
     } catch (e) {
+      console.log("error", e);
       if (e.response && e.response.status === 401)
         return thunkAPI.rejectWithValue({
           msg: (e.response.data && e.response.data.error) || "",

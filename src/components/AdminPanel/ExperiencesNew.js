@@ -59,6 +59,8 @@ function ExperiencesUpdate() {
   const [severity, setSeverity] = useState("error");
   const [snackBar, setSnackBar] = useState("");
   const [isDelete, setIsDelete] = useState(false);
+  const [imageSrc, setImageSrc] = useState("");
+  const [logoSrc, setLogoSrc] = useState("");
 
   const { isError, isFetching, isSuccess, msg, experience } = useSelector(
     (state) => state.experienceState
@@ -100,40 +102,39 @@ function ExperiencesUpdate() {
   };
 
   const onUpdateHandler = () => {
-    const updatedValues = {
-      ...experienceInputs,
-      listImage: {
-        imageLink:
-          "http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/nebula_brown.png",
-      },
-    };
     setIsDelete(false);
     const token = localStorage.getItem("token");
     dispatch(
       experiences({
         type: "add",
-        data: { ...updatedValues },
+        data: { ...experienceInputs },
         token: token,
       })
     );
   };
 
   const imageHandler = (e, type) => {
-    let base64String = "";
     var file = e.target.files[0];
+    if (type === "image") {
+      setExperiencesInputs({
+        ...experienceInputs,
+        ["listImage"]: file,
+      });
+    } else {
+      setExperiencesInputs({
+        ...experienceInputs,
+        ["images"]: file,
+      });
+    }
     var reader = new FileReader();
     reader.onload = function () {
-      base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+      const base64String = reader.result
+        .replace("data:", "")
+        .replace(/^.+,/, "");
       if (type === "image") {
-        setExperiencesInputs({
-          ...experienceInputs,
-          ["backgroundImage"]: { imageLink: base64String },
-        });
+        setImageSrc(`data:${file.type};base64, ${base64String}`);
       } else {
-        setExperiencesInputs({
-          ...experienceInputs,
-          ["logo"]: { logoLink: base64String },
-        });
+        setLogoSrc(`data:${file.type};base64, ${base64String}`);
       }
     };
     reader.readAsDataURL(file);
@@ -222,8 +223,8 @@ function ExperiencesUpdate() {
     <Card
       style={
         ({ width: "23rem" },
-          { borderWidth: 3 },
-          { borderColor: "rgb(238, 91, 46)" })
+        { borderWidth: 3 },
+        { borderColor: "rgb(238, 91, 46)" })
       }
     >
       <Card.Body>
@@ -293,8 +294,8 @@ function ExperiencesUpdate() {
                 <Card
                   style={
                     ({ width: "26rem" },
-                      { borderWidth: 3 },
-                      { borderColor: "rgb(238, 91, 46)" })
+                    { borderWidth: 3 },
+                    { borderColor: "rgb(238, 91, 46)" })
                   }
                 >
                   <div className="popupdiv">
@@ -403,10 +404,7 @@ function ExperiencesUpdate() {
             <Col>
               <Form.Label>Familia</Form.Label>
               <Form.Control as="select" onChange={familyChangeHandler}>
-                <option
-                >
-                  Select
-                </option>
+                <option>Select</option>
                 {!isEmpty(responseData) &&
                   responseData.map((family) => {
                     return (
@@ -464,13 +462,18 @@ function ExperiencesUpdate() {
           <Row>
             <Col>
               <div class="imageupload">
-                <label for="file-input">
+                <label for="file-input1">
                   <div className="firstboxupdate">
                     <BorderColorRoundedIcon className="box12" />
                   </div>
-                  <img className="imageinputupdate" src={pics} />
+                  <img className="imageinputupdate" src={imageSrc} />
                 </label>
-                <input id="file-input" type="file" />
+                <input
+                  id="file-input1"
+                  name="image"
+                  type="file"
+                  onChange={(e) => imageHandler(e, "image")}
+                />
               </div>
             </Col>
           </Row>
@@ -482,13 +485,18 @@ function ExperiencesUpdate() {
 
           <div className="row mainimagetab">
             <div class="col-sm-6 col-xs-12 col-md-3 col-lg-3 imageuploadtab ">
-              <label for="file-input">
+              <label for="file-input2">
                 <div className="firstboxupdatetab">
                   <BorderColorRoundedIcon className="box12tab" />
                 </div>
-                <img className="imageinputupdatetab" />
+                <img className="imageinputupdatetab" src={logoSrc} />
               </label>
-              <input id="file-input" type="file" />
+              <input
+                id="file-input2"
+                name="images"
+                type="file"
+                onChange={(e) => imageHandler(e, "images")}
+              />
             </div>
           </div>
         </Form>

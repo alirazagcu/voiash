@@ -23,6 +23,8 @@ function FamiliesUpdate() {
   const [severity, setSeverity] = useState("error");
   const [snackBar, setSnackBar] = useState("");
   const [isDelete, setIsDelete] = useState(false);
+  const [imageSrc, setImageSrc] = useState("");
+  const [logoSrc, setLogoSrc] = useState("");
 
   const {
     isError,
@@ -85,21 +87,27 @@ function FamiliesUpdate() {
   };
 
   const imageHandler = (e, type) => {
-    let base64String = "";
     var file = e.target.files[0];
+    if (type === "image") {
+      setFamilyInputs({
+        ...familyInputs,
+        ["backgroundImage"]: file,
+      });
+    } else {
+      setFamilyInputs({
+        ...familyInputs,
+        ["logo"]: file,
+      });
+    }
     var reader = new FileReader();
     reader.onload = function () {
-      base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+      const base64String = reader.result
+        .replace("data:", "")
+        .replace(/^.+,/, "");
       if (type === "image") {
-        setFamilyInputs({
-          ...familyInputs,
-          ["backgroundImage"]: { imageLink: base64String },
-        });
+        setImageSrc(`data:${file.type};base64, ${base64String}`);
       } else {
-        setFamilyInputs({
-          ...familyInputs,
-          ["logo"]: { logoLink: base64String },
-        });
+        setLogoSrc(`data:${file.type};base64, ${base64String}`);
       }
     };
     reader.readAsDataURL(file);
@@ -123,7 +131,7 @@ function FamiliesUpdate() {
               </div>
               <div className="btnfornew">
                 <Button onClick={onDeleteHandler}>
-                  {isFetching ? <Loader /> : "Eliminar"}
+                  {isFetching && isDelete ? <Loader /> : "Eliminar"}
                 </Button>
                 <Button className="formarginbtn" onClick={onUpdateHandler}>
                   {isFetching && !isDelete ? <Loader /> : "Guardar"}
@@ -208,9 +216,11 @@ function FamiliesUpdate() {
                   <img
                     className="imageinput12"
                     src={
-                      (familyInputs.backgroundImage &&
-                        familyInputs.backgroundImage.imageLink) ||
-                      pics
+                      !imageSrc
+                        ? (familyInputs.backgroundImage &&
+                            familyInputs.backgroundImage.imageLink) ||
+                          pics
+                        : imageSrc
                     }
                   />
                 </label>
@@ -234,7 +244,10 @@ function FamiliesUpdate() {
                   <img
                     className="imageinput12"
                     src={
-                      (familyInputs.logo && familyInputs.logo.logoLink) || pics
+                      !logoSrc
+                        ? (familyInputs.logo && familyInputs.logo.logoLink) ||
+                          pics
+                        : logoSrc
                     }
                   />
                 </label>

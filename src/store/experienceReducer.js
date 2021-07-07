@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { extend } from "lodash";
 import {
   BASE_URL,
   GET_ALL_EXPERIENCES,
@@ -26,7 +27,6 @@ export const experiences = createAsyncThunk(
           Authorization: "Bearer " + obj.token,
         },
       };
-      console.log("obj ", obj);
       let response = {};
       switch (obj.type) {
         case "get":
@@ -36,9 +36,24 @@ export const experiences = createAsyncThunk(
           );
           break;
         case "put":
+          let newUpdateData = new FormData();
+          newUpdateData.append("image", obj.data.listImage);
+          newUpdateData.append("image", obj.data.images);
+          newUpdateData.append("name", obj.data.name);
+          newUpdateData.append("type", obj.data.type);
+          newUpdateData.append("status", obj.data.status);
+          newUpdateData.append("prices", JSON.stringify(obj.data.prices));
+          newUpdateData.append("family", JSON.stringify(obj.data.family));
+          newUpdateData.append("duration", obj.data.duration);
+          newUpdateData.append("location", obj.data.location);
+          newUpdateData.append("shortDescription", obj.data.shortDescription);
+          newUpdateData.append("description", obj.data.description);
+          extend(config.headers, {
+            "Content-Type": "multipart/form-data",
+          });
           response = await axios.put(
             `${BASE_URL}${UPDATE_EXPERIENCES_BY_ID}/${obj._id}`,
-            obj.data,
+            newUpdateData,
             config
           );
           break;
@@ -49,9 +64,24 @@ export const experiences = createAsyncThunk(
           );
           break;
         case "add":
+          let newData = new FormData();
+          newData.append("image", obj.data.listImage);
+          newData.append("image", obj.data.images);
+          newData.append("name", obj.data.name);
+          newData.append("type", obj.data.type);
+          newData.append("status", obj.data.status);
+          newData.append("prices", JSON.stringify(obj.data.prices));
+          newData.append("family", JSON.stringify(obj.data.family));
+          newData.append("duration", obj.data.duration);
+          newData.append("location", obj.data.location);
+          newData.append("shortDescription", obj.data.shortDescription);
+          newData.append("description", obj.data.description);
+          extend(config.headers, {
+            "Content-Type": "multipart/form-data",
+          });
           response = await axios.post(
             `${BASE_URL}${ADD_EXPERIENCES}`,
-            obj.data,
+            newData,
             config
           );
           break;
