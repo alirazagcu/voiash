@@ -11,6 +11,9 @@ import familiesReducer from "./familiesReducer";
 import experienceReducer from "./experienceReducer";
 import hotelsReducer from "./hotelsReducer";
 import destinationReducer from "./destinationReducer";
+import insuranceReducer from "./insuranceReducer";
+import localFriendsReducer from "./localFriendsReducer";
+import allUsersReducer from "./allUserReducer";
 
 export default configureStore({
   reducer: {
@@ -25,6 +28,9 @@ export default configureStore({
     familiyState: familiesReducer,
     experienceState: experienceReducer,
     hotelsState: hotelsReducer,
-    destinationState: destinationReducer
+    destinationState: destinationReducer,
+    insuranceState: insuranceReducer,
+    localFriendsState: localFriendsReducer,
+    allUsersState: allUsersReducer
   },
 });
