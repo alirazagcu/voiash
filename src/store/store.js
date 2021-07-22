@@ -14,6 +14,7 @@ import destinationReducer from "./destinationReducer";
 import insuranceReducer from "./insuranceReducer";
 import localFriendsReducer from "./localFriendsReducer";
 import allUsersReducer from "./allUserReducer";
+import groupsReducer from "./groupReducer";
 
 export default configureStore({
   reducer: {
@@ -31,6 +32,7 @@ export default configureStore({
     destinationState: destinationReducer,
     insuranceState: insuranceReducer,
     localFriendsState: localFriendsReducer,
-    allUsersState: allUsersReducer
+    allUsersState: allUsersReducer,
+    groupsState: groupsReducer
   },
 });

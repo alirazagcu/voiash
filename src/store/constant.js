@@ -34,6 +34,11 @@ export const UPDATE_INSURANCE_BY_ID = "update/insurances";
 export const DELETE_INSURANCE_BY_ID = "delete/insurances";
 export const ADD_INSURANCE = "add/insurances";
 
+export const GET_ALL_GROUPS = "getall/groups";
+export const UPDATE_GROUPS_BY_ID = "update/groups/";
+export const DELETE_GROUPS_BY_ID = "delete/groups";
+export const ADD_GROUPS = "add/groups";
+
 export const GET_ALL_LOCAL_FRIENDS = "getall/localFriends";
 export const UPDATE_LOCAL_FRIENDS_BY_ID = "update/localFriends";
 export const DELETE_LOCAL_FRIENDS_BY_ID = "delete/localFriends";

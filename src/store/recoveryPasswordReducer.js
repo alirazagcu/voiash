@@ -24,7 +24,6 @@ export const recoveryPassword = createAsyncThunk(
         userObject,
         config
       );
-      console.log("response adfsadsfsdfasdfasdfadsfds", response);
       if (response.status === 200) {
         if (response.data && response.data.responseCode === 200) {
           return {

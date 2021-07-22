@@ -1,22 +1,22 @@
-import React from 'react';
-import '../../App.css';
-import PropTypes from 'prop-types';
-import {Form,FormControl,Button} from 'react-bootstrap';
-import {Link } from 'react-router-dom';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableFooter from '@material-ui/core/TableFooter';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
-import FirstPageIcon from '@material-ui/icons/FirstPage';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import LastPageIcon from '@material-ui/icons/LastPage';
+import React from "react";
+import "../../App.css";
+import PropTypes from "prop-types";
+import { Form, FormControl, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableFooter from "@material-ui/core/TableFooter";
+import TablePagination from "@material-ui/core/TablePagination";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
+import FirstPageIcon from "@material-ui/icons/FirstPage";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import LastPageIcon from "@material-ui/icons/LastPage";
 const useStyles1 = makeStyles((theme) => ({
   root: {
     flexShrink: 0,
@@ -52,24 +52,36 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
-      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+      <IconButton
+        onClick={handleBackButtonClick}
+        disabled={page === 0}
+        aria-label="previous page"
+      >
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </div>
   );
@@ -80,8 +92,8 @@ TablePaginationActions.propTypes = {
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
 };
-function createData(name, calories, fat,bar,nat) {
-  return { name, calories, fat,bar,nat };
+function createData(name, calories, fat, bar, nat) {
+  return { name, calories, fat, bar, nat };
 }
 const rows = [
   // createData('akash',2,'MAX','Todos','VISA','Inactivo'),
@@ -92,32 +104,29 @@ const rows = [
   // createData('akash',2,'MAX','Todos','VISA','Inactivo'),
   // createData('akash',2,'MAX','Todos','VISA','Inactivo'),
   // createData('akash',2,'MAX','Todos','VISA','Inactivo'),
- 
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 const useStyles2 = makeStyles({
   table: {
     minWidth: 500,
     borderRadius: 8,
-    boxShadowTop: 2, 
+    boxShadowTop: 2,
     flexGrow: 1,
-    boxShodowColor:'red',
+    boxShodowColor: "red",
   },
   table1: {
-    
     borderRadius: 8,
-    boxShadow :"1px 1px 5px 1px gray"
+    boxShadow: "1px 1px 5px 1px gray",
   },
 });
-
 
 export default function Fees() {
   const classes = useStyles2();
   const [data, setdata] = React.useState(rows[5]);
-  console.log(data)
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -129,63 +138,87 @@ export default function Fees() {
   };
 
   return (
-   
-    
     <TableContainer component={Paper} className={classes.table1}>
-      <Table size="small" className={classes.table} aria-label="custom pagination table">
+      <Table
+        size="small"
+        className={classes.table}
+        aria-label="custom pagination table"
+      >
         <TableBody>
-        <TableRow >
-              <TableCell component="th" className="searchdiv" >
-            <div className="formcontrol"> <Form inline>
-              <FormControl type="text" placeholder="Buscar..."  />
-             </Form></div> 
-        
-              </TableCell>
-              <TableCell component="th" className="searchdiv" >
-              </TableCell>
-              <TableCell component="th" className="searchdiv" >
-              </TableCell>
-              <TableCell component="th" className="searchdiv" >
-              </TableCell>
-              <TableCell component="th" className="searchdiv" >
-           <div align="right"><Link to="/admin/fees/new"><Button variant="primary" >Nuevo</Button></Link></div>  
-              </TableCell>
-            </TableRow>
-            
-          {data?((rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (  
-           <TableRow  key={row.name}>
-              <TableCell  className="pakistan" component="th" scope="row">
-              <Link to="/admin/fees/update" className="linker">
-                <div className="tablelink"><p className="tabeltext">{row.name}</p>
-                </div>
-              </Link>
-              </TableCell>
-              <TableCell  className="pakistan" component="th" scope="row">
-              <Link  to="/admin/fees/update" className="linker">
-                <div className="tablelink"><p className="tabeltext">{row.calories}</p></div></Link>
-              </TableCell>
-              <TableCell  className="pakistan" component="th" scope="row">
-              <Link  to="/admin/fees/update" className="linker">
-                <div className="tablelink"><p className="tabeltext">{row.fat}</p></div></Link>
-              </TableCell>
-              <TableCell  className="pakistan" component="th" scope="row">
-              <Link  to="/admin/fees/update" className="linker">
-                <div className="tablelink"><p className="tabeltext">{row.bar}</p></div></Link>
-              </TableCell>
-              <TableCell  className="pakistan" component="th" scope="row">
-              <Link  to="/admin/fees/update" className="linker">
-                <div className="tablelink"><p className="tabeltext">{row.nat}</p></div></Link>
-              </TableCell>
-            </TableRow>
-        // <TableRow className="tablerow"  key={row.name}>
-        //        
-        //     </TableRow>
-           
-          ))):(<div className="tableh2"> <h2 > No hay datos</h2> </div>)}
-           
+          <TableRow>
+            <TableCell component="th" className="searchdiv">
+              <div className="formcontrol">
+                {" "}
+                <Form inline>
+                  <FormControl type="text" placeholder="Buscar..." />
+                </Form>
+              </div>
+            </TableCell>
+            <TableCell component="th" className="searchdiv"></TableCell>
+            <TableCell component="th" className="searchdiv"></TableCell>
+            <TableCell component="th" className="searchdiv"></TableCell>
+            <TableCell component="th" className="searchdiv">
+              <div align="right">
+                <Link to="/admin/fees/new">
+                  <Button variant="primary">Nuevo</Button>
+                </Link>
+              </div>
+            </TableCell>
+          </TableRow>
+
+          {data ? (
+            (rowsPerPage > 0
+              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : rows
+            ).map((row) => (
+              <TableRow key={row.name}>
+                <TableCell className="pakistan" component="th" scope="row">
+                  <Link to="/admin/fees/update" className="linker">
+                    <div className="tablelink">
+                      <p className="tabeltext">{row.name}</p>
+                    </div>
+                  </Link>
+                </TableCell>
+                <TableCell className="pakistan" component="th" scope="row">
+                  <Link to="/admin/fees/update" className="linker">
+                    <div className="tablelink">
+                      <p className="tabeltext">{row.calories}</p>
+                    </div>
+                  </Link>
+                </TableCell>
+                <TableCell className="pakistan" component="th" scope="row">
+                  <Link to="/admin/fees/update" className="linker">
+                    <div className="tablelink">
+                      <p className="tabeltext">{row.fat}</p>
+                    </div>
+                  </Link>
+                </TableCell>
+                <TableCell className="pakistan" component="th" scope="row">
+                  <Link to="/admin/fees/update" className="linker">
+                    <div className="tablelink">
+                      <p className="tabeltext">{row.bar}</p>
+                    </div>
+                  </Link>
+                </TableCell>
+                <TableCell className="pakistan" component="th" scope="row">
+                  <Link to="/admin/fees/update" className="linker">
+                    <div className="tablelink">
+                      <p className="tabeltext">{row.nat}</p>
+                    </div>
+                  </Link>
+                </TableCell>
+              </TableRow>
+              // <TableRow className="tablerow"  key={row.name}>
+              //
+              //     </TableRow>
+            ))
+          ) : (
+            <div className="tableh2">
+              {" "}
+              <h2> No hay datos</h2>{" "}
+            </div>
+          )}
+
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell colSpan={6} />
@@ -195,13 +228,13 @@ export default function Fees() {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
               colSpan={3}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{
-                inputProps: { 'aria-label': 'rows per page' },
+                inputProps: { "aria-label": "rows per page" },
                 native: true,
               }}
               onChangePage={handleChangePage}
@@ -212,6 +245,5 @@ export default function Fees() {
         </TableFooter>
       </Table>
     </TableContainer>
-    
   );
 }

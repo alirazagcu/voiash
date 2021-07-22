@@ -33,14 +33,15 @@ export const families = createAsyncThunk(
           response = await axios.get(`${BASE_URL}${GET_ALL_FAMILIES}`, config);
           break;
         case "put":
-          console.log("data", obj);
           let newUpdateData = new FormData();
-          console.log("dafsd", typeof obj.data.backgroundImage);
-          if(!(obj.data.backgroundImage && obj.data.backgroundImage.imageLink)){
-            newUpdateData.append("image", obj.data.backgroundImage, "image");}
-            if(!(obj.data.logo && obj.data.logo.logoLink)){
-              newUpdateData.append("image", obj.data.logo, "logo");
-            }
+          if (
+            !(obj.data.backgroundImage && obj.data.backgroundImage.imageLink)
+          ) {
+            newUpdateData.append("image", obj.data.backgroundImage, "image");
+          }
+          if (!(obj.data.logo && obj.data.logo.logoLink)) {
+            newUpdateData.append("image", obj.data.logo, "logo");
+          }
           newUpdateData.append("name", obj.data.name);
           newUpdateData.append("status", obj.data.status);
           newUpdateData.append("slug", obj.data.slug);
@@ -84,7 +85,6 @@ export const families = createAsyncThunk(
         default:
           break;
       }
-      console.log("family resposse", response)
       if (response.status === 200) {
         if (response.data && response.data.responseCode === 200) {
           return {
@@ -100,7 +100,6 @@ export const families = createAsyncThunk(
         }
       }
     } catch (e) {
-      console.log("error", e);
       if (e.response && e.response.status === 401)
         return thunkAPI.rejectWithValue({
           msg: (e.response.data && e.response.data.error) || "",

@@ -88,7 +88,6 @@ export const experiences = createAsyncThunk(
         default:
           break;
       }
-      console.log("response ", response);
       if (response.status === 200) {
         if (response.data && response.data.responseCode === 200) {
           return {
