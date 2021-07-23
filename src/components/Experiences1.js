@@ -4,16 +4,38 @@ import pics from "../images/party.jpg";
 import pics1 from "../images/house.jpg";
 import pics2 from "../images/cover.jpg";
 import pics3 from "../images/unnamed.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import Navbar from "./Navbar";
+import { useSelector } from "react-redux";
+import Loader from "./material-ui-comps/Loader";
+import { isEmpty } from "lodash";
+
 function Experiences1() {
+  const { experience } = useSelector((state) => state.experienceState);
+
   const [modalShow, setModalShow] = useState(false);
-
   const [img, setImg] = useState();
+  const [totalAmount, setTotalAmount] = useState(0);
 
-  return (
+  useEffect(() => {
+    if (!isEmpty(experience)) {
+      let totalAmount1 = 0;
+      experience.prices.map((data) => {
+        if (data.amount) {
+          totalAmount1 += parseInt(data.amount);
+        }
+      });
+      setTotalAmount(totalAmount1);
+    }
+  }, [experience]);
+
+  return isEmpty(experience) ? (
+    <div style={{ marginTop: "300px" }}>
+      <Loader />
+    </div>
+  ) : (
     <>
       <Navbar />
       <div className="Experiences">
@@ -23,40 +45,35 @@ function Experiences1() {
               <div className="Experiencesimg">
                 <img src={img} className="mainimage" />
                 <div className="btnimage0">
-                  <button className="imagebtn">
-                    <img
-                      value={pics}
-                      onClick={(e) => setImg(pics)}
-                      onLoad={(e) => setImg(pics)}
-                      className="btnimage"
-                      src={pics}
-                    />
-                  </button>
-                  <button className="imagebtn">
-                    <img
-                      value={pics1}
-                      onClick={(e) => setImg(pics1)}
-                      className="btnimage"
-                      src={pics1}
-                    />
-                  </button>
-                  <button className="imagebtn">
-                    <img
-                      onClick={(e) => setImg(pics2)}
-                      className="btnimage"
-                      src={pics2}
-                    />
-                  </button>
+                  {!isEmpty(experience.images) &&
+                    experience.images.map((imgg) => {
+                      return (
+                        <button className="imagebtn">
+                          <img
+                            value={imgg.imageLink || pics1}
+                            onClick={(e) => setImg(imgg.imageLink)}
+                            onLoad={(e) => setImg(imgg.imageLink)}
+                            className="btnimage"
+                            src={imgg.imageLink}
+                          />
+                        </button>
+                      );
+                    })}
                 </div>
               </div>
               <div className="Experiencestext">
-                <h1>The City Open Bar</h1>
-                <h5 className="price1">From: 60.00 EUR</h5>
+                <h1>{experience.name}</h1>
+                <h5 className="price1">
+                  From: {totalAmount} {experience.prices[0].coin}
+                </h5>
 
                 <p className="price">all inclusive per person, total price.</p>
                 <div className="icontext">
-                  <img src={pics} className="imgicon" />
-                  <p>4 hours</p>
+                  <img
+                    src={experience.listImage.imageLink}
+                    className="imgicon"
+                  />
+                  <p>{experience.duration} hours</p>
                 </div>
 
                 <button
@@ -76,29 +93,9 @@ function Experiences1() {
             <div className="discription">
               <p className="dispara12">Descripción</p>
               <hr className="dispara" />
-              <p className="dispara1">
-                Incluye: Acceso General / Bebidas Nacionales de 10:30 pm a 3:30
-                am.
-              </p>
-              <p className="dispara1">
-                {" "}
-                No incluye: Reserva de mesa; Marcas premium, productos
-                embotellados o enlatados; Propinas.
-              </p>
-              <p className="dispara1">
-                *Precios sujetos a cambio sin previo aviso.
-              </p>
+              <p className="dispara1">{experience.description}</p>
             </div>
           </div>
-
-          {/* <Card.Header as="h5">Featured</Card.Header>
-                <Card.Body>
-                    <Card.Title>Special title treatment</Card.Title>
-                    <Card.Text>
-                        With supporting text below as a natural lead-in to additional content.
-                   </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                </Card.Body> */}
         </Card>
       </div>
     </>
