@@ -173,12 +173,19 @@ export const groupsActions = createAsyncThunk(
               return {
                 responseData: response.data.responseData,
                 isSuccess: false,
+                msg: "Your record is succfully added",
               };
             case "put":
               return {
                 responseData: response.data.responseData,
                 isSuccess: true,
                 msg: "Your record is succfully updated",
+              };
+            case "delete":
+              return {
+                responseData: response.data.responseData,
+                isSuccess: true,
+                msg: "Your record is succfully deleted",
               };
             default:
               return {

@@ -142,7 +142,7 @@ export default function Groups() {
     if (isSuccess) {
       setOpen(true);
       setSeverity("success");
-      setSnackBar("Your record was successfully added");
+      setSnackBar(msg);
       dispatch(groupsStateClear());
     }
     if (isError) {

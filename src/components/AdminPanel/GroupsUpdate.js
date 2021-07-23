@@ -102,6 +102,7 @@ function GroupsUpdate() {
   const [defaultExperienceState, setDefaultExperienceState] = useState([]);
   const [allImages, setAllImages] = useState([]);
   const [listImage, setListImage] = useState({});
+  const [isDelete, setIsDelete] = useState(false);
   useEffect(() => {
     if (group) {
       const { description } = group;
@@ -115,7 +116,13 @@ function GroupsUpdate() {
     }
   }, [group]);
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && isDelete) {
+      history.push("/admin/groups");
+      setOpen(true);
+      setSeverity("success");
+      setSnackBar("Your record was successfully deleted");
+    }
+    if (isSuccess && !isDelete) {
       setOpen(true);
       setSnackBar(msg);
       history.push("/admin/groups");
@@ -193,7 +200,7 @@ function GroupsUpdate() {
     };
     reader.readAsDataURL(file);
   };
-  
+
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setStateValues({
@@ -223,7 +230,16 @@ function GroupsUpdate() {
     });
   };
 
+  const onDeleteHandler = () => {
+    const token = localStorage.getItem("token");
+    setIsDelete(true);
+    dispatch(
+      groupsActions({ type: "delete", _id: stateValues._id, token: token })
+    );
+  };
+
   const onSubmitHandler = () => {
+    setIsDelete(false);
     const token = localStorage.getItem("token");
     const listImage1 = {
       imageLink: "fjlasjdfjadfalsjfdlajfdlkajflkjafds",
@@ -291,9 +307,11 @@ function GroupsUpdate() {
                 </Link>
               </div>
               <div className="btnfornew">
-                <Button>Eliminar</Button>
+                <Button onClick={onDeleteHandler}>
+                  {isFetching && isDelete ? <Loader /> : "Eliminar"}
+                </Button>
                 <Button className="formarginbtn" onClick={onSubmitHandler}>
-                  {isFetching ? <Loader /> : "Guardar"}
+                  {isFetching && !isDelete ? <Loader /> : "Guardar"}
                 </Button>
               </div>
             </Col>
