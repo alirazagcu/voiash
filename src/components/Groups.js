@@ -1,63 +1,89 @@
-import '../App.css';
-import pics from '../images/house.jpg';
-import { Form, Col, Button, Card ,Table} from 'react-bootstrap';
-import {Link,Route,Switch} from 'react-router-dom'
-import Details from './Details'
+import React, { useEffect } from "react";
+import "../App.css";
+import pics from "../images/house.jpg";
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import {
+  groupsActions,
+  groupsStateClear,
+  selectedGroup,
+} from "../store/groupReducer";
+import { useSelector, useDispatch } from "react-redux";
+import Loader from "./material-ui-comps/Loader";
+import SnackBar from "./material-ui-comps/SnackBar";
+import { isEmpty } from "lodash";
+
 function Groups() {
-    return (
-        <div className="person">
-            <div className="person1">
-                <Link to="/profile/reservations/groups/details" className="grouplink">
-                <Card style={{ width: '23rem' }, { borderWidth: 3 }, { borderColor: 'rgba(0,0,0,.06)' }} className="cardbody"  >
-                    <Card.Body>
-                        <div className="carddiv">
-                       <div><img src={pics} className="cardimage"/></div>
-                       <div><h5 className="groupcardtext">Medicina Bellvitge</h5>
-                       <p className="grouppara">Riviera Maya - 22/05/2021 00:00 - 1250.00 EUR</p>
-                       </div> 
-                       </div>
-                    </Card.Body>
+  const dispatch = useDispatch();
+  const { isError, isFetching, isSuccess, msg, responseData } = useSelector(
+    (state) => state.groupsState
+  );
+
+  console.log("responseData ", responseData);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    dispatch(groupsActions({ type: "get", token: token }));
+    return () => {
+      dispatch(groupsStateClear());
+    };
+  }, []);
+
+  const groupClickHandler = (row) => {
+    dispatch(selectedGroup(row));
+  };
+
+  return isFetching ? (
+    <div style={{ marginTop: "300px" }}>
+      <Loader />
+    </div>
+  ) : (
+    <div className="person">
+      <div className="person1">
+        {!isEmpty(responseData) &&
+          responseData.map((data) => {
+            return (
+              <Link
+                to="/profile/reservations/groups/details"
+                className="grouplink"
+                key={data._id}
+                onClick={() => groupClickHandler(data)}
+              >
+                <Card
+                  style={
+                    ({ width: "23rem" },
+                    { borderWidth: 3 },
+                    { borderColor: "rgba(0,0,0,.06)" })
+                  }
+                  className="cardbody"
+                >
+                  <Card.Body>
+                    <div className="carddiv">
+                      <div>
+                        <img
+                          src={data.listImage.imageLink}
+                          className="cardimage"
+                        />
+                      </div>
+                      <div>
+                        <h5 className="groupcardtext">{data.name}</h5>
+                        <p className="grouppara">
+                          {data.paymentDetails} - {data.departureDate} -{" "}
+                          {!isEmpty(data.paymentTable)
+                            ? data.paymentTable[0].total.soonPayment
+                            : ""}{" "}
+                          {!isEmpty(data.paymentTable)
+                            ? data.paymentTable[0].coin
+                            : ""}
+                        </p>
+                      </div>
+                    </div>
+                  </Card.Body>
                 </Card>
-                </Link>
-                <Link className="grouplink">
-                <Card style={{ width: '23rem' }, { borderWidth: 3 }, { borderColor: 'rgba(0,0,0,.06)' }} className="cardbody"  >
-                    <Card.Body>
-                        <div className="carddiv">
-                       <div><img src={pics} className="cardimage"/></div>
-                       <div><h5 className="groupcardtext">Medicina Bellvitge</h5>
-                       <p className="grouppara">Riviera Maya - 22/05/2021 00:00 - 1250.00 EUR</p>
-                       </div> 
-                       </div>
-                    </Card.Body>
-                </Card>
-                </Link>
-                <Link className="grouplink">
-                <Card style={{ width: '23rem' }, { borderWidth: 3 }, { borderColor: 'rgba(0,0,0,.06)' }} className="cardbody"  >
-                    <Card.Body>
-                        <div className="carddiv">
-                       <div><img src={pics} className="cardimage"/></div>
-                       <div><h5 className="groupcardtext">Medicina Bellvitge</h5>
-                       <p className="grouppara">Riviera Maya - 22/05/2021 00:00 - 1250.00 EUR</p>
-                       </div> 
-                       </div>
-                    </Card.Body>
-                </Card>
-                </Link>
-                <Link className="grouplink">
-                <Card style={{ width: '23rem' }, { borderWidth: 3 }, { borderColor: 'rgba(0,0,0,.06)' }} className="cardbody"  >
-                    <Card.Body>
-                        <div className="carddiv">
-                       <div><img src={pics} className="cardimage"/></div>
-                       <div><h5 className="groupcardtext">Medicina Bellvitge</h5>
-                       <p className="grouppara">Riviera Maya - 22/05/2021 00:00 - 1250.00 EUR</p>
-                       </div> 
-                       </div>
-                    </Card.Body>
-                </Card>
-                </Link>
-            </div>
-            
-        </div>
-    );
+              </Link>
+            );
+          })}
+      </div>
+    </div>
+  );
 }
 export default Groups;
