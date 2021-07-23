@@ -167,15 +167,20 @@ function Profile() {
               path="/profile/reservations/groups"
               component={Reservaciones}
             />
-            <Route
+            {/* <Route
               exact
               path="/profile/reservations/experiences"
               component={Reservaciones}
-            />
+            /> */}
 
             <Route
               exact
               path="/profile/localfriend/data"
+              component={LocalFriend}
+            />
+            <Route
+              exact
+              path="/profile/localfriend/detail"
               component={LocalFriend}
             />
             <Route

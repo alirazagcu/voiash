@@ -82,6 +82,7 @@ function RouteConfig() {
           />
 
           <Route exact path="/profile/localfriend/data" component={Profile} />
+          <Route exact path="/profile/localfriend/detail" component={Profile} />
           <Route
             exact
             path="/profile/localfriend/experiences"

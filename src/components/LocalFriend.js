@@ -12,6 +12,7 @@ import Information2 from "./InformationSnd";
 import Update from "./UpdateFile";
 import ReservationSnd from "./ReservationsSnd";
 import NewExperiences from "./ExperiencesNew";
+import LocalFriendDetail from "./LocalFriendDetail";
 function LocalFriend() {
   return (
     <div className="Personal">
@@ -61,6 +62,11 @@ function LocalFriend() {
             exact
             path="/profile/localfriend/data"
             component={Information2}
+          />
+          <Route
+            exact
+            path="/profile/localfriend/detail"
+            component={LocalFriendDetail}
           />
           <Route
             exact
