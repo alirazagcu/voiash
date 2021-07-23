@@ -66,11 +66,7 @@ const defaultValues = {
   experience: [],
   insurance: [],
   description: "",
-  images: [
-    {
-      imageLink: "this is the testing image",
-    },
-  ],
+  images: [],
   paymentTable: [],
   share: {},
   visibility: "ALL",
@@ -108,6 +104,8 @@ function GroupsNew() {
   const [content, setContent] = useState("");
   const [selectExpPrices, setSelectedExpPrices] = useState([]);
   const [stateValues, setStateValues] = useState(defaultValues);
+  const [allImages, setAllImages] = useState([]);
+  const [listImage, setListImage] = useState({});
 
   useEffect(() => {
     if (isSuccess) {
@@ -147,6 +145,37 @@ function GroupsNew() {
     }
   }, [content]);
 
+  //image uploader
+  const imageHandler = (e, type) => {
+    var file = e.target.files[0];
+    if (type === "list") {
+      setListImage(file);
+    } else {
+      const stateAllImage = allImages;
+      stateAllImage.push({ file });
+      setAllImages(stateAllImage);
+    }
+    const stateImages = stateValues.images;
+    var reader = new FileReader();
+    reader.onload = function () {
+      const base64String = reader.result
+        .replace("data:", "")
+        .replace(/^.+,/, "");
+      if (type === "list") {
+        setStateValues({
+          ...stateValues,
+          listImage: { imageLink: `data:${file.type};base64, ${base64String}` },
+        });
+      } else {
+        stateImages.push({
+          imageLink: `data:${file.type};base64, ${base64String}`,
+        });
+        setStateValues({ ...stateValues, images: stateImages });
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+  
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setStateValues({
@@ -178,12 +207,21 @@ function GroupsNew() {
 
   const onSubmitHandler = () => {
     const token = localStorage.getItem("token");
+    const listImage = {
+      imageLink: "fjlasjdfjadfalsjfdlajfdlkajflkjafds",
+    };
+    const images = [
+      {
+        imageLink: "fjlasjdfjadfalsjfdlajfdlkajflkjafds",
+      },
+    ];
     dispatch(
       groupsActions({
-        type: "put",
-        _id: stateValues._id,
-        data: { ...stateValues },
+        type: "add",
+        data: { ...stateValues, listImage: listImage, images: images },
         token: token,
+        allImages: allImages,
+        listImage: listImage,
       })
     );
   };
@@ -419,9 +457,21 @@ function GroupsNew() {
                   <div className="firstboxupdatenew">
                     <BorderColorRoundedIcon className="box12" />
                   </div>
-                  <div className="imageinputupdate" src={pics}></div>
+                  <img
+                    className="imageinputupdate"
+                    src={
+                      (stateValues &&
+                        stateValues.listImage &&
+                        stateValues.listImage.imageLink) ||
+                      ""
+                    }
+                  />
                 </label>
-                <input id="file-input" type="file" />
+                <input
+                  id="file-input"
+                  type="file"
+                  onChange={(e) => imageHandler(e, "list")}
+                />
               </div>
             </Col>
           </Row>
@@ -476,16 +526,44 @@ function GroupsNew() {
             <Tab eventKey="hom" title="Imágenes">
               <div className="Tabsetting2">
                 <div className="row mainimagetab">
+                  {stateValues &&
+                    stateValues.images &&
+                    stateValues.images.map((image, index) => {
+                      return (
+                        <div
+                          className="col-sm-6 col-xs-12 col-md-3 col-lg-3 imageuploadtab "
+                          style={{
+                            display: `${
+                              stateValues &&
+                              stateValues.images &&
+                              stateValues.images.length >= 1
+                                ? "block"
+                                : "none"
+                            }`,
+                          }}
+                        >
+                          <label for={`file-input${index}`}>
+                            <div className="firstboxupdatenew">
+                              <BorderColorRoundedIcon className="box12" />
+                            </div>
+                            <img
+                              className="imageinputupdate"
+                              src={image.imageLink}
+                            />
+                          </label>
+                        </div>
+                      );
+                    })}
                   <div class="col-sm-6 col-xs-12 col-md-3 col-lg-3 imageuploadtab">
-                    <label for="file-input">
+                    <label for="file-input1">
                       <div className="firstboxupdatetabnew">
                         <BorderColorRoundedIcon className="box12tab" />
                       </div>
                       <img className="imageinputupdatetabnew" src={images} />
                     </label>
                     <input
-                      id="file-input"
-                      onChange={(e) => setImages(e.target.value)}
+                      id="file-input1"
+                      onChange={(e) => imageHandler(e, "adf")}
                       type="file"
                     />
                   </div>

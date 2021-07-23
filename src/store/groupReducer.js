@@ -28,24 +28,90 @@ export const groupsActions = createAsyncThunk(
         },
       };
       let response = {};
-      console.log("obj ", obj);
       switch (obj.type) {
         case "get":
           response = await axios.get(`${BASE_URL}${GET_ALL_GROUPS}`, config);
           break;
         case "put":
-          // let newUpdateData = new FormData();
-          // newUpdateData.append("image", obj.data.listImage);
-          // newUpdateData.append("image", obj.data.images);
-          // newUpdateData.append("name", obj.data.name);
-          // newUpdateData.append("type", obj.data.type);
-          // newUpdateData.append("status", obj.data.status);
-          // newUpdateData.append("prices", JSON.stringify(obj.data.prices));
-          // newUpdateData.append("family", JSON.stringify(obj.data.family));
-          // newUpdateData.append("duration", obj.data.duration);
-          // newUpdateData.append("location", obj.data.location);
-          // newUpdateData.append("shortDescription", obj.data.shortDescription);
-          // newUpdateData.append("description", obj.data.description);
+          // let newData = new FormData();
+          // if (!isEmpty(obj.listImage)) {
+          //   newData.append("image", obj.listImage, "listImage");
+          // }
+          // if (!isEmpty(obj.allImages)) {
+          //   obj.allImages.map(() => {
+          //     newData.append("image", obj.data.listImage, "images");
+          //   });
+          // }
+          // if (obj.data.name) {
+          //   newData.append("name", obj.data.name);
+          // }
+          // if (obj.data.paymentDetails) {
+          //   newData.append("paymentDetails", obj.data.paymentDetails);
+          // }
+          // if (obj.data.duration) {
+          //   newData.append("duration", obj.data.duration);
+          // }
+          // if (!isEmpty(obj.data.destination)) {
+          //   newData.append("destination", JSON.stringify(obj.data.destination));
+          // }
+          // if (!isEmpty(obj.data.hotel)) {
+          //   newData.append("hotel", JSON.stringify(obj.data.hotel));
+          // }
+          // if (!isEmpty(obj.data.family)) {
+          //   newData.append("family", JSON.stringify(obj.data.family));
+          // }
+          // if (obj.data.airports) {
+          //   newData.append("airports", obj.data.airports);
+          // }
+          // if (obj.data.status) {
+          //   newData.append("status", obj.data.status);
+          // }
+          // if (obj.data.departureDate) {
+          //   newData.append("departureDate", obj.data.departureDate);
+          // }
+          // if (obj.data.returnDate) {
+          //   newData.append("returnDate", obj.data.returnDate);
+          // }
+          // if (!isEmpty(obj.data.contractInPdf)) {
+          //   newData.append(
+          //     "contractInPdf",
+          //     JSON.stringify(obj.data.contractInPdf)
+          //   );
+          // }
+          // if (obj.data.descriptionMobile) {
+          //   newData.append("descriptionMobile", obj.data.descriptionMobile);
+          // }
+          // if (!isEmpty(obj.data.listImage)) {
+          //   newData.append("listImage", JSON.stringify(obj.data.listImage));
+          // }
+          // if (obj.data.kind) {
+          //   newData.append("kind", obj.data.kind);
+          // }
+          // if (!isEmpty(obj.data.experience)) {
+          //   newData.append("experience", JSON.stringify(obj.data.experience));
+          // }
+          // if (!isEmpty(obj.data.insurance)) {
+          //   newData.append("insurance", JSON.stringify(obj.data.insurance));
+          // }
+          // if (obj.data.description) {
+          //   newData.append("description", obj.data.description);
+          // }
+          // if (!isEmpty(obj.data.images)) {
+          //   newData.append("images", JSON.stringify(obj.data.images));
+          // }
+          // if (!isEmpty(obj.data.paymentTable)) {
+          //   newData.append(
+          //     "paymentTable",
+          //     JSON.stringify(obj.data.paymentTable)
+          //   );
+          // }
+          // if (!isEmpty(obj.data.share)) {
+          //   newData.append("share", JSON.stringify(obj.data.share));
+          // }
+          // if (obj.data.visibility) {
+          //   newData.append("visibility", obj.data.visibility);
+          // }
+
           // extend(config.headers, {
           //   "Content-Type": "multipart/form-data",
           // });
@@ -63,17 +129,31 @@ export const groupsActions = createAsyncThunk(
           break;
         case "add":
           // let newData = new FormData();
-          // newData.append("image", obj.data.listImage);
-          // newData.append("image", obj.data.images);
+          // newData.append("image", obj.listImage, "listImage");
+          // obj.allImages.map(()=>{
+          //   newData.append("image", obj.data.listImage, "images");
+          // })
           // newData.append("name", obj.data.name);
-          // newData.append("type", obj.data.type);
-          // newData.append("status", obj.data.status);
-          // newData.append("prices", JSON.stringify(obj.data.prices));
-          // newData.append("family", JSON.stringify(obj.data.family));
+          // newData.append("paymentDetails", obj.data.paymentDetails);
           // newData.append("duration", obj.data.duration);
-          // newData.append("location", obj.data.location);
-          // newData.append("shortDescription", obj.data.shortDescription);
+          // newData.append("destination", JSON.stringify(obj.data.destination));
+          // newData.append("hotel", JSON.stringify(obj.data.hotel));
+          // newData.append("family", JSON.stringify(obj.data.family));
+          // newData.append("airports", obj.data.airports);
+          // newData.append("status", obj.data.status);
+          // newData.append("departureDate", obj.data.departureDate);
+          // newData.append("returnDate", obj.data.returnDate);
+          // newData.append("contractInPdf", JSON.stringify(obj.data.contractInPdf));
+          // newData.append("descriptionMobile", obj.data.descriptionMobile);
+          // newData.append("listImage", JSON.stringify(obj.data.listImage));
+          // newData.append("kind", obj.data.kind);
+          // newData.append("experience", JSON.stringify(obj.data.experience));
+          // newData.append("insurance", JSON.stringify(obj.data.insurance));
           // newData.append("description", obj.data.description);
+          // newData.append("images", JSON.stringify(obj.data.images));
+          // newData.append("paymentTable", JSON.stringify(obj.data.paymentTable));
+          // newData.append("share", JSON.stringify(obj.data.share));
+          // newData.append("visibility", obj.data.visibility);
           // extend(config.headers, {
           //   "Content-Type": "multipart/form-data",
           // });
@@ -86,7 +166,6 @@ export const groupsActions = createAsyncThunk(
         default:
           break;
       }
-      console.log("response", response);
       if (response.status === 200) {
         if (response.data && response.data.responseCode === 200) {
           switch (obj.type) {
@@ -120,7 +199,6 @@ export const groupsActions = createAsyncThunk(
         }
       }
     } catch (e) {
-      console.log("e ", e);
       if (e.response && e.response.status === 401)
         return thunkAPI.rejectWithValue({
           msg: (e.response.data && e.response.data.error) || "",
