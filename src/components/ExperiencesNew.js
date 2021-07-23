@@ -1,6 +1,6 @@
 import "../App.css";
 import { Link } from "react-router-dom";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
@@ -9,12 +9,8 @@ import TableRow from "@material-ui/core/TableRow";
 import TableContainer from "@material-ui/core/TableContainer";
 import Popup from "reactjs-popup";
 import Paper from "@material-ui/core/Paper";
-import pics from "../images/house.jpg";
-import { Toolbar } from "@material-ui/core";
-import { Multiselect } from "multiselect-react-dropdown";
 import { Form, Col, Button, Card, Row } from "react-bootstrap";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
-import BorderColorRoundedIcon from "@material-ui/icons/BorderColorRounded";
 import React, { useState, useRef } from "react";
 import JoditEditor from "jodit-react";
 const useStyles2 = makeStyles({
@@ -67,28 +63,7 @@ function NewExperiences() {
       e.parentNode.parentNode.remove();
     });
   };
-
-  const divMargin = { margin: "25px 0" };
-  const [title, setTitle] = useState({
-    plainArray: ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"],
-    objectArray: [
-      { key: "Francés", cat: "Group 1" },
-      { key: "Portugués", cat: "Group 1" },
-      { key: "Inglés", cat: "Group 1" },
-      { key: "Español", cat: "Group 2" },
-    ],
-    selectedValues: [
-      { key: "Español", cat: "Group 1" },
-      { key: "Inglés", cat: "Group 1" },
-    ],
-  });
-  const [title1, setTitle1] = useState(["Akash", "nadeem", "hameed"]);
-  const styles = {
-    largeIcon: {
-      width: 100,
-      height: 100,
-    },
-  };
+  
   return (
     <div className="person">
       <div className="person1">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
-import { Form, Col, Button, Card } from "react-bootstrap";
+import { Form, Col, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { userDetail, userDetailStateClear } from "../store/userDetailReducer";
 import Loader from "./material-ui-comps/Loader";

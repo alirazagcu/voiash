@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
-import { Col, Card, Row, Container, Carousel } from "react-bootstrap";
+import { Card, Carousel } from "react-bootstrap";
 import video from "../images/sildervideo.mp4";
 import pics from "../images/house.jpg";
-import pic2 from "../images/bech.jfif";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./Navbar";
@@ -19,7 +18,7 @@ import { isEmpty } from "lodash";
 
 function Home() {
   const dispatch = useDispatch();
-  const { isError, isFetching, isSuccess, msg, responseData } = useSelector(
+  const { isError, isSuccess, msg, responseData } = useSelector(
     (state) => state.experienceState
   );
   const [open, setOpen] = React.useState(false);
@@ -144,6 +143,7 @@ function Home() {
                           <img
                             src={exp.listImage.imageLink || pics}
                             className="bgimage"
+                            alt="no image was found"
                           />
                           <div class="textforcard">
                             <Card.Body>

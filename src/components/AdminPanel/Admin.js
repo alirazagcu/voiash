@@ -1,6 +1,6 @@
 import "../../App.css";
 import { NavLink } from "react-router-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import HouseIcon from "@material-ui/icons/House";
 import LayersIcon from "@material-ui/icons/Layers";
 import GroupIcon from "@material-ui/icons/Group";
@@ -38,7 +38,6 @@ import GroupsNew from "./GroupsNew";
 import LocalfriendsUpdate from "./LocalfriendsUpdate";
 import LocalfriendsNew from "./LocalfriendsNew";
 import PaymentsUpdate from "./PaymentsUpdate";
-import PaymentsNew from "./PaymentsNew";
 import FeeNew from "./FeesNew";
 import FeeUpdate from "./FeesUpdate";
 import ReservationUpdate from "./ReservationsUpdate";

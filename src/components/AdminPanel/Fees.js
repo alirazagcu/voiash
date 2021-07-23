@@ -92,9 +92,9 @@ TablePaginationActions.propTypes = {
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
 };
-function createData(name, calories, fat, bar, nat) {
-  return { name, calories, fat, bar, nat };
-}
+// function createData(name, calories, fat, bar, nat) {
+//   return { name, calories, fat, bar, nat };
+// }
 const rows = [
   // createData('akash',2,'MAX','Todos','VISA','Inactivo'),
   // createData('akash',2,'MAX','Todos','VISA','Inactivo'),
@@ -121,7 +121,7 @@ const useStyles2 = makeStyles({
 
 export default function Fees() {
   const classes = useStyles2();
-  const [data, setdata] = React.useState(rows[5]);
+  const [data] = React.useState(rows[5]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 

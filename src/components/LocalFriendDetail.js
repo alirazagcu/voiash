@@ -4,12 +4,10 @@ import { Link } from "react-router-dom";
 import { Multiselect } from "multiselect-react-dropdown";
 import { Form, Col, Button, Card, Row } from "react-bootstrap";
 import {
-  localFriendsAction,
   localFriendsStateClear,
 } from "../store/localFriendsReducer";
 import { allUsersAction, allUsersStateClear } from "../store/allUserReducer";
 import { useSelector, useDispatch } from "react-redux";
-import Loader from "./material-ui-comps/Loader";
 import SnackBar from "./material-ui-comps/SnackBar";
 import { useHistory } from "react-router-dom";
 import { isEmpty } from "lodash";
@@ -18,10 +16,10 @@ function LocalfriendsUpdate() {
   const dispatch = useDispatch();
   const multiselectRef = useRef();
   const history = useHistory();
-  const { isError, isFetching, isSuccess, msg, localFriend } = useSelector(
+  const { isError, isSuccess, msg, localFriend } = useSelector(
     (state) => state.localFriendsState
   );
-  const { allUsers } = useSelector((state) => state.allUsersState);
+  // const { allUsers } = useSelector((state) => state.allUsersState);
 
   const [stateValues, setStateValues] = useState({
     userEmail: "",
@@ -37,12 +35,11 @@ function LocalfriendsUpdate() {
     identificationId: "",
     phone: "",
   });
-  const [isDisabled, setIsDisabled] = useState(true);
   const [open, setOpen] = React.useState(false);
   const [severity, setSeverity] = useState("error");
   const [snackBar, setSnackBar] = useState("");
   const [isDelete, setIsDelete] = useState(false);
-  const [title, setTitle] = useState({
+  const [title] = useState({
     objectArray: [
       { name: "Francés", id: 1 },
       { name: "Portugués", id: 2 },
@@ -71,41 +68,6 @@ function LocalfriendsUpdate() {
     }
   }, [localFriend]);
 
-
-  useEffect(() => {
-    const {
-      userEmail,
-      name,
-      age,
-      gender,
-      residentTime,
-      educationLevel,
-      languages,
-      direction,
-      aboutUser,
-      status,
-      identificationId,
-      phone,
-    } = stateValues;
-    if (
-      userEmail &&
-      name &&
-      age &&
-      gender &&
-      residentTime &&
-      educationLevel &&
-      !isEmpty(languages) &&
-      direction &&
-      aboutUser &&
-      status &&
-      identificationId
-    ) {
-      setIsDisabled(false);
-    } else {
-      setIsDisabled(true);
-    }
-  }, [stateValues]);
-
   useEffect(() => {
     if (isSuccess && isDelete) {
       history.push("/admin/localfriends");
@@ -127,35 +89,6 @@ function LocalfriendsUpdate() {
     }
   }, [isSuccess, isError]);
 
-  const onSubmitHandler = () => {
-    setIsDelete(false);
-    const token = localStorage.getItem("token");
-    const languageList =
-      localFriend.languages &&
-      localFriend.languages.map((friend) => {
-        return friend.name;
-      });
-    dispatch(
-      localFriendsAction({
-        type: "put",
-        data: { ...stateValues, languages: languageList },
-        token: token,
-      })
-    );
-  };
-
-  const onDeleteHandler = () => {
-    const token = localStorage.getItem("token");
-    setIsDelete(true);
-    dispatch(
-      localFriendsAction({ type: "delete", _id: stateValues._id, token: token })
-    );
-  };
-
-  const resetValues = () => {
-    // By calling the belowe method will reset the selected values programatically
-    multiselectRef.current.resetSelectedValues();
-  };
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setStateValues({ ...stateValues, [name]: value });

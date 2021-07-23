@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import RouteConfig from "./components/Router";
 import "bootstrap/dist/css/bootstrap.min.css";

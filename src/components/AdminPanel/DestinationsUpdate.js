@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../../App.css";
-import pics from "../../images/house.jpg";
-import { Toolbar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Form, Col, Button, Card, Row } from "react-bootstrap";
 import {
   destinations,
   getAllDestinationsStateClear,
-  selectedDestination,
 } from "../../store/destinationReducer";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../material-ui-comps/Loader";
@@ -15,7 +12,6 @@ import SnackBar from "../material-ui-comps/SnackBar";
 import { useHistory } from "react-router-dom";
 
 function DestinationsUpdate() {
-  const divMargin = { margin: "25px 0" };
   const dispatch = useDispatch();
   const history = useHistory();
 

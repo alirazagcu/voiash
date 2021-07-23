@@ -1,15 +1,8 @@
 import "../App.css";
 import { NavLink } from "react-router-dom";
-import Personal from "./Personal";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Location from "./Location";
-import Contact from "./Contact";
-import PaymentMethod from "./Payment-methods";
-import Payments from "./Payments";
+import { Switch, Route } from "react-router-dom";
 import Groups from "./Groups";
-import Experiences from "./Experiences";
 import Details from "./Details";
-import Experiences2 from "./Experiences2";
 function Reservaciones() {
   return (
     <div className="Personal">

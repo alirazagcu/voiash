@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import pics from "../../images/party.jpg";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
 import "../../App.css";
-import Paper from "@material-ui/core/Paper";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import { Form, Row, Col, Card } from "react-bootstrap";
 import { isEmpty } from "lodash";
@@ -65,7 +62,7 @@ export default function GroupsInsurances({
             <div className="GroupExp">
               <div className="GroupExp0">
                 <div className="GroupExp1">
-                  <img src="lasjfkdjf" className="selectedpic" />
+                  <img src="lasjfkdjf" className="selectedpic" alt="img was not found"/>
                 </div>
                 <div className="GroupExp2">
                   <p className="GroupExp3">{row && row.name ? row.name : ""}</p>

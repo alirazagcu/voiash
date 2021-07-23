@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { extend } from "lodash";
 import {
   BASE_URL,
   GET_ALL_Destination,

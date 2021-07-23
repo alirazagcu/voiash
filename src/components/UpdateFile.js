@@ -1,7 +1,6 @@
 import "../App.css";
-import pics from "../images/house.jpg";
 import { Link } from "react-router-dom";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
@@ -12,11 +11,10 @@ import React, { useState, useRef, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import Popup from "reactjs-popup";
 import Paper from "@material-ui/core/Paper";
-import { Form, Col, Button, Card, Row, Tabs, Tab } from "react-bootstrap";
+import { Form, Col, Button, Card, Row} from "react-bootstrap";
 import BorderColorRoundedIcon from "@material-ui/icons/BorderColorRounded";
 // import RichTextEditor from './Toolbar';
 import {
-  experiences,
   experienceStateClear,
 } from "../store/experienceReducer";
 import {
@@ -24,9 +22,7 @@ import {
   getAllFamiliesstateClear,
 } from "../store/familiesReducer";
 import { useSelector, useDispatch } from "react-redux";
-import Loader from "./material-ui-comps/Loader";
 import SnackBar from "./material-ui-comps/SnackBar";
-import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { isEmpty } from "lodash";
 
@@ -50,18 +46,16 @@ const useStyles2 = makeStyles({
 });
 function ExperiencesUpdate() {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const [experienceInputs, setExperiencesInputs] = useState({});
   const [open, setOpen] = React.useState(false);
   const [severity, setSeverity] = useState("error");
   const [snackBar, setSnackBar] = useState("");
-  const [isDelete, setIsDelete] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
   const [logoSrc, setLogoSrc] = useState("");
   const [imagesArrayValue, setImagesArrayValue] = useState("");
 
-  const { isError, isFetching, isSuccess, msg, experience } = useSelector(
+  const { isError, isSuccess, msg, experience } = useSelector(
     (state) => state.experienceState
   );
   const { responseData } = useSelector((state) => state.familiyState);
@@ -73,13 +67,7 @@ function ExperiencesUpdate() {
   }, []);
 
   useEffect(() => {
-    if (isSuccess && isDelete) {
-      history.push("/admin/experiences");
-      setOpen(true);
-      setSeverity("success");
-      setSnackBar("Your record was successfully deleted");
-    }
-    if (isSuccess && !isDelete) {
+    if (isSuccess) {
       setOpen(true);
       setSeverity("success");
       setSnackBar("Your record was successfully updated");
@@ -101,33 +89,12 @@ function ExperiencesUpdate() {
     });
   };
 
-  const onUpdateHandler = () => {
-    setIsDelete(false);
-    const token = localStorage.getItem("token");
-    dispatch(
-      experiences({
-        type: "put",
-        data: { ...experienceInputs, images: imagesArrayValue },
-        _id: experienceInputs._id,
-        token: token,
-      })
-    );
-  };
-
-  const onDeleteHandler = () => {
-    const token = localStorage.getItem("token");
-    setIsDelete(true);
-    dispatch(
-      experiences({ type: "delete", _id: experienceInputs._id, token: token })
-    );
-  };
-
   const imageHandler = (e, type) => {
     var file = e.target.files[0];
     if (type === "image") {
       setExperiencesInputs({
         ...experienceInputs,
-        ["listImage"]: file,
+        listImage: file,
       });
     } else {
       setImagesArrayValue(file);
@@ -147,9 +114,6 @@ function ExperiencesUpdate() {
   };
 
   const editor = useRef(null);
-  const [content, setContent] = useState(
-    "Reserva la mesa de tu preferencia en Mandala Cancún y se parte de las emocionantes celebraciones que se viven noche a noche Lo que pagas por tu mesa se convierte en Crédito para bebidas o botellas: Diamond | $1500 USD (10 Covers) El precio publicado es por persona y se basa en un mínimo de 10 pasajeros; en el supuesto que disminuyera el número de pasajeros aumentará el costo de esta actividad. Incluye: Free covers limitados (de acuerdo a la zona reservada); Crédito limitado para consumo; Reserva de mesa en zona seleccionada (garantizada hasta 12:00 am); Servicio de mesero (propinas no incluidas).No incluye: Ubicación de mesa en específico (se garantiza únicamente zona); Propinas."
-  );
   const config = {
     readonly: false, // all options from https://xdsoft.net/jodit/doc/
   };
@@ -481,6 +445,7 @@ function ExperiencesUpdate() {
                           experienceInputs.listImage.imageLink
                         : imageSrc
                     }
+                    alt="img was not found"
                   />
                 </label>
                 <input
@@ -511,6 +476,7 @@ function ExperiencesUpdate() {
                       <img
                         className="imageinputupdatetab"
                         src={!logoSrc ? image.imageLink : logoSrc}
+                        alt="img was not found"
                       />
                     </label>
                     <input

@@ -1,7 +1,6 @@
 import "../../App.css";
-import pics from "../../images/house.jpg";
 import { Link } from "react-router-dom";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
@@ -13,13 +12,12 @@ import React, { useState, useRef, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import Popup from "reactjs-popup";
 import Paper from "@material-ui/core/Paper";
-import { Form, Col, Button, Card, Row, Tabs, Tab } from "react-bootstrap";
+import { Form, Col, Button, Card, Row} from "react-bootstrap";
 import BorderColorRoundedIcon from "@material-ui/icons/BorderColorRounded";
 // import RichTextEditor from './Toolbar';
 import {
   experiences,
-  experienceStateClear,
-  selectedExperience,
+  experienceStateClear
 } from "../../store/experienceReducer";
 import {
   families,
@@ -62,7 +60,7 @@ function ExperiencesUpdate() {
   const [imageSrc, setImageSrc] = useState("");
   const [logoSrc, setLogoSrc] = useState("");
 
-  const { isError, isFetching, isSuccess, msg, experience } = useSelector(
+  const { isError, isFetching, isSuccess, msg } = useSelector(
     (state) => state.experienceState
   );
   const { responseData } = useSelector((state) => state.familiyState);
@@ -118,12 +116,12 @@ function ExperiencesUpdate() {
     if (type === "image") {
       setExperiencesInputs({
         ...experienceInputs,
-        ["listImage"]: file,
+        listImage: file,
       });
     } else {
       setExperiencesInputs({
         ...experienceInputs,
-        ["images"]: file,
+        images: file,
       });
     }
     var reader = new FileReader();
@@ -141,9 +139,6 @@ function ExperiencesUpdate() {
   };
 
   const editor = useRef(null);
-  const [content, setContent] = useState(
-    "Reserva la mesa de tu preferencia en Mandala Cancún y se parte de las emocionantes celebraciones que se viven noche a noche Lo que pagas por tu mesa se convierte en Crédito para bebidas o botellas: Diamond | $1500 USD (10 Covers) El precio publicado es por persona y se basa en un mínimo de 10 pasajeros; en el supuesto que disminuyera el número de pasajeros aumentará el costo de esta actividad. Incluye: Free covers limitados (de acuerdo a la zona reservada); Crédito limitado para consumo; Reserva de mesa en zona seleccionada (garantizada hasta 12:00 am); Servicio de mesero (propinas no incluidas).No incluye: Ubicación de mesa en específico (se garantiza únicamente zona); Propinas."
-  );
   const config = {
     readonly: false, // all options from https://xdsoft.net/jodit/doc/
   };
@@ -466,7 +461,7 @@ function ExperiencesUpdate() {
                   <div className="firstboxupdate">
                     <BorderColorRoundedIcon className="box12" />
                   </div>
-                  <img className="imageinputupdate" src={imageSrc} />
+                  <img className="imageinputupdate" src={imageSrc} alt="img was not found"/>
                 </label>
                 <input
                   id="file-input1"
@@ -489,7 +484,7 @@ function ExperiencesUpdate() {
                 <div className="firstboxupdatetab">
                   <BorderColorRoundedIcon className="box12tab" />
                 </div>
-                <img className="imageinputupdatetab" src={logoSrc} />
+                <img className="imageinputupdatetab" src={logoSrc} alt="img was not found"/>
               </label>
               <input
                 id="file-input2"

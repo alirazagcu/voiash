@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "../App.css";
-import pics from "../images/house.jpg";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
@@ -10,12 +9,11 @@ import {
 } from "../store/groupReducer";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "./material-ui-comps/Loader";
-import SnackBar from "./material-ui-comps/SnackBar";
 import { isEmpty } from "lodash";
 
 function Groups() {
   const dispatch = useDispatch();
-  const { isError, isFetching, isSuccess, msg, responseData } = useSelector(
+  const { isFetching, responseData } = useSelector(
     (state) => state.groupsState
   );
 
@@ -62,6 +60,7 @@ function Groups() {
                         <img
                           src={data.listImage.imageLink}
                           className="cardimage"
+                          alt="no image was found"
                         />
                       </div>
                       <div>

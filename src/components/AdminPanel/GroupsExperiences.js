@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import pics from "../../images/house.jpg";
 import "../../App.css";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import { Form, Row, Col, Card } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
 import { isEmpty } from "lodash";
 
 export default function GroupsExperiences({
@@ -70,7 +68,7 @@ export default function GroupsExperiences({
           <div className="GroupExp">
             <div className="GroupExp0">
               <div className="GroupExp1">
-                <img src={row.listImage.imageLink} className="selectedpic" />
+                <img src={row.listImage.imageLink} className="selectedpic" alt="img was not found"/>
               </div>
               <div className="GroupExp2">
                 <p className="GroupExp3">{row.name}</p>

@@ -7,7 +7,6 @@ import BorderColorRoundedIcon from "@material-ui/icons/BorderColorRounded";
 import {
   families,
   getAllFamiliesstateClear,
-  selectedFamily,
 } from "../../store/familiesReducer";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../material-ui-comps/Loader";
@@ -31,7 +30,6 @@ function FamiliesUpdate() {
     isFetching,
     isSuccess,
     msg,
-    responseData,
     family,
   } = useSelector((state) => state.familiyState);
   useEffect(() => {
@@ -91,12 +89,12 @@ function FamiliesUpdate() {
     if (type === "image") {
       setFamilyInputs({
         ...familyInputs,
-        ["backgroundImage"]: file,
+        backgroundImage: file,
       });
     } else {
       setFamilyInputs({
         ...familyInputs,
-        ["logo"]: file,
+        logo: file,
       });
     }
     var reader = new FileReader();
@@ -222,6 +220,7 @@ function FamiliesUpdate() {
                           pics
                         : imageSrc
                     }
+                    alt="img was not found"
                   />
                 </label>
                 <input
@@ -249,6 +248,7 @@ function FamiliesUpdate() {
                           pics
                         : logoSrc
                     }
+                    alt="img was not found"
                   />
                 </label>
                 <input

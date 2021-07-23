@@ -1,8 +1,6 @@
 import "../App.css";
-import { Card, Button, Modal, Form, Row, Col } from "react-bootstrap";
-import pics from "../images/party.jpg";
+import { Card, Modal, Form, Row, Col } from "react-bootstrap";
 import pics1 from "../images/house.jpg";
-import pics2 from "../images/cover.jpg";
 import pics3 from "../images/unnamed.png";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -43,7 +41,7 @@ function Experiences1() {
           <div className="Experiences1">
             <div className="Experiences2">
               <div className="Experiencesimg">
-                <img src={img} className="mainimage" />
+                <img src={img} className="mainimage" alt="no image was found"/>
                 <div className="btnimage0">
                   {!isEmpty(experience.images) &&
                     experience.images.map((imgg) => {
@@ -55,6 +53,7 @@ function Experiences1() {
                             onLoad={(e) => setImg(imgg.imageLink)}
                             className="btnimage"
                             src={imgg.imageLink}
+                            alt="no image was found"
                           />
                         </button>
                       );
@@ -72,6 +71,7 @@ function Experiences1() {
                   <img
                     src={experience.listImage.imageLink}
                     className="imgicon"
+                    alt="no image was found"
                   />
                   <p>{experience.duration} hours</p>
                 </div>
@@ -261,7 +261,7 @@ function MyVerticallyCenteredModal2(props) {
           <div className="Model2">
             <div>
               <div>
-                <img src={pics3} className="cardimg2" />
+                <img src={pics3} className="cardimg2" alt="no image was found"/>
               </div>
               <div className="modelform">
                 <Form>

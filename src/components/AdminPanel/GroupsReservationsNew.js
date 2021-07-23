@@ -2,7 +2,6 @@ import React from 'react';
 import '../../App.css';
 import TableHead from '@material-ui/core/TableHead';
 import PropTypes from 'prop-types';
-import {Form,FormControl,Button} from 'react-bootstrap';
 import {Link } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -81,9 +80,6 @@ TablePaginationActions.propTypes = {
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
 };
-function createData(name, calories, fat,bar,nat,cat) {
-  return { name, calories, fat,bar,nat,cat };
-}
 const rows = [
  
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));

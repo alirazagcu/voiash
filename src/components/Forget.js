@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
 import background from "../images/bg.jpg";
 import Logo from "../images/logo.png";
 import { Card, Row, Col, Form, Button } from "react-bootstrap";
@@ -11,7 +10,6 @@ import {
   forgotPasswordStateClear,
 } from "../store/forgotPasswordReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import Loader from "./material-ui-comps/Loader";
 import SnackBar from "./material-ui-comps/SnackBar";
 
@@ -26,7 +24,6 @@ function Forget() {
     (state) => state.forgotPasswordState
   );
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     if (isError) {
@@ -63,14 +60,14 @@ function Forget() {
       <div className="LoginMain">
         <div className="styles_container__gxc6Z">
           <div className="loginimage">
-            <img className="styles_background__14z2nreg" src={background} />
+            <img className="styles_background__14z2nreg" src={background} alt="no image was found"/>
           </div>
 
           <div className="LoginCard">
             <Card className="cardpadding">
               <Row className="marginTopRow">
                 <Col>
-                  <img src={Logo} className="loginlogo" />
+                  <img src={Logo} className="loginlogo" alt="no image was found"/>
                 </Col>
               </Row>
 

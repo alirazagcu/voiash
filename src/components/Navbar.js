@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Dropdown, Nav } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
-import { Popup } from "reactjs-popup";
 import icon from "../images/logo.png";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
@@ -81,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar({}) {
+export default function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [registerMenu, setReisterMenu] = useState(null);
   const token = localStorage.getItem("token");
@@ -91,7 +87,7 @@ export default function Navbar({}) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { isError, isFetching, isSuccess, msg, responseData } = useSelector(
+  const { responseData } = useSelector(
     (state) => state.loginState
   );
 
@@ -112,7 +108,7 @@ export default function Navbar({}) {
               color="inherit"
               aria-label="menu"
             >
-              <img className={classes.icon1} src={icon} />
+              <img className={classes.icon1} src={icon} alt="img was not found"/>
             </IconButton>
           </Link>
           {token ? (

@@ -12,7 +12,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./material-ui-comps/Loader";
 import SnackBar from "./material-ui-comps/SnackBar";
-import { useHistory } from "react-router-dom";
 
 function RecoveryPassword() {
   const [recoveryPasswordValues, setRecoveryPasswordValues] = useState({
@@ -28,7 +27,6 @@ function RecoveryPassword() {
   const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const { isError, isFetching, isSuccess, msg } = useSelector(
     (state) => state.recoveryPasswordState
@@ -86,14 +84,14 @@ function RecoveryPassword() {
       <div className="LoginMain">
         <div className="styles_container__gxc6Z">
           <div className="loginimage">
-            <img className="styles_background__14z2nreg" src={background} />
+            <img className="styles_background__14z2nreg" src={background} alt="img was not found"/>
           </div>
 
           <div className="LoginCard">
             <Card className="cardpadding">
               <Row className="marginTopRow">
                 <Col>
-                  <img src={Logo} className="loginlogo" />
+                  <img src={Logo} className="loginlogo" alt="img was not found"/>
                 </Col>
               </Row>
 

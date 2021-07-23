@@ -77,14 +77,14 @@ function ResetPassword() {
       <div className="LoginMain">
         <div className="styles_container__gxc6Z">
           <div className="loginimage">
-            <img className="styles_background__14z2nreg" src={background} />
+            <img className="styles_background__14z2nreg" src={background} alt="img was not found"/>
           </div>
 
           <div className="LoginCard">
             <Card className="cardpadding">
               <Row className="marginTopRow">
                 <Col>
-                  <img src={Logo} className="loginlogo" />
+                  <img src={Logo} className="loginlogo" alt="img was not found"/>
                 </Col>
               </Row>
 

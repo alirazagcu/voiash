@@ -1,26 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "../../App.css";
-import pics from "../../images/house.jpg";
-import { Toolbar } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { Multiselect } from "multiselect-react-dropdown";
 import { Form, Col, Button, Card, Row } from "react-bootstrap";
-import AddRoundedIcon from "@material-ui/icons/AddRounded";
-import BorderColorRoundedIcon from "@material-ui/icons/BorderColorRounded";
 import {
   hotels,
   getAllHoteslsStateClear,
-  selectedHotel,
 } from "../../store/hotelsReducer";
-import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../material-ui-comps/Loader";
 import SnackBar from "../material-ui-comps/SnackBar";
 
 function HotelsNew() {
-  const divMargin = { margin: "25px 0" };
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const [hotelInputs, setHotelInputs] = useState({});
   const [open, setOpen] = React.useState(false);
@@ -28,7 +19,7 @@ function HotelsNew() {
   const [snackBar, setSnackBar] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
 
-  const { isError, isFetching, isSuccess, msg, hotel } = useSelector(
+  const { isError, isFetching, isSuccess, msg } = useSelector(
     (state) => state.hotelsState
   );
 

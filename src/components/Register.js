@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { has } from "lodash";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import background from "../images/bg.jpg";
-import Logo from "../images/logo.png";
 import { Card, Row, Col, Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { GoogleLogin } from "react-google-login";
@@ -14,7 +12,6 @@ import { useHistory } from "react-router-dom";
 import Loader from "./material-ui-comps/Loader";
 import SnackBar from "./material-ui-comps/SnackBar";
 import Navbar from "./Navbar";
-import validator from 'validator';
 
 function Register() {
   const [signUpValues, setSignUpValues] = useState({
@@ -71,7 +68,7 @@ function Register() {
       <div className="LoginMain">
         <div className="styles_container__gxc6Z">
           <div className="loginimage">
-            <img className="styles_background__14z2nreg" src={background} />
+            <img className="styles_background__14z2nreg" src={background} alt="img was not found"/>
           </div>
 
           <div className="LoginCard">

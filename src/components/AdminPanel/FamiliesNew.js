@@ -1,25 +1,18 @@
 import "../../App.css";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import pics from "../../images/house.jpg";
-import { Toolbar } from "@material-ui/core";
-import { Multiselect } from "multiselect-react-dropdown";
 import { Form, Col, Button, Card, Row } from "react-bootstrap";
-import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import BorderColorRoundedIcon from "@material-ui/icons/BorderColorRounded";
 import {
   families,
   getAllFamiliesstateClear,
-  selectedFamily,
 } from "../../store/familiesReducer";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../material-ui-comps/Loader";
 import SnackBar from "../material-ui-comps/SnackBar";
-import { useHistory } from "react-router-dom";
 
 function FamiliesNew() {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const [familyInputs, setFamilyInputs] = useState({});
   const [open, setOpen] = React.useState(false);
@@ -78,12 +71,12 @@ function FamiliesNew() {
     if (type === "image") {
       setFamilyInputs({
         ...familyInputs,
-        ["backgroundImage"]: file,
+        backgroundImage: file,
       });
     } else {
       setFamilyInputs({
         ...familyInputs,
-        ["logo"]: file,
+        logo: file,
       });
     }
     var reader = new FileReader();
@@ -201,7 +194,7 @@ function FamiliesNew() {
                     {" "}
                     <BorderColorRoundedIcon className="box1" />
                   </div>
-                  <img className="imageinput12" src={isClear ? "" : imageSrc} />
+                  <img className="imageinput12" src={isClear ? "" : imageSrc} alt="img was not found" />
                 </label>
                 <input
                   id="file-input1"
@@ -220,7 +213,7 @@ function FamiliesNew() {
                     <BorderColorRoundedIcon className="box1" />
                   </div>
 
-                  <img className="imageinput12" src={isClear ? "" : logoSrc} />
+                  <img className="imageinput12" src={isClear ? "" : logoSrc} alt="img was not found"/>
                 </label>
                 <input
                   id="file-input2"

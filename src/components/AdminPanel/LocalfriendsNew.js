@@ -11,17 +11,15 @@ import { allUsersAction, allUsersStateClear } from "../../store/allUserReducer";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../material-ui-comps/Loader";
 import SnackBar from "../material-ui-comps/SnackBar";
-import { useHistory } from "react-router-dom";
 import { isEmpty } from "lodash";
 
 function LocalfriendsNew() {
   const dispatch = useDispatch();
   const multiselectRef = useRef();
-  const history = useHistory();
-  const { isError, isFetching, isSuccess, msg, responseData } = useSelector(
+  const { isError, isFetching, isSuccess, msg } = useSelector(
     (state) => state.localFriendsState
   );
-  const { allUsers } = useSelector((state) => state.allUsersState);
+  // const { allUsers } = useSelector((state) => state.allUsersState);
 
   const [stateValues, setStateValues] = useState({
     userEmail: "",
@@ -41,9 +39,7 @@ function LocalfriendsNew() {
   const [open, setOpen] = React.useState(false);
   const [severity, setSeverity] = useState("error");
   const [snackBar, setSnackBar] = useState("");
-  const [first, setFirst] = useState();
-  const [second, setSecond] = useState();
-  const [title, setTitle] = useState({
+  const [title] = useState({
     objectArray: [
       { name: "Francés", id: 1 },
       { name: "Portugués", id: 2 },

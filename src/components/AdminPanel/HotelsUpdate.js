@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../../App.css";
-import pics from "../../images/house.jpg";
-import { Toolbar } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { Multiselect } from "multiselect-react-dropdown";
 import { Form, Col, Button, Card, Row } from "react-bootstrap";
-import AddRoundedIcon from "@material-ui/icons/AddRounded";
-import BorderColorRoundedIcon from "@material-ui/icons/BorderColorRounded";
 import {
   hotels,
-  getAllHoteslsStateClear,
-  selectedHotel,
+  getAllHoteslsStateClear
 } from "../../store/hotelsReducer";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,7 +12,6 @@ import Loader from "../material-ui-comps/Loader";
 import SnackBar from "../material-ui-comps/SnackBar";
 
 function HotelsUpdate() {
-  const divMargin = { margin: "25px 0" };
   const dispatch = useDispatch();
   const history = useHistory();
 

@@ -11,7 +11,6 @@ import Paper from "@material-ui/core/Paper";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { isEmpty } from "lodash";
-import { selectedExperience } from "../../store/experienceReducer";
 
 const useStyles2 = makeStyles({
   table: {

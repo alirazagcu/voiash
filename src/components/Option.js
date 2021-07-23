@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
-import { Col, Card, Row, Container, Carousel } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import pics from "../images/party.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -11,15 +11,13 @@ import {
 } from "../store/experienceReducer";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "./material-ui-comps/Loader";
-import SnackBar from "./material-ui-comps/SnackBar";
 import { isEmpty } from "lodash";
 
 function Option() {
   const dispatch = useDispatch();
-  const { isError, isFetching, isSuccess, msg, responseData } = useSelector(
+  const { isError, isSuccess, responseData } = useSelector(
     (state) => state.experienceState
   );
-  const [open, setOpen] = React.useState(false);
   const [totalAmount, setTotalAmount] = useState(0);
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -31,7 +29,6 @@ function Option() {
       dispatch(experienceStateClear());
     }
     if (isError) {
-      setOpen(true);
       dispatch(experienceStateClear());
     }
   }, [isSuccess, isError]);
@@ -81,6 +78,7 @@ function Option() {
                       <img
                         src={exp.listImage.imageLink || pics}
                         className="bgimage"
+                        alt="img was not found"
                       />
                       <div class="textforcard">
                         <Card.Body>

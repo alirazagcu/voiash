@@ -2,10 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BnavBar from "./Footer.js";
 import Home from "./Home.js";
-import NavBar from "./Navbar";
 import Selection from "./Selection.js";
-import Option from "./Option";
-import RouteConfig1 from "./Router1";
 import Profile from "./Profile.js";
 import Admin from "./AdminPanel/Admin";
 import Experiences1 from "./Experiences1.js";
@@ -17,8 +14,6 @@ import ForgotPassword from "./ResetPassword";
 import RecoveryPassword from "./RecoveryPassword";
 
 function RouteConfig() {
-  const userType = localStorage.getItem("isAdmin");
-  const token = localStorage.getItem("token");
   return (
     <Router>
       <div className="comp">

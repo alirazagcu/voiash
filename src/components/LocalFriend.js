@@ -1,12 +1,6 @@
 import "../App.css";
 import { NavLink } from "react-router-dom";
-import Personal from "./Personal";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Location from "./Location";
-import Contact from "./Contact";
-import PaymentMethod from "./Payment-methods";
-import Payments from "./Payments";
-import Groups from "./Groups";
+import { Switch, Route } from "react-router-dom";
 import Experiences from "./Experiences";
 import Information2 from "./InformationSnd";
 import Update from "./UpdateFile";

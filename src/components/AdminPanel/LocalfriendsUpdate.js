@@ -21,7 +21,7 @@ function LocalfriendsUpdate() {
   const { isError, isFetching, isSuccess, msg, localFriend } = useSelector(
     (state) => state.localFriendsState
   );
-  const { allUsers } = useSelector((state) => state.allUsersState);
+  // const { allUsers } = useSelector((state) => state.allUsersState);
 
   const [stateValues, setStateValues] = useState({
     userEmail: "",
@@ -42,7 +42,7 @@ function LocalfriendsUpdate() {
   const [severity, setSeverity] = useState("error");
   const [snackBar, setSnackBar] = useState("");
   const [isDelete, setIsDelete] = useState(false);
-  const [title, setTitle] = useState({
+  const [title] = useState({
     objectArray: [
       { name: "Francés", id: 1 },
       { name: "Portugués", id: 2 },
@@ -85,7 +85,6 @@ function LocalfriendsUpdate() {
       aboutUser,
       status,
       identificationId,
-      phone,
     } = stateValues;
     if (
       userEmail &&
@@ -152,10 +151,6 @@ function LocalfriendsUpdate() {
     );
   };
 
-  const resetValues = () => {
-    // By calling the belowe method will reset the selected values programatically
-    multiselectRef.current.resetSelectedValues();
-  };
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setStateValues({ ...stateValues, [name]: value });

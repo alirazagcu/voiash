@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
@@ -19,7 +19,6 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../material-ui-comps/Loader";
 import SnackBar from "../material-ui-comps/SnackBar";
-import { useHistory } from "react-router-dom";
 import { isEmpty } from "lodash";
 
 const useStyles2 = makeStyles({
@@ -42,9 +41,8 @@ const useStyles2 = makeStyles({
 });
 function InsurancesNew() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const classes = useStyles2();
-  const { isError, isFetching, isSuccess, msg, responseData } = useSelector(
+  const { isError, isFetching, isSuccess, msg } = useSelector(
     (state) => state.insuranceState
   );
 

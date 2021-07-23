@@ -1,5 +1,4 @@
 import "../../App.css";
-import pics from "../../images/house.jpg";
 import { Link } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import JoditEditor from "jodit-react";
@@ -21,7 +20,6 @@ import {
 import {
   groupsActions,
   groupsStateClear,
-  selectedGroup,
 } from "../../store/groupReducer";
 import {
   insuranceAction,
@@ -35,7 +33,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "../material-ui-comps/Loader";
 import SnackBar from "../material-ui-comps/SnackBar";
 import { useHistory } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import { isEmpty } from "lodash";
 
 const defaultValues = {
@@ -78,7 +75,7 @@ function GroupsNew() {
   const config = {
     readonly: false, // all options from https://xdsoft.net/jodit/doc/
   };
-  const { isError, isFetching, isSuccess, msg, experience } = useSelector(
+  const { isError, isFetching, isSuccess, msg } = useSelector(
     (state) => state.groupsState
   );
   const { responseData: destinationResponse } = useSelector(
@@ -465,6 +462,7 @@ function GroupsNew() {
                         stateValues.listImage.imageLink) ||
                       ""
                     }
+                    alt="img was not found"
                   />
                 </label>
                 <input
@@ -549,6 +547,7 @@ function GroupsNew() {
                             <img
                               className="imageinputupdate"
                               src={image.imageLink}
+                              alt="img was not found"
                             />
                           </label>
                         </div>
@@ -559,7 +558,7 @@ function GroupsNew() {
                       <div className="firstboxupdatetabnew">
                         <BorderColorRoundedIcon className="box12tab" />
                       </div>
-                      <img className="imageinputupdatetabnew" src={images} />
+                      <img className="imageinputupdatetabnew" src={images} alt="img was not found"/>
                     </label>
                     <input
                       id="file-input1"

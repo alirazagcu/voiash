@@ -3,7 +3,7 @@ import "../App.css";
 import { Carousel } from "react-bootstrap";
 import pics from "../images/cover.jpg";
 import Option from "./Option";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./Navbar";
 function Selection() {
@@ -14,7 +14,7 @@ function Selection() {
         <div className="sliders1">
           <Carousel nextIcon="" prevIcon="" prevLabel="" nextLabel="">
             <Carousel.Item>
-              <img className="sliders" src={pics} />
+              <img className="sliders" src={pics} alt="img was not found"/>
             </Carousel.Item>
           </Carousel>
         </div>

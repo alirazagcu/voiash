@@ -30,7 +30,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "../material-ui-comps/Loader";
 import SnackBar from "../material-ui-comps/SnackBar";
 import { useHistory } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import { isEmpty } from "lodash";
 const defaultValues = {
   name: "",
@@ -569,6 +568,7 @@ function GroupsUpdate() {
                         stateValues.listImage.imageLink) ||
                       ""
                     }
+                    alt="img was not found"
                   />
                 </label>
                 <input
@@ -659,6 +659,7 @@ function GroupsUpdate() {
                             <img
                               className="imageinputupdate"
                               src={image.imageLink}
+                              alt="img was not found"
                             />
                           </label>
                         </div>
@@ -669,7 +670,7 @@ function GroupsUpdate() {
                       <div className="firstboxupdatetabnew">
                         <BorderColorRoundedIcon className="box12tab" />
                       </div>
-                      <img className="imageinputupdatetabnew" src={images} />
+                      <img className="imageinputupdatetabnew" src={images} alt="img was not found"/>
                     </label>
                     <input
                       id="file-input1"

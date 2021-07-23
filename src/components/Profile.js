@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import pics from "../images/house.jpg";
-import { Tabs, Tab } from "react-bootstrap";
 import Information from "./Information.js";
 import Reservaciones from "./Reservaciones";
 import LocalFriend from "./LocalFriend";
@@ -13,7 +12,6 @@ import { userDetail, userDetailStateClear } from "../store/userDetailReducer";
 import { useDispatch, useSelector } from "react-redux";
 
 function Profile() {
-  const [key, setKey] = useState("home");
   const [mainDetail, setMainDetail] = useState({
     userEmail: "",
     name: "",

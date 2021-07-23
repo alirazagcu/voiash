@@ -1,17 +1,16 @@
 import "../App.css";
-import pics from "../images/house.jpg";
-import { Form, Col, Button, Card, Table, Modal, Row } from "react-bootstrap";
+import { Form, Col, Card, Table, Modal, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import pics3 from "../images/unnamed.png";
 import { useState } from "react";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Loader from "./material-ui-comps/Loader";
 import { isEmpty } from "lodash";
 
 function Details() {
-  const { isError, isFetching, isSuccess, msg, group } = useSelector(
+  const { group } = useSelector(
     (state) => state.groupsState
   );
   const [modalShow, setModalShow] = useState(false);
@@ -36,6 +35,7 @@ function Details() {
               <img
                 src={!isEmpty(group.listImage) ? group.listImage.imageLink : ""}
                 className="cardimage22"
+                alt="img was not found"
               />
             </div>
             <div className="detail1">
@@ -228,7 +228,7 @@ function MyVerticallyCenteredModal2(props) {
           <div className="Model2">
             <div>
               <div>
-                <img src={pics3} className="cardimg2" />
+                <img src={pics3} className="cardimg2" alt="img was not found"/>
               </div>
               <div className="modelform">
                 <Form>
