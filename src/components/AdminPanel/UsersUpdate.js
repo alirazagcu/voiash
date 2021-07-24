@@ -1,8 +1,20 @@
 import "../../App.css";
 import { Form, Col, Button, Card, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Loader from "../material-ui-comps/Loader";
+import { useSelector } from "react-redux";
+import {isEmpty} from "lodash";
+
 function UserUpdate() {
-  return (
+  const { user } = useSelector(
+    (state) => state.allUsersState
+  );
+  const {personalDetails, location, contact} = user;
+  return isEmpty(user) ? (
+    <div style={{ marginTop: "300px" }}>
+      <Loader />
+    </div>
+  ) : (
     <div className="person">
       <div className="person1">
         <Card
@@ -21,10 +33,7 @@ function UserUpdate() {
                       <Button>Volver</Button>
                     </Link>
                   </div>
-                  <div className="btnfornew">
-                    <Button>Eliminar</Button>
-                    <Button className="formarginbtn">Guardar</Button>
-                  </div>
+                  <div className="btnfornew"></div>
                 </Col>
               </Row>
               <hr />
@@ -32,17 +41,17 @@ function UserUpdate() {
               <Row className="rowmarn">
                 <Col>
                   <Form.Label>Nomber</Form.Label>
-                  <Form.Control defaultValue="Leonardo" />
+                  <Form.Control defaultValue={personalDetails.firstname ?personalDetails.firstname: ""} />
                 </Col>
                 <Col>
                   <Form.Label>Apellido Pateron</Form.Label>
-                  <Form.Control defaultValue="Fuentes" />
+                  <Form.Control defaultValue={personalDetails.lastname ? personalDetails.lastname: ""} />
                 </Col>
               </Row>
               <Row className="rowmarn">
                 <Col>
                   <Form.Label>Apellido Materno</Form.Label>
-                  <Form.Control defaultValue="Valero" />
+                  <Form.Control defaultValue={personalDetails.motherlastname ? personalDetails.motherlastname: ""} />
                 </Col>
                 <Col>
                   <Form.Label>Fecha de Nacimiento</Form.Label>
@@ -52,21 +61,22 @@ function UserUpdate() {
               <Row className="rowmarn">
                 <Col>
                   <Form.Label>Móvil</Form.Label>
-                  <Form.Control defaultValue="55 8417 7528" />
+                  <Form.Control defaultValue={personalDetails.mobile? personalDetails.mobile: ""} />
                 </Col>
                 <Col>
                   <Form.Label>Móvil</Form.Label>
-                  <Form.Control defaultValue="55 8417 7528" />
+                  <Form.Control defaultValue={personalDetails.mobile? personalDetails.mobile: ""} />
                 </Col>
               </Row>
               <Row className="rowmarn">
                 <Col>
                   <Form.Label>Email</Form.Label>
-                  <Form.Control defaultValue="lefuva97@gmail.com" />
+                  <Form.Control defaultValue={user.userEmail? user.userEmail: ""}  />
                 </Col>
                 <Col>
                   <Form.Label>País</Form.Label>
                   <Form.Control as="select">
+                    <option>{location.country? location.country: ""}</option>
                     <option>México</option>
                     <option>España</option>
                     <option>Estados Unidos</option>
@@ -76,37 +86,37 @@ function UserUpdate() {
               <Row className="rowmarn">
                 <Col>
                   <Form.Label>Ciudad</Form.Label>
-                  <Form.Control defaultValue="Naucalpan de Juárez" />
+                  <Form.Control defaultValue={location.city? location.city: ""} />
                 </Col>
                 <Col>
                   <Form.Label>Colonia o Provincia</Form.Label>
-                  <Form.Control defaultValue="Lomas Verdes 1ra Sección" />
+                  <Form.Control defaultValue={location.colony? location.colony: ""} />
                 </Col>
               </Row>
               <Row className="rowmarn">
                 <Col>
                   <Form.Label>Calle</Form.Label>
-                  <Form.Control defaultValue="Plaza Tucan" />
+                  <Form.Control defaultValue={location.street? location.street: ""} />
                 </Col>
                 <Col>
                   <Form.Label>No.</Form.Label>
-                  <Form.Control />
+                  <Form.Control defaultValue={location.houseno? location.houseno: ""}/>
                 </Col>
               </Row>
               <Row className="rowmarn">
                 <Col>
                   <Form.Label>Int.</Form.Label>
-                  <Form.Control defaultValue="34" />
+                  <Form.Control defaultValue={location.apartmentno? location.apartmentno: ""} />
                 </Col>
                 <Col>
                   <Form.Label>Código Postal</Form.Label>
-                  <Form.Control defaultValue="53120" />
+                  <Form.Control defaultValue={location.postalCode? location.postalCode: ""} />
                 </Col>
               </Row>
               <Row className="rowmarn">
                 <Col>
                   <Form.Label>DNI</Form.Label>
-                  <Form.Control defaultValue="2753104729902" />
+                  <Form.Control defaultValue={user.userId? user.userId: ""} />
                 </Col>
                 <Col></Col>
               </Row>
@@ -114,37 +124,37 @@ function UserUpdate() {
               <Row className="rowmarn">
                 <Col>
                   <Form.Label>Nomber</Form.Label>
-                  <Form.Control defaultValue="Leonardo" />
+                  <Form.Control defaultValue={contact.firstname? contact.firstname: ""} />
                 </Col>
                 <Col>
                   <Form.Label>Apellido Pateron</Form.Label>
-                  <Form.Control defaultValue="Valero" />
+                  <Form.Control defaultValue={contact.lastname? contact.lastname: ""} />
                 </Col>
               </Row>
               <Row className="rowmarn">
                 <Col>
                   <Form.Label>Apellido Materno</Form.Label>
-                  <Form.Control defaultValue="Mejía" />
+                  <Form.Control defaultValue={contact.motherlastname? contact.motherlastname: ""} />
                 </Col>
                 <Col>
                   <Form.Label>Móvil</Form.Label>
-                  <Form.Control defaultValue="55 8417 7528" />
+                  <Form.Control defaultValue={contact.phone? contact.phone: ""} />
                 </Col>
               </Row>
               <Row className="rowmarn">
                 <Col>
                   <Form.Label>Móvil</Form.Label>
-                  <Form.Control defaultValue="55 8417 7528" />
+                  <Form.Control defaultValue={contact.mobile? contact.mobile: ""} />
                 </Col>
                 <Col>
                   <Form.Label>Email</Form.Label>
-                  <Form.Control defaultValue="moqka@hotmail.com" />
+                  <Form.Control defaultValue={user.userEmail? user.userEmail: ""} />
                 </Col>
               </Row>
               <Row className="rowmarn">
                 <Col>
                   <Form.Label>Estatus</Form.Label>
-                  <Form.Control disabled defaultValue="Perfil Incompleto" />
+                  <Form.Control disabled defaultValue={user.status? user.status: ""} />
                 </Col>
                 <Col></Col>
               </Row>

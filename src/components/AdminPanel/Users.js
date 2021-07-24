@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../App.css";
 import PropTypes from "prop-types";
 import { Form, FormControl, Button } from "react-bootstrap";
@@ -17,6 +17,15 @@ import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
+import {
+  allUsersAction,
+  allUsersStateClear,
+  selectedUser,
+} from "../../store/allUserReducer";
+import { useSelector, useDispatch } from "react-redux";
+import Loader from "../material-ui-comps/Loader";
+import SnackBar from "../material-ui-comps/SnackBar";
+
 const useStyles1 = makeStyles((theme) => ({
   root: {
     flexShrink: 0,
@@ -92,24 +101,7 @@ TablePaginationActions.propTypes = {
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
 };
-function createData(name, calories, fat) {
-  return { name, calories, fat };
-}
-const rows = [
-  createData("Cupcake", 305, 3.7),
-  createData("Donut", 452, 25.0),
-  createData("Eclair", 262, 16.0),
-  createData("Frozen yoghurt", 159, 6.0),
-  createData("Gingerbread", 356, 16.0),
-  createData("Honeycomb", 408, 3.2),
-  createData("Ice cream sandwich", 237, 9.0),
-  createData("Jelly Bean", 375, 0.0),
-  createData("KitKat", 518, 26.0),
-  createData("Lollipop", 392, 0.2),
-  createData("Marshmallow", 318, 0),
-  createData("Nougat", 360, 19.0),
-  createData("Oreo", 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
+
 const useStyles2 = makeStyles({
   table: {
     minWidth: 500,
@@ -126,8 +118,41 @@ const useStyles2 = makeStyles({
 
 export default function User() {
   const classes = useStyles2();
+  const dispatch = useDispatch();
+  const { isError, isFetching, isSuccess, msg, allUsers } = useSelector(
+    (state) => state.allUsersState
+  );
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rows, setRows] = useState([]);
+  const [open, setOpen] = React.useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    dispatch(allUsersAction({ type: "get", token: token }));
+    return () => {
+      dispatch(allUsersStateClear());
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(allUsersStateClear());
+    }
+    if (isError) {
+      setOpen(true);
+      dispatch(allUsersStateClear());
+      setRows([]);
+    }
+  }, [isSuccess, isError, dispatch]);
+
+  useEffect(() => {
+    if (allUsers && allUsers.length > 0) {
+      const filterUsers = allUsers.filter((user) => user.userEmail !== "NaN");
+      setRows(filterUsers);
+    }
+  }, [allUsers]);
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -141,7 +166,15 @@ export default function User() {
     setPage(0);
   };
 
-  return (
+  const userClickHandler = (row) => {
+    dispatch(selectedUser(row));
+  };
+
+  return isFetching ? (
+    <div style={{ marginTop: "300px" }}>
+      <Loader />
+    </div>
+  ) : (
     <TableContainer component={Paper} className={classes.table1}>
       <Table
         size="small"
@@ -157,22 +190,22 @@ export default function User() {
                   <FormControl type="text" placeholder="Buscar..." />
                 </Form>
               </div>
-              <div align="right">
-                <Link to="/admin/users/new">
-                  <Button variant="primary">Nuevo</Button>
-                </Link>
-              </div>
+              <div align="right"></div>
             </TableCell>
           </TableRow>
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <TableRow key={row.name}>
+            <TableRow key={row._id}>
               <TableCell className="pakistan" component="th" scope="row">
-                <Link to="/admin/users/update" className="linker">
+                <Link
+                  to="/admin/users/update"
+                  className="linker"
+                  onClick={() => userClickHandler(row)}
+                >
                   <div className="tablelink">
-                    <p className="tabeltext">akashanjum282@gmail.com</p>
+                    <p className="tabeltext">{row.userEmail}</p>
                   </div>
                 </Link>
               </TableCell>
@@ -203,6 +236,7 @@ export default function User() {
           </TableRow>
         </TableFooter>
       </Table>
+      <SnackBar open={open} setOpen={setOpen} severity="error" msg={msg} />
     </TableContainer>
   );
 }

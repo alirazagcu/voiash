@@ -19,7 +19,7 @@ function LocalfriendsNew() {
   const { isError, isFetching, isSuccess, msg } = useSelector(
     (state) => state.localFriendsState
   );
-  // const { allUsers } = useSelector((state) => state.allUsersState);
+  const { allUsers } = useSelector((state) => state.allUsersState);
 
   const [stateValues, setStateValues] = useState({
     userEmail: "",
@@ -185,13 +185,11 @@ function LocalfriendsNew() {
                 <option selected>
                   {stateValues.userEmail ? stateValues.userEmail : ""}
                 </option>
-                {/* {!isEmpty(allUsers) && allUsers.map((user)=>{
+                {!isEmpty(allUsers) && allUsers.map((user)=>{
                     return(  
-                        <option>{user.userEmail}</option>
+                        user.userEmail!== "NaN" ? <option>{user.userEmail}</option> : null
                     )
-                })} */}
-                <option>lefuva97@gmail.com</option>
-                <option>ileniasorrentino00@gmail.com</option>
+                })}
               </Form.Control>
             </Col>
             <Col>

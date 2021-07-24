@@ -9,6 +9,7 @@ const initialState = {
   isFetching: false,
   msg: "",
   isSuccess: false,
+  user:{}
 };
 
 export const allUsersAction = createAsyncThunk(
@@ -66,6 +67,10 @@ const allUsersReducer = createSlice({
       isFetching: false,
       isSuccess: false,
     }),
+    selectedUser: (state, action) => ({
+      ...state,
+      user: action.payload
+    }),
   },
   extraReducers: {
     [allUsersAction.pending]: (state, action) => ({
@@ -89,5 +94,5 @@ const allUsersReducer = createSlice({
 });
 
 export const { actions, reducer } = allUsersReducer;
-export const { allUsersStateClear } = actions;
+export const { allUsersStateClear, selectedUser } = actions;
 export default reducer;
