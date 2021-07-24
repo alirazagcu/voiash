@@ -78,7 +78,6 @@ function Option() {
                       <img
                         src={exp.listImage.imageLink || pics}
                         className="bgimage"
-                        alt="img was not found"
                       />
                       <div class="textforcard">
                         <Card.Body>

@@ -63,14 +63,14 @@ function Login() {
       <div className="LoginMain">
         <div className="styles_container__gxc6Z">
           <div className="loginimage">
-            <img className="styles_background__14z2n" src={background} alt="img was not found"/>
+            <img className="styles_background__14z2n" src={background} />
           </div>
 
           <div className="LoginCard">
             <Card className="cardpadding">
               <Row className="marginTopRow">
                 <Col>
-                  <img src={Logo} className="loginlogo" alt="img was not found"/>
+                  <img src={Logo} className="loginlogo" />
                 </Col>
               </Row>
               <Row className="marginTopRow">

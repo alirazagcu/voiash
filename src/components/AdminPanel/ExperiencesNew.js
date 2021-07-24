@@ -461,7 +461,7 @@ function ExperiencesUpdate() {
                   <div className="firstboxupdate">
                     <BorderColorRoundedIcon className="box12" />
                   </div>
-                  <img className="imageinputupdate" src={imageSrc} alt="img was not found"/>
+                  <img className="imageinputupdate" src={imageSrc} />
                 </label>
                 <input
                   id="file-input1"
@@ -484,7 +484,7 @@ function ExperiencesUpdate() {
                 <div className="firstboxupdatetab">
                   <BorderColorRoundedIcon className="box12tab" />
                 </div>
-                <img className="imageinputupdatetab" src={logoSrc} alt="img was not found"/>
+                <img className="imageinputupdatetab" src={logoSrc} />
               </label>
               <input
                 id="file-input2"

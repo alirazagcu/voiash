@@ -194,7 +194,7 @@ function FamiliesNew() {
                     {" "}
                     <BorderColorRoundedIcon className="box1" />
                   </div>
-                  <img className="imageinput12" src={isClear ? "" : imageSrc} alt="img was not found" />
+                  <img className="imageinput12" src={isClear ? "" : imageSrc}  />
                 </label>
                 <input
                   id="file-input1"
@@ -213,7 +213,7 @@ function FamiliesNew() {
                     <BorderColorRoundedIcon className="box1" />
                   </div>
 
-                  <img className="imageinput12" src={isClear ? "" : logoSrc} alt="img was not found"/>
+                  <img className="imageinput12" src={isClear ? "" : logoSrc} />
                 </label>
                 <input
                   id="file-input2"

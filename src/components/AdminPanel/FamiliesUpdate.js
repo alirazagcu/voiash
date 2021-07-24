@@ -220,7 +220,6 @@ function FamiliesUpdate() {
                           pics
                         : imageSrc
                     }
-                    alt="img was not found"
                   />
                 </label>
                 <input
@@ -248,7 +247,6 @@ function FamiliesUpdate() {
                           pics
                         : logoSrc
                     }
-                    alt="img was not found"
                   />
                 </label>
                 <input

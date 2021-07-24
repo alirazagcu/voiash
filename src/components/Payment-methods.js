@@ -69,7 +69,7 @@ function MyVerticallyCenteredModal2(props) {
           <div className="Model2">
             <div>
               <div>
-                <img src={pics3} className="cardimg2" alt="img was not found"/>
+                <img src={pics3} className="cardimg2" />
               </div>
               <div className="modelform">
                 <Form>

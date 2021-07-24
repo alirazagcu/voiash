@@ -68,7 +68,7 @@ export default function GroupsExperiences({
           <div className="GroupExp">
             <div className="GroupExp0">
               <div className="GroupExp1">
-                <img src={row.listImage.imageLink} className="selectedpic" alt="img was not found"/>
+                <img src={row.listImage.imageLink} className="selectedpic" />
               </div>
               <div className="GroupExp2">
                 <p className="GroupExp3">{row.name}</p>

@@ -41,7 +41,7 @@ function Experiences1() {
           <div className="Experiences1">
             <div className="Experiences2">
               <div className="Experiencesimg">
-                <img src={img} className="mainimage" alt="no image was found"/>
+                <img src={img} className="mainimage" />
                 <div className="btnimage0">
                   {!isEmpty(experience.images) &&
                     experience.images.map((imgg) => {
@@ -53,7 +53,6 @@ function Experiences1() {
                             onLoad={(e) => setImg(imgg.imageLink)}
                             className="btnimage"
                             src={imgg.imageLink}
-                            alt="no image was found"
                           />
                         </button>
                       );
@@ -71,7 +70,6 @@ function Experiences1() {
                   <img
                     src={experience.listImage.imageLink}
                     className="imgicon"
-                    alt="no image was found"
                   />
                   <p>{experience.duration} hours</p>
                 </div>
@@ -261,7 +259,7 @@ function MyVerticallyCenteredModal2(props) {
           <div className="Model2">
             <div>
               <div>
-                <img src={pics3} className="cardimg2" alt="no image was found"/>
+                <img src={pics3} className="cardimg2" />
               </div>
               <div className="modelform">
                 <Form>

@@ -445,7 +445,6 @@ function ExperiencesUpdate() {
                           experienceInputs.listImage.imageLink
                         : imageSrc
                     }
-                    alt="img was not found"
                   />
                 </label>
                 <input
@@ -476,7 +475,6 @@ function ExperiencesUpdate() {
                       <img
                         className="imageinputupdatetab"
                         src={!logoSrc ? image.imageLink : logoSrc}
-                        alt="img was not found"
                       />
                     </label>
                     <input

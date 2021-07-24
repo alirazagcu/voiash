@@ -14,7 +14,7 @@ function Selection() {
         <div className="sliders1">
           <Carousel nextIcon="" prevIcon="" prevLabel="" nextLabel="">
             <Carousel.Item>
-              <img className="sliders" src={pics} alt="img was not found"/>
+              <img className="sliders" src={pics} />
             </Carousel.Item>
           </Carousel>
         </div>

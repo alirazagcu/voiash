@@ -81,8 +81,7 @@ export default function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [registerMenu, setReisterMenu] = useState(null);
   const token = localStorage.getItem("token");
-  // const isAdmin = localStorage.getItem("isAdmin");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const isAdmin = localStorage.getItem("isAdmin");
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -90,13 +89,7 @@ export default function Navbar() {
   const { responseData } = useSelector(
     (state) => state.loginState
   );
-
-  useEffect(() => {
-    if (responseData && responseData.user && responseData.user.isAdmin) {
-      setIsAdmin(responseData.user.isAdmin);
-    }
-  }, [responseData])
-
+  
   return (
     <div className={classes.root}>
       <AppBar className={classes.Appbar} position="fixed">
@@ -108,7 +101,7 @@ export default function Navbar() {
               color="inherit"
               aria-label="menu"
             >
-              <img className={classes.icon1} src={icon} alt="img was not found"/>
+              <img className={classes.icon1} src={icon} />
             </IconButton>
           </Link>
           {token ? (
@@ -148,13 +141,13 @@ export default function Navbar() {
                     Métodos de pago
                   </MenuItem>
                 </Link>
-                {isAdmin ? <hr /> : null}
-                {isAdmin ? (
+                {isAdmin == "true" && <hr />}
+                {isAdmin == "true" && (
                   <Link to="/admin" className={classes.remove}>
                     {" "}
                     <MenuItem onClick={() => setAnchorEl(null)}>Admin</MenuItem>
                   </Link>
-                ) : null}
+                )}
                 <hr />
                 <MenuItem
                   onClick={() => {

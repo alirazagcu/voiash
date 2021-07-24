@@ -14,6 +14,9 @@ import ForgotPassword from "./ResetPassword";
 import RecoveryPassword from "./RecoveryPassword";
 
 function RouteConfig() {
+  const token = localStorage.getItem("token");
+  const isAdmin = localStorage.getItem("isAdmin");
+  console.log("response ", isAdmin, token);
   return (
     <Router>
       <div className="comp">

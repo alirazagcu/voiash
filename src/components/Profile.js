@@ -58,7 +58,6 @@ function Profile() {
             <div class="module-border-wrap">
               <img
                 src={mainDetail.userPic}
-                alt="picss"
                 className="profileimage"
               />
             </div>

@@ -60,7 +60,6 @@ function Groups() {
                         <img
                           src={data.listImage.imageLink}
                           className="cardimage"
-                          alt="no image was found"
                         />
                       </div>
                       <div>

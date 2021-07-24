@@ -9,7 +9,7 @@ function ReservationSnd() {
           <Card.Body>
             <div className="res1">
               <div>
-                <img src={pics} className="res2" alt="img was not found"/>
+                <img src={pics} className="res2" />
               </div>
               <div>
                 <p className="res3">Aún no tienes ninguna reservación</p>

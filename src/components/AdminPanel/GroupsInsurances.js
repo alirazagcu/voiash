@@ -62,7 +62,7 @@ export default function GroupsInsurances({
             <div className="GroupExp">
               <div className="GroupExp0">
                 <div className="GroupExp1">
-                  <img src="lasjfkdjf" className="selectedpic" alt="img was not found"/>
+                  <img src="lasjfkdjf" className="selectedpic" />
                 </div>
                 <div className="GroupExp2">
                   <p className="GroupExp3">{row && row.name ? row.name : ""}</p>

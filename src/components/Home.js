@@ -64,7 +64,7 @@ function Home() {
           <Carousel nextIcon="" prevIcon="" prevLabel="" nextLabel="">
             <Carousel.Item>
               <video className="slider" autoPlay muted loop id="myVideo">
-                {/* <source src={video} type="video/mp4" /> */}
+                <source src={video} type="video/mp4" />
               </video>
               {/* <img className="slider" src={pics} /> */}
               <Carousel.Caption>
@@ -143,7 +143,6 @@ function Home() {
                           <img
                             src={exp.listImage.imageLink || pics}
                             className="bgimage"
-                            alt="no image was found"
                           />
                           <div class="textforcard">
                             <Card.Body>

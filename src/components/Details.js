@@ -35,7 +35,6 @@ function Details() {
               <img
                 src={!isEmpty(group.listImage) ? group.listImage.imageLink : ""}
                 className="cardimage22"
-                alt="img was not found"
               />
             </div>
             <div className="detail1">
@@ -228,7 +227,7 @@ function MyVerticallyCenteredModal2(props) {
           <div className="Model2">
             <div>
               <div>
-                <img src={pics3} className="cardimg2" alt="img was not found"/>
+                <img src={pics3} className="cardimg2"/>
               </div>
               <div className="modelform">
                 <Form>

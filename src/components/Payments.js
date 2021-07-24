@@ -25,7 +25,7 @@ function Payments() {
               <tbody>
                 <tr className="tablebody">
                   <td>
-                    <img src={pics} className="paymentpic" alt="img was not found"/>
+                    <img src={pics} className="paymentpic" />
                     7423
                   </td>
                   <td>Medicina Bellvitge</td>

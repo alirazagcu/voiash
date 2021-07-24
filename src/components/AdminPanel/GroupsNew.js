@@ -462,7 +462,6 @@ function GroupsNew() {
                         stateValues.listImage.imageLink) ||
                       ""
                     }
-                    alt="img was not found"
                   />
                 </label>
                 <input
@@ -547,7 +546,6 @@ function GroupsNew() {
                             <img
                               className="imageinputupdate"
                               src={image.imageLink}
-                              alt="img was not found"
                             />
                           </label>
                         </div>
@@ -558,7 +556,7 @@ function GroupsNew() {
                       <div className="firstboxupdatetabnew">
                         <BorderColorRoundedIcon className="box12tab" />
                       </div>
-                      <img className="imageinputupdatetabnew" src={images} alt="img was not found"/>
+                      <img className="imageinputupdatetabnew" src={images}/>
                     </label>
                     <input
                       id="file-input1"
