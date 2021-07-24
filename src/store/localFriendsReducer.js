@@ -5,8 +5,7 @@ import {
   GET_ALL_LOCAL_FRIENDS,
   UPDATE_LOCAL_FRIENDS_BY_ID,
   DELETE_LOCAL_FRIENDS_BY_ID,
-  ADD_LOCAL_FRIENDS,
-  LOCAL_FRIENDS_GET_MOCK_DATA,
+  ADD_LOCAL_FRIENDS
 } from "./constant";
 import { isEmpty } from "lodash";
 
@@ -62,8 +61,7 @@ export const localFriendsAction = createAsyncThunk(
       if (response.status === 200) {
         if (response.data && response.data.responseCode === 200) {
           return {
-            responseData: LOCAL_FRIENDS_GET_MOCK_DATA,
-            // response.data.responseData,
+            responseData: response.data.responseData,
             isSuccess: response.data.success,
           };
         }

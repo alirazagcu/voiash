@@ -114,7 +114,7 @@ function InsurancesNew() {
     dispatch(
       insuranceAction({
         type: "add",
-        data: { ...stateValues },
+        data: { ...stateValues, visibility: "ALL" },
         token: token,
       })
     );

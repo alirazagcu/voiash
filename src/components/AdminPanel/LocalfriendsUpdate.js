@@ -130,14 +130,15 @@ function LocalfriendsUpdate() {
     setIsDelete(false);
     const token = localStorage.getItem("token");
     const languageList =
-      localFriend.languages &&
-      localFriend.languages.map((friend) => {
+    stateValues.languages &&
+    stateValues.languages.map((friend) => {
         return friend.name;
       });
     dispatch(
       localFriendsAction({
         type: "put",
         data: { ...stateValues, languages: languageList },
+        _id: stateValues._id,
         token: token,
       })
     );

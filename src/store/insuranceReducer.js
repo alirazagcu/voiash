@@ -5,8 +5,7 @@ import {
   GET_ALL_INSURANCE,
   UPDATE_INSURANCE_BY_ID,
   DELETE_INSURANCE_BY_ID,
-  ADD_INSURANCE,
-  INSURANCE_GET_MOCK_DATA,
+  ADD_INSURANCE
 } from "./constant";
 import { isEmpty } from "lodash";
 
@@ -59,8 +58,7 @@ export const insuranceAction = createAsyncThunk(
       if (response.status === 200) {
         if (response.data && response.data.responseCode === 200) {
           return {
-            responseData: INSURANCE_GET_MOCK_DATA,
-            // response.data.responseData,
+            responseData: response.data.responseData,
             isSuccess: response.data.success,
           };
         }

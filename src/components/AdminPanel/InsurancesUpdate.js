@@ -134,6 +134,7 @@ function InsurancesUpdate() {
       insuranceAction({
         type: "put",
         data: { ...stateValues },
+        _id: stateValues._id,
         token: token,
       })
     );

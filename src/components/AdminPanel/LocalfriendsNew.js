@@ -128,7 +128,7 @@ function LocalfriendsNew() {
     dispatch(
       localFriendsAction({
         type: "add",
-        data: { ...stateValues },
+        data: { ...stateValues , visibility: "ALL"},
         token: token,
       })
     );
