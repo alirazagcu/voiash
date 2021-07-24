@@ -152,6 +152,7 @@ export default function Navbar() {
                 <MenuItem
                   onClick={() => {
                     localStorage.setItem("token", "");
+                    localStorage.setItem("isAdmin", "");
                     history.push("/");
                     setAnchorEl(null);
                     if (

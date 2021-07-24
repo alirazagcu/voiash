@@ -34,7 +34,12 @@ function Login() {
       dispatch(stateClear());
     }
     if (isSuccess) {
-      history.push("/home");
+      const isAdmin = localStorage.getItem("isAdmin");
+      if(isAdmin == "true"){
+        history.push("/admin");
+      }
+      else{
+      history.push("/home");}
       dispatch(stateClear());
     }
   }, [isSuccess, isError]);

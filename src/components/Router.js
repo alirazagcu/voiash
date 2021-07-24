@@ -12,138 +12,478 @@ import Forget from "./Forget.js";
 import AdminRegister from "./AdminRegister";
 import ForgotPassword from "./ResetPassword";
 import RecoveryPassword from "./RecoveryPassword";
+import PrivateRoute from "./PrivateRoute";
 
 function RouteConfig() {
-  const token = localStorage.getItem("token");
-  const isAdmin = localStorage.getItem("isAdmin");
-  console.log("response ", isAdmin, token);
   return (
     <Router>
       <div className="comp">
         <Switch>
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/registeradmin" component={AdminRegister} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/" component={Login} />
-          <Route exact path="/forget" component={Forget} />
-          <Route exact path="/user/resetPassword/:userEmail/reset/:userId" component={ForgotPassword} />
-          <Route exact path="/user/recoveryPassword" component={RecoveryPassword} />
-          <Route exact path="/selection/adventuretrip" component={Selection} />
-          <Route exact path="/selection/experiencies" component={Selection} />
-          <Route exact path="/selection/senses" component={Selection} />
-          <Route exact path="/selection/localfriend" component={Selection} />
+          <PrivateRoute
+            exact
+            path="/register"
+            publicValue={true}
+            component={Register}
+          />
+          <PrivateRoute
+            exact
+            path="/registeradmin"
+            publicValue={true}
+            component={AdminRegister}
+          />
+          <PrivateRoute
+            exact
+            path="/login"
+            publicValue={true}
+            component={Login}
+          />
+          <PrivateRoute exact path="/" publicValue={true} component={Login} />
+          <PrivateRoute
+            exact
+            path="/forget"
+            publicValue={true}
+            component={Forget}
+          />
+          <PrivateRoute
+            exact
+            path="/user/resetPassword/:userEmail/reset/:userId"
+            publicValue={true}
+            component={ForgotPassword}
+          />
+          <PrivateRoute
+            exact
+            path="/user/recoveryPassword"
+            publicValue={true}
+            component={RecoveryPassword}
+          />
+          <PrivateRoute
+            exact
+            path="/selection/adventuretrip"
+            publicValue={false}
+            isAdminProps="false"
+            component={Selection}
+          />
+          <PrivateRoute
+            exact
+            path="/selection/experiencies"
+            publicValue={false}
+            isAdminProps="false"
+            component={Selection}
+          />
+          <PrivateRoute
+            exact
+            path="/selection/senses"
+            publicValue={false}
+            isAdminProps="false"
+            component={Selection}
+          />
+          <PrivateRoute
+            exact
+            path="/selection/localfriend"
+            publicValue={false}
+            isAdminProps="false"
+            component={Selection}
+          />
 
-          <Route exact path="/experiencies1" component={Experiences1} />
-          <Route exact path="/profile" component={Profile} />
+          <PrivateRoute
+            exact
+            path="/experiencies1"
+            publicValue={false}
+            isAdminProps="false"
+            component={Experiences1}
+          />
+          <PrivateRoute
+            exact
+            path="/profile"
+            publicValue={false}
+            isAdminProps="false"
+            component={Profile}
+          />
 
-          <Route exact path="/profile/information" component={Profile} />
-          <Route exact path="/profile/reservations" component={Profile} />
-          <Route exact path="/profile/localfriend" component={Profile} />
-          <Route exact path="/selection/theweek" component={Selection} />
-          <Route exact path="/selection/discovery" component={Selection} />
-          <Route exact path="/home" component={Home} />
+          <PrivateRoute
+            exact
+            path="/profile/information"
+            isAdminProps="false"
+            publicValue={false}
+            component={Profile}
+          />
+          <PrivateRoute
+            exact
+            path="/profile/reservations"
+            isAdminProps="false"
+            publicValue={false}
+            component={Profile}
+          />
+          <PrivateRoute
+            exact
+            path="/profile/localfriend"
+            isAdminProps="false"
+            publicValue={false}
+            component={Profile}
+          />
+          <PrivateRoute
+            exact
+            path="/selection/theweek"
+            isAdminProps="false"
+            publicValue={false}
+            component={Selection}
+          />
+          <PrivateRoute
+            exact
+            path="/selection/discovery"
+            isAdminProps="false"
+            publicValue={false}
+            component={Selection}
+          />
+          <PrivateRoute
+            exact
+            path="/home"
+            isAdminProps="false"
+            publicValue={false}
+            component={Home}
+          />
 
-          <Route
+          <PrivateRoute
             exact
             path="/profile/information/personal"
             component={Profile}
+            isAdminProps="false"
+            publicValue={false}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/profile/information/location"
             component={Profile}
+            isAdminProps="false"
+            publicValue={false}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/profile/information/contact"
             component={Profile}
+            isAdminProps="false"
+            publicValue={false}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/profile/information/payment-methods"
             component={Profile}
+            isAdminProps="false"
+            publicValue={false}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/profile/information/payments"
             component={Profile}
+            isAdminProps="false"
+            publicValue={false}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/profile/reservations/groups"
             component={Profile}
+            isAdminProps="false"
+            publicValue={false}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/profile/reservations/experiences"
             component={Profile}
+            isAdminProps="false"
+            publicValue={false}
           />
 
-          <Route exact path="/profile/localfriend/data" component={Profile} />
-          <Route exact path="/profile/localfriend/detail" component={Profile} />
-          <Route
+          <PrivateRoute
+            exact
+            path="/profile/localfriend/data"
+            component={Profile}
+            isAdminProps="false"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/profile/localfriend/detail"
+            component={Profile}
+            isAdminProps="false"
+            publicValue={false}
+          />
+          <PrivateRoute
             exact
             path="/profile/localfriend/experiences"
             component={Profile}
+            isAdminProps="false"
+            publicValue={false}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/profile/localfriend/reservations"
             component={Profile}
+            isAdminProps="false"
+            publicValue={false}
           />
-          <Route exact path="/selection" component={Selection} />
-          <Route
+          <PrivateRoute
+            exact
+            path="/selection"
+            component={Selection}
+            isAdminProps="false"
+            publicValue={false}
+          />
+          <PrivateRoute
             exact
             path="/profile/reservations/groups/details"
             component={Profile}
+            isAdminProps="false"
+            publicValue={false}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/profile/localfriend/experiences/update"
             component={Profile}
+            isAdminProps="false"
+            publicValue={false}
           />
-          <Route
+          <PrivateRoute
             exact
             path="/profile/localfriend/experiences/new"
             component={Profile}
+            isAdminProps="false"
+            publicValue={false}
           />
 
           {/* admin panel */}
-          <Route exact path="/admin" component={Admin} />
-          <Route exact path="/admin/families" component={Admin} />
-          <Route exact path="/admin/groups" component={Admin} />
-          <Route exact path="/admin/experiences" component={Admin} />
-          <Route exact path="/admin/hotels" component={Admin} />
-          <Route exact path="/admin/destinations" component={Admin} />
-          <Route exact path="/admin/insurances" component={Admin} />
-          <Route exact path="/admin/users" component={Admin} />
-          <Route exact path="/admin/localfriends" component={Admin} />
-          <Route exact path="/admin/reservations" component={Admin} />
-          <Route exact path="/admin/payments" component={Admin} />
-          <Route exact path="/admin/fees" component={Admin} />
+          <PrivateRoute
+            exact
+            path="/admin"
+            isAdminProps="true"
+            publicValue={false}
+            component={Admin}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/families"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/groups"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/experiences"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/hotels"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/destinations"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/insurances"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/users"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/localfriends"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/reservations"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/payments"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/fees"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
 
           {/* update */}
-          <Route exact path="/admin/families/update" component={Admin} />
-          <Route exact path="/admin/hotels/update" component={Admin} />
-          <Route exact path="/admin/families/new" component={Admin} />
-          <Route exact path="/admin/hotels/new" component={Admin} />
-          <Route exact path="/admin/destinations/update" component={Admin} />
-          <Route exact path="/admin/destinations/new" component={Admin} />
-          <Route exact path="/admin/insurances/update" component={Admin} />
-          <Route exact path="/admin/insurances/new" component={Admin} />
-          <Route exact path="/admin/users/update" component={Admin} />
-          <Route exact path="/admin/users/new" component={Admin} />
-          <Route exact path="/admin/groups/update" component={Admin} />
-          <Route exact path="/admin/groups/new" component={Admin} />
-          <Route exact path="/admin/localfriends/update" component={Admin} />
-          <Route exact path="/admin/localfriends/new" component={Admin} />
-          <Route exact path="/admin/payments/update" component={Admin} />
-          <Route exact path="/admin/fees/new" component={Admin} />
-          <Route exact path="/admin/fees/update" component={Admin} />
-          <Route exact path="/admin/reservations/update" component={Admin} />
-          <Route exact path="/admin/reservations/new" component={Admin} />
-          <Route exact path="/admin/experiences/update" component={Admin} />
-          <Route exact path="/admin/experiences/new" component={Admin} />
+          <PrivateRoute
+            exact
+            path="/admin/families/update"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/hotels/update"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/families/new"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/hotels/new"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/destinations/update"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/destinations/new"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/insurances/update"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/insurances/new"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/users/update"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/users/new"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/groups/update"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/groups/new"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/localfriends/update"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/localfriends/new"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/payments/update"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/fees/new"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/fees/update"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/reservations/update"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/reservations/new"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/experiences/update"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/experiences/new"
+            component={Admin}
+            isAdminProps="true"
+            publicValue={false}
+          />
           <Route path="*" component={() => <h2>404 Not Found</h2>} />
         </Switch>
       </div>
