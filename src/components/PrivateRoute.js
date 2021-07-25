@@ -1,14 +1,31 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, useLocation } from "react-router-dom";
 
 const PrivateRoute = ({
   component: Component,
   publicValue,
   isAdminProps,
+  isHome = false,
   ...rest
 }) => {
-  const token = localStorage.getItem("token");
-  const isAdmin = localStorage.getItem("isAdmin");
+  let token = "";
+  let isAdmin = "";
+  let location = useLocation();
+  if (isHome) {
+    const redirect = location.search.split("=")[1];
+    if (redirect) {
+      localStorage.setItem("token", redirect);
+      localStorage.setItem("isAdmin", false);
+      isAdmin = "false";
+      token = redirect;
+    } else {
+      token = localStorage.getItem("token");
+      isAdmin = localStorage.getItem("isAdmin");
+    }
+  } else {
+    token = localStorage.getItem("token");
+    isAdmin = localStorage.getItem("isAdmin");
+  }
   return (
     <Route
       {...rest}

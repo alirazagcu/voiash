@@ -6,19 +6,21 @@ import { Card, Row, Col, Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { GoogleLogin } from "react-google-login";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import googleIcon from "../assests/google.svg";
 import { signUp, stateClear } from "../store/SignUpReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Loader from "./material-ui-comps/Loader";
 import SnackBar from "./material-ui-comps/SnackBar";
 import Navbar from "./Navbar";
+import {BASE_URL} from "../store/constant";
 
 function Register() {
   const [signUpValues, setSignUpValues] = useState({
     userEmail: "",
     userPassword: "",
     reUserPassword: "",
-    isChecked: false
+    isChecked: false,
   });
   const [open, setOpen] = useState(false);
   const [signupToggle, setSignupToggle] = useState(true);
@@ -40,13 +42,12 @@ function Register() {
     }
   }, [isSuccess, isError]);
 
-  useEffect(() =>{
-    const { userEmail, userPassword, reUserPassword } = signUpValues
-    if (userEmail &&  userPassword && reUserPassword && isChecked) {
+  useEffect(() => {
+    const { userEmail, userPassword, reUserPassword } = signUpValues;
+    if (userEmail && userPassword && reUserPassword && isChecked) {
       setSignupToggle(false);
-    }
-    else setSignupToggle(true);
-  }, [signUpValues, isChecked])
+    } else setSignupToggle(true);
+  }, [signUpValues, isChecked]);
 
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
@@ -59,8 +60,7 @@ function Register() {
 
   const onCheckHandler = () => {
     setIsChecked(!isChecked);
-  }
-
+  };
 
   return (
     <>
@@ -80,18 +80,27 @@ function Register() {
           </Row> */}
               <Row className="marginTopRow">
                 <Col>
-                  <GoogleLogin
-                    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                    buttonText="Sign in with Google"
-                    className="google"
-                  />
+                  <button className="facebook">
+                    <img src={googleIcon} width="30"/>
+                    <a
+                      style={{ marginLeft: "20px" }}
+                      href={`${BASE_URL}google`}
+                    >
+                      Sign in with google
+                    </a>
+                  </button>
                 </Col>
               </Row>
               <Row className="marginTopRow12">
                 <Col>
                   <button className="facebook">
                     <FacebookIcon className="facebook1" />
-                    <p className="text12">Sign in with Facebook</p>
+                    <a
+                      style={{ marginLeft: "20px" }}
+                      href={`${BASE_URL}facebook`}
+                    >
+                      Sign in with Facebook
+                    </a>
                   </button>
                 </Col>
               </Row>
@@ -155,12 +164,12 @@ function Register() {
               </Row>
               <Row className="marginTopRow1234">
                 <Col>
-                  <Button 
-                  className="loginbutton" 
-                  onClick={onSignUpHandler}
-                  disabled={signupToggle}
+                  <Button
+                    className="loginbutton"
+                    onClick={onSignUpHandler}
+                    disabled={signupToggle}
                   >
-                  {isFetching ? <Loader /> : "Regístrate"}
+                    {isFetching ? <Loader /> : "Regístrate"}
                   </Button>
                 </Col>
               </Row>

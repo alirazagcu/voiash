@@ -173,6 +173,11 @@ export const groupsActions = createAsyncThunk(
               return {
                 responseData: response.data.responseData,
                 isSuccess: false,
+              };
+            case "add":
+              return {
+                responseData: response.data.responseData,
+                isSuccess: true,
                 msg: "Your record is succfully added",
               };
             case "put":

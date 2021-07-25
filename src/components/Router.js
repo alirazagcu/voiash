@@ -140,6 +140,7 @@ function RouteConfig() {
             path="/home"
             isAdminProps="false"
             publicValue={false}
+            isHome={true}
             component={Home}
           />
 

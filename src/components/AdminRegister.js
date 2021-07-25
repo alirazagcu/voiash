@@ -6,11 +6,14 @@ import { Card, Row, Col, Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { GoogleLogin } from "react-google-login";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import googleIcon from "../assests/google.svg";
+import GTranslateIcon from "@material-ui/icons/GTranslate";
 import { adminSignUp, adminStateClear } from "../store/adminSignUpReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Loader from "./material-ui-comps/Loader";
 import SnackBar from "./material-ui-comps/SnackBar";
+import {BASE_URL} from "../store/constant";
 
 function Register() {
   const [signUpValues, setSignUpValues] = useState({
@@ -61,18 +64,27 @@ function Register() {
           </Row> */}
             <Row className="marginTopRow">
               <Col>
-                <GoogleLogin
-                  clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                  buttonText="Sign in with Google"
-                  className="google"
-                />
+                <button className="facebook">
+                  <img src={googleIcon} width="30"/>
+                  <a
+                    style={{ marginLeft: "20px" }}
+                    href={`${BASE_URL}google`}
+                  >
+                    Sign in with google
+                  </a>
+                </button>
               </Col>
             </Row>
             <Row className="marginTopRow12">
               <Col>
                 <button className="facebook">
                   <FacebookIcon className="facebook1" />
-                  <p className="text12">Sign in with Facebook</p>
+                  <a
+                    style={{ marginLeft: "20px" }}
+                    href={`${BASE_URL}facebook`}
+                  >
+                    Sign in with Facebook
+                  </a>
                 </button>
               </Col>
             </Row>

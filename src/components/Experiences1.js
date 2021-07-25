@@ -6,12 +6,18 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import Navbar from "./Navbar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Loader from "./material-ui-comps/Loader";
 import { isEmpty } from "lodash";
+import jwt_decode from "jwt-decode";
+import { userDetail, userDetailStateClear } from "../store/userDetailReducer";
 
 function Experiences1() {
+  const dispatch = useDispatch();
   const { experience } = useSelector((state) => state.experienceState);
+  const { responseData } = useSelector(
+    (state) => state.userDetailState
+  );
 
   const [modalShow, setModalShow] = useState(false);
   const [img, setImg] = useState();

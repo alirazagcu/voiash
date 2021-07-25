@@ -94,7 +94,7 @@ export default function Navbar() {
     <div className={classes.root}>
       <AppBar className={classes.Appbar} position="fixed">
         <Toolbar>
-          <Link to="/">
+          <Link to="/home">
             <IconButton
               edge="start"
               className={classes.menuButton}
