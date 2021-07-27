@@ -76,7 +76,7 @@ function Contact() {
         phone: phone,
         mobile: mobile,
       },
-      userEmail: userEmail || "",
+      userId: responseData.userId
     };
     dispatch(
       userDetail({
@@ -174,6 +174,7 @@ function Contact() {
                 >
                   <Form.Label>Email</Form.Label>
                   <Form.Control
+                    disabled={true}
                     type="email"
                     value={contactDetail.userEmail}
                     name="userEmail"

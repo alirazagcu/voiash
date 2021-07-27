@@ -62,6 +62,7 @@ function Location() {
     const token = localStorage.getItem("token");
     const updateResponseData = {
       location: locationDetail,
+      userId: responseData.userId
     };
     dispatch(
       userDetail({

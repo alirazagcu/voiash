@@ -61,9 +61,8 @@ function Personal() {
     e.preventDefault();
     const token = localStorage.getItem("token");
     const updateResponseData = {
-      ...responseData,
       personalDetails: personalDetail,
-      userEmail: "",
+      userId: responseData.userId
     };
     dispatch(
       userDetail({
